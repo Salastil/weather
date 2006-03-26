@@ -1,0 +1,31 @@
+#!/usr/bin/python
+
+# Copyright (c) 2006 Jeremy Stanley <fungi@yuggoth.org>, all rights reserved.
+# Licensed per terms in the LICENSE file distributed with this software.
+
+import weather
+
+# initialize options and configs
+selections = weather.Selections()
+get = selections.get
+get_boolean = selections.get_boolean
+
+# this mode just lists the aliases defined in the config
+if get_boolean("list"): print weather.list_aliases(selections.config)
+
+# normal operation
+else:
+	for argument in selections.arguments:
+		if get_boolean("conditions", argument):
+			print weather.get_metar(
+				get("id", argument),
+				get_boolean("verbose", argument)
+				)
+		if not get_boolean("conditions", argument) \
+			or get_boolean("forecast", argument):
+			print weather.get_forecast(
+				get("city", argument),
+				get("st", argument),
+				get_boolean("verbose", argument)
+				)
+
