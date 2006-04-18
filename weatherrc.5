@@ -1,4 +1,6 @@
-.TH WEATHERRC 5 "March 26, 2006"
+.TH WEATHERRC 5 "March 26, 2006" "" \" -*- nroff -*-
+\" Copyright (c) 2006 Jeremy Stanley <fungi@yuggoth.org>, all rights reserved.
+\" Licensed per terms in the LICENSE file distributed with this software.
 .SH NAME
 weatherrc \- configuration file format for the
 .BR weather (1)
@@ -7,9 +9,9 @@ utility
 The weatherrc file format is intended to specify a set of macros
 by which to group a METAR station ID for current conditions data with a
 city/state combination for a forecast, but many of the other
-command\-line options/flags for the weather utility can be specified as
-well. The file is organized as an INI-format config, with the alias name
-in [] brackets and the associated parameter/value pairs on following
+command\-line options and flags for the weather utility can be specified
+as well. The file is organized as an INI-format config, with the alias
+name in [] brackets and the associated parameter/value pairs on following
 lines. Parameters and their values as separated by = or : characters.
 Multi-word values do not need quoting.
 .SH PARAMETERS

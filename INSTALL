@@ -1,17 +1,36 @@
 BASIC UNIX INSTALLATION INSTRUCTIONS FOR THE WEATHER UTILITY
 
+Copyright (c) 2006 Jeremy Stanley <fungi@yuggoth.org>, all rights reserved.
+Licensed per terms in the LICENSE file distributed with this software.
+
 
 PREREQUISITES
 
 You need the Python interpreter installed somewhere in your path
-(most modern UNIX derivatives come with one already). The weather
-executable assumes your Python interpreter is /usr/bin/python so you
-may need to edit the #! line if that is not the case. If you need
-Python for some reason, it can be obtained from
-http://www.python.org/ (but chances are your operating system at
-least provides some sort of native package for it, which you should
-probably install in whatever means is recommended by your OS
-vendor/distributor).
+(most modern UNIX derivatives come with one already). If you need to
+get Python, it can be obtained from http://www.python.org/ (but
+chances are your operating system at least provides some sort of
+native package for it, which you should probably install in whatever
+means is recommended by your OS vendor/distributor).
+
+
+RUNNING IN PLACE
+
+An easy way to try it out is to unpack the tarball and change to the
+resulting directory:
+
+   tar xzf weather-*.tar.gz
+   cd weather
+   ./weather --version
+   ./weather --help
+   man ./weather.1
+   man ./weatherrc.5
+   ./weather --forecast --no-conditions --city=charlotte --st=nc
+   ./weather ord sea
+
+...and so on. The weather utility, included Python module and
+documentation are all fully functional when kept together in one
+directory, if somewhat inconvenient.
 
 
 INSTALLING THE UTILITY

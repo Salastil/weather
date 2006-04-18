@@ -1,0 +1,71 @@
+FREQUENTLY ASKED QUESTIONS ABOUT THE WEATHER UTILITY
+
+Copyright (c) 2006 Jeremy Stanley <fungi@yuggoth.org>, all rights reserved.
+Licensed per terms in the LICENSE file distributed with this software.
+
+
+1. Can I help?
+ 
+Sure! Bug reports and feature suggestions are always welcome, but
+fixes and patches are of course preferred. Contact
+fungi@yuggoth.org if desired, but please read this FAQ and the
+included manuals for weather(1) and weatherrc(5) before asking
+questions that might be answered therein. One big way anyone can
+help is to provide me with some additional mappings of METAR
+station ID, city name and state abbreviation for inclusion in the
+default /etc/weatherrc file.
+
+
+2. How do I figure out my local METAR station ID?
+
+The list of stations is found at
+http://weather.noaa.gov/data/nsd_cccc.gz (it's thousands of lines
+long, so I recommend keyword searching in your browser or using
+grep(1) to find what you're looking for).
+
+
+3. How do I figure out my local city name and state abbreviation?
+
+The forecasts can be located starting from
+http://weather.noaa.gov/pub/data/forecasts/city/ (choose the
+state abbreviation to get to a list of cities in that state).
+
+
+4. I live outside the USA--can this be made to work for me
+anyway?
+
+If you have any recommendations for similar forecast data in
+other countries, I will be happy to try and find a way to
+integrate it into the weather utility, but I suspect that some
+serious modification would be necessary given that the data is
+likely to be published in a non-English language, requiring some
+additional input from speakers of that language for how to handle
+filtering and formatting of the text.
+
+
+5. I get a warning when using apt-get to install on Debian Etch
+or later...
+
+If you're getting a warning from apt-get update like:
+
+   W: GPG error: http://fungi.yuggoth.org ./ Release: The
+      following signatures couldn't be verified because the
+      public key is not available: NO_PUBKEY 29ABF7441FB84657
+
+...it means my PGP key is not recognized by apt-get. Since this
+isn't an official Debian package repository, the Release.gpg
+file can't be signed by a key on the default keyring. To add my
+personal key to the list of trusted package repository Release
+signers, run (as root):
+
+   finger fungi@yuggoth.org | apt-key add -
+
+...or if you want to be a little paranoid, retrieve it from a
+public keyserver instead (all one line):
+
+   wget -O- "http://subkeys.pgp.net:11371/pks
+   /lookup?op=get&search=0x29ABF7441FB84657" | apt-key add -
+
+Though if you're really, truly paranoid, you'll re-write the
+program from scratch anyway, right?
+

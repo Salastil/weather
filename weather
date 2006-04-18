@@ -1,31 +1,34 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
+# weather version 1.1, http://fungi.yuggoth.org/weather/
 # Copyright (c) 2006 Jeremy Stanley <fungi@yuggoth.org>, all rights reserved.
 # Licensed per terms in the LICENSE file distributed with this software.
+
+"""Wrapper utility using the weather.py module."""
 
 import weather
 
 # initialize options and configs
 selections = weather.Selections()
 get = selections.get
-get_boolean = selections.get_boolean
+get_bool = selections.get_bool
 
 # this mode just lists the aliases defined in the config
-if get_boolean("list"): print weather.list_aliases(selections.config)
+if get_bool("list"): print weather.list_aliases(selections.config)
 
 # normal operation
 else:
 	for argument in selections.arguments:
-		if get_boolean("conditions", argument):
+		if get_bool("conditions", argument):
 			print weather.get_metar(
 				get("id", argument),
-				get_boolean("verbose", argument)
+				get_bool("verbose", argument)
 				)
-		if not get_boolean("conditions", argument) \
-			or get_boolean("forecast", argument):
+		if not get_bool("conditions", argument) \
+			or get_bool("forecast", argument):
 			print weather.get_forecast(
 				get("city", argument),
 				get("st", argument),
-				get_boolean("verbose", argument)
+				get_bool("verbose", argument)
 				)
 

@@ -1,4 +1,6 @@
-.TH WEATHER 1 "March 26, 2006"
+.TH WEATHER 1 "March 26, 2006" "" \" -*- nroff -*-
+\" Copyright (c) 2006 Jeremy Stanley <fungi@yuggoth.org>, all rights reserved.
+\" Licensed per terms in the LICENSE file distributed with this software.
 .SH NAME
 weather \- command\-line tool to obtain weather conditions and forecasts
 .SH SYNOPSIS
@@ -38,7 +40,10 @@ the METAR station ID (ex: KRDU)
 print a list of configured aliases
 .TP
 .B \-n, \-\-no\-conditions
-disable output of current conditions (implies \-\-forecast)
+disable output of current conditions (forces \-f)
+.TP
+.B \-o, \-\-omit\-forecast
+omit the local forecast (cancels \-f)
 .TP
 .B \-sST, \-\-st=ST
 the state abbreviation (ex: NC)
@@ -60,7 +65,7 @@ the system\-wide configuration
 .B ~/.weatherrc
 the per\-user configuration (can be used to override the above)
 .TP
-.B ./.weatherrc
+.B ./weatherrc
 the local directory configuration (can be used to override the above)
 .SH EXAMPLES
 .TP
@@ -76,7 +81,7 @@ See a forecast for the Asheville, NC area.
 .TP
 .B weather -fv gso
 Get the full decoded METAR for the station associated with the gso alias,
-and the forecast data for the City/State associated with the gso alias,
+and the forecast data for the city/state associated with the gso alias,
 without filtering or fancy formatting.
 .TP
 .B weather home work
