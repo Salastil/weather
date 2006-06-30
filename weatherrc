@@ -793,6 +793,11 @@ City = Paducah
 ID = KPAH
 St = KY
 
+[PAO]
+City = San Francisco
+ID = KPAO
+St = CA
+
 [PBI]
 City = West Palm Beach
 ID = KPBI
@@ -972,6 +977,11 @@ St = WY
 City = Shreveport
 ID = KSHV
 St = LA
+
+[SJC]
+City = San Jose
+ID = KSJC
+St = CA
 
 [SJT]
 City = San Angelo

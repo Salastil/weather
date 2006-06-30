@@ -42,30 +42,3 @@ likely to be published in a non-English language, requiring some
 additional input from speakers of that language for how to handle
 filtering and formatting of the text.
 
-
-5. I get a warning when using apt-get to install on Debian Etch
-or later...
-
-If you're getting a warning from apt-get update like:
-
-   W: GPG error: http://fungi.yuggoth.org ./ Release: The
-      following signatures couldn't be verified because the
-      public key is not available: NO_PUBKEY 29ABF7441FB84657
-
-...it means my PGP key is not recognized by apt-get. Since this
-isn't an official Debian package repository, the Release.gpg
-file can't be signed by a key on the default keyring. To add my
-personal key to the list of trusted package repository Release
-signers, run (as root):
-
-   finger fungi@yuggoth.org | apt-key add -
-
-...or if you want to be a little paranoid, retrieve it from a
-public keyserver instead (all one line):
-
-   wget -O- "http://subkeys.pgp.net:11371/pks
-   /lookup?op=get&search=0x29ABF7441FB84657" | apt-key add -
-
-Though if you're really, truly paranoid, you'll re-write the
-program from scratch anyway, right?
-

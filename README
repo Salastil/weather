@@ -47,17 +47,6 @@ be had here:
 
    http://fungi.yuggoth.org/weather/src/
 
-Alternatively, Debian users can grab a pre-built DEB package
-here:
-
-   http://fungi.yuggoth.org/weather/debian/
-
-...or add these lines for binary and, optionally, source packages
-to /etc/apt/sources.list:
-
-   deb http://fungi.yuggoth.org/weather/debian ./
-   deb-src http://fungi.yuggoth.org/weather/debian ./
-
-...then 'apt-get update && apt-get install weather-util' as root
-to get the current package installed and working.
+Alternatively, Debian Etch (testing) and Sid (unstable) users can
+install the weather-util package from any mirror.
 

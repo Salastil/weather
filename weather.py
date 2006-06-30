@@ -1,10 +1,10 @@
-# weather.py version 1.1, http://fungi.yuggoth.org/weather/
+# weather.py version 1.2, http://fungi.yuggoth.org/weather/
 # Copyright (c) 2006 Jeremy Stanley <fungi@yuggoth.org>, all rights reserved.
 # Licensed per terms in the LICENSE file distributed with this software.
 
 """Contains various object definitions needed by the weather utility."""
 
-version = "1.1"
+version = "1.2"
 
 class Selections:
 	"""An object to contain selection data."""
