@@ -4,6 +4,16 @@ Copyright (c) 2006 Jeremy Stanley <fungi@yuggoth.org>, all rights reserved.
 Licensed per terms in the LICENSE file distributed with this software.
 
 
+Table of Contents:
+
+1. Can I help?
+2. How do I figure out my local METAR station ID?
+3. How do I figure out my local city name and state abbreviation?
+4. I live outside the USA--can this be made to work for me
+   anyway?
+5. Why do I get the wrong forecast when specifying -i or --id?
+
+
 1. Can I help?
  
 Sure! Bug reports and feature suggestions are always welcome, but
@@ -41,4 +51,18 @@ serious modification would be necessary given that the data is
 likely to be published in a non-English language, requiring some
 additional input from speakers of that language for how to handle
 filtering and formatting of the text.
+
+
+5. Why do I get the wrong forecast when specifying -i or --id?
+
+The -i or --id switch (or the id parameter in an alias definition),
+only tells weather(1) what current conditions to retrieve. If you
+specify -f or --forecast on the command line (or forecast=True in
+an alias) without providing a city name and state abbreviation
+(-c/--city and -s/--st, or city and st in an alias), you will
+instead see the forecast for the built-in default location (or the
+city and st defined in the default alias, if you have one). See
+question 3 above for information on figuring out what city name and
+state abbreviation to use, and the manual for weatherrc(5) for
+information on defining aliases.
 
