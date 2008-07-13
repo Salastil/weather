@@ -1,6 +1,8 @@
-.TH WEATHER 1 "March 26, 2006" "" \" -*- nroff -*-
-\" Copyright (c) 2006 Jeremy Stanley <fungi@yuggoth.org>, all rights reserved.
-\" Licensed per terms in the LICENSE file distributed with this software.
+.TH WEATHER 1 "July 13, 2008" "" \" -*- nroff -*-
+\" Copyright (c) 2006-2008 Jeremy Stanley <fungi@yuggoth.org>.
+\" Permission to use, copy, modify, and distribute this software is
+\" granted under terms provided in the LICENSE file distributed with
+\" this software.
 .SH NAME
 weather \- command\-line tool to obtain weather conditions and forecasts
 .SH SYNOPSIS
@@ -30,8 +32,17 @@ show a help message and exit
 .B \-cCITY, \-\-city=CITY
 the city name (ex: "Raleigh Durham")
 .TP
+.B \-\-flines=FLINES
+maximum number of forecast lines to show
+.TP
 .B \-f, \-\-forecast
 include a local forecast
+.TP
+.B \-\-furl=FURL
+forecast URL (including %city% and %st%)
+.TP
+.B \-\-headers=HEADERS
+the conditions headers to display
 .TP
 .B \-iID, \-\-id=ID
 the METAR station ID (ex: KRDU)
@@ -39,17 +50,23 @@ the METAR station ID (ex: KRDU)
 .B \-l, \-\-list
 print a list of configured aliases
 .TP
+.B \-\-murl=MURL
+METAR URL (including %id%)
+.TP
 .B \-n, \-\-no\-conditions
 disable output of current conditions (forces \-f)
 .TP
 .B \-o, \-\-omit\-forecast
 omit the local forecast (cancels \-f)
 .TP
+.B \-\-quiet
+skip preambles and don't indent
+.TP
 .B \-sST, \-\-st=ST
 the state abbreviation (ex: NC)
 .TP
 .B \-v, \-\-verbose
-show full decoded feeds
+show full decoded feeds (cancels \-q)
 .SH FILES
 .B weather
 may additionally obtain configuration data from a system\-wide

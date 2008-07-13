@@ -1,7 +1,9 @@
 FREQUENTLY ASKED QUESTIONS ABOUT THE WEATHER UTILITY
 
-Copyright (c) 2006 Jeremy Stanley <fungi@yuggoth.org>, all rights reserved.
-Licensed per terms in the LICENSE file distributed with this software.
+Copyright (c) 2006-2008 Jeremy Stanley <fungi@yuggoth.org>.
+Permission to use, copy, modify, and distribute this software is
+granted under terms provided in the LICENSE file distributed with
+this software.
 
 
 Table of Contents:
@@ -44,8 +46,10 @@ state abbreviation to get to a list of cities in that state).
 4. I live outside the USA--can this be made to work for me
 anyway?
 
-If you have any recommendations for similar forecast data in
-other countries, I will be happy to try and find a way to
+METAR station IDs can be found for cities and airports worldwide,
+but forecast data is harder to come by. If you have any
+recommendations of forecast data for other countries available in a
+format like NOAA's, I will be happy to try and find a way to
 integrate it into the weather utility, but I suspect that some
 serious modification would be necessary given that the data is
 likely to be published in a non-English language, requiring some
@@ -59,10 +63,9 @@ The -i or --id switch (or the id parameter in an alias definition),
 only tells weather(1) what current conditions to retrieve. If you
 specify -f or --forecast on the command line (or forecast=True in
 an alias) without providing a city name and state abbreviation
-(-c/--city and -s/--st, or city and st in an alias), you will
-instead see the forecast for the built-in default location (or the
-city and st defined in the default alias, if you have one). See
-question 3 above for information on figuring out what city name and
-state abbreviation to use, and the manual for weatherrc(5) for
-information on defining aliases.
-
+(-c/--city and -s/--st, or city and st in an alias) and are seeing
+an actual forecast, then you probably have a default city and state
+abbreviation set in your config. See question 3 above for
+information on figuring out what city name and state abbreviation
+to use, and the manual for weatherrc(5) for information on defining
+aliases.

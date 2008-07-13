@@ -1,7 +1,9 @@
 BASIC UNIX INSTALLATION INSTRUCTIONS FOR THE WEATHER UTILITY
 
-Copyright (c) 2006 Jeremy Stanley <fungi@yuggoth.org>, all rights reserved.
-Licensed per terms in the LICENSE file distributed with this software.
+Copyright (c) 2006-2008 Jeremy Stanley <fungi@yuggoth.org>.
+Permission to use, copy, modify, and distribute this software is
+granted under terms provided in the LICENSE file distributed with
+this software.
 
 
 PREREQUISITES
@@ -55,4 +57,3 @@ MANUALS
 Optionally, the weather.1 and weatherrc.5 files can be placed in
 sane locations for TROFF/NROFF manual files on your system (for
 example, /usr/local/share/man/ or ~/man/).
-
