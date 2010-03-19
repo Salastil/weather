@@ -1,7 +1,6 @@
-# Copyright (c) 2006-2008 Jeremy Stanley <fungi@yuggoth.org>.
-# Permission to use, copy, modify, and distribute this software is
-# granted under terms provided in the LICENSE file distributed with
-# this software.
+# Copyright (c) 2006-2010 Jeremy Stanley <fungi@yuggoth.org>. Permission to
+# use, copy, modify, and distribute this software is granted under terms
+# provided in the LICENSE file distributed with this software.
 
 [ABE]
 City = Allentown
@@ -838,6 +837,11 @@ City = Peoria
 ID = KPIA
 St = IL
 
+[PIE]
+City = Saint Petersburg
+ID = KPIE
+St = FL
+
 [PIH]
 City = Pocatello
 ID = KPIH
@@ -847,6 +851,16 @@ St = ID
 City = Pittsburgh
 ID = KPIT
 St = PA
+
+[PNC]
+City = Ponca City
+ID = KPNC
+St = OK
+
+[PNS]
+City = Pensacola
+ID = KPNS
+St = FL
 
 [PQI]
 City = Presque Isle

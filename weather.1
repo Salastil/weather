@@ -1,5 +1,5 @@
-.TH WEATHER 1 "July 13, 2008" "" \" -*- nroff -*-
-\" Copyright (c) 2006-2008 Jeremy Stanley <fungi@yuggoth.org>.
+.TH WEATHER 1 "March 15, 2010" "" \" -*- nroff -*-
+\" Copyright (c) 2006-2010 Jeremy Stanley <fungi@yuggoth.org>.
 \" Permission to use, copy, modify, and distribute this software is
 \" granted under terms provided in the LICENSE file distributed with
 \" this software.
@@ -29,7 +29,16 @@ show program's version number and exit
 .B \-h, \-\-help
 show a help message and exit
 .TP
-.B \-cCITY, \-\-city=CITY
+.B \-a, \-\-alert
+include local alert notices
+.TP
+.B \-\-atypes=ATYPES
+alert notification types to display
+.TP
+.B \-\-aurl=AURL
+alert URL (including %atype% and %zone%)
+.TP
+.B \-c CITY, \-\-city=CITY
 the city name (ex: "Raleigh Durham")
 .TP
 .B \-\-flines=FLINES
@@ -44,11 +53,17 @@ forecast URL (including %city% and %st%)
 .B \-\-headers=HEADERS
 the conditions headers to display
 .TP
-.B \-iID, \-\-id=ID
+.B \-i ID, \-\-id=ID
 the METAR station ID (ex: KRDU)
+.TP
+.B \-\-imperial
+filter/convert for US/UK units
 .TP
 .B \-l, \-\-list
 print a list of configured aliases
+.TP
+.B \-m, \-\-metric
+filter/convert for metric units
 .TP
 .B \-\-murl=MURL
 METAR URL (including %id%)
@@ -62,11 +77,14 @@ omit the local forecast (cancels \-f)
 .B \-\-quiet
 skip preambles and don't indent
 .TP
-.B \-sST, \-\-st=ST
+.B \-s ST, \-\-st=ST
 the state abbreviation (ex: NC)
 .TP
 .B \-v, \-\-verbose
 show full decoded feeds (cancels \-q)
+.TP
+.B \-z ZONES, \-\-zones=ZONES
+alert zones (ex: nc/ncc183,nc/ncz041)
 .SH FILES
 .B weather
 may additionally obtain configuration data from a system\-wide

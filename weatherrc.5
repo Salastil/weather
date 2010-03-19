@@ -1,5 +1,5 @@
-.TH WEATHERRC 5 "July 13, 2008" "" \" -*- nroff -*-
-\" Copyright (c) 2006-2008 Jeremy Stanley <fungi@yuggoth.org>.
+.TH WEATHERRC 5 "March 15, 2010" "" \" -*- nroff -*-
+\" Copyright (c) 2006-2010 Jeremy Stanley <fungi@yuggoth.org>.
 \" Permission to use, copy, modify, and distribute this software is
 \" granted under terms provided in the LICENSE file distributed with
 \" this software.
@@ -18,6 +18,15 @@ lines. Parameters and their values as separated by = or : characters.
 Multi-word values do not need quoting.
 .SH PARAMETERS
 These parameters are supported...
+.TP
+.B alert
+include local alert notices
+.TP
+.B atypes
+alert notification types to display
+.TP
+.B aurl
+alert URL (including %atype% and %zone%)
 .TP
 .B city
 the city name (ex: Raleigh Durham)
@@ -40,6 +49,12 @@ the conditions headers to display (ex: temperature,wind)
 .B id
 the METAR station ID (ex: KRDU)
 .TP
+.B imperial
+filter/convert for US/UK units
+.TP
+.B metric
+filter/convert for metric units
+.TP
 .B murl
 METAR URL (ex: http://metar.org/%id%.txt)
 .TP
@@ -51,6 +66,9 @@ the state abbreviation (ex: NC)
 .TP
 .B verbose
 show full decoded feeds (possible values are False and True or 0 and 1)
+.TP
+.B zones
+alert zones (ex: nc/ncc183,nc/ncz041)
 .SH URL FORMAT
 The placeholders %city% and %st% in the furl URL and %id% in the murl URL
 will be replaced with the city, st and id definitions respectively. If the
