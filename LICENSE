@@ -2,27 +2,39 @@
  Weather License
 =================
 
-The weather project employs the ISC license, a permissive free software license
-written by the Internet Systems Consortium and functionally equivalent to the
-2-clause BSD license. Initially used for the ISC's own software releases, it
-has since become the preferred license of many projects (OpenBSD, for example).
+The weather project employs the ISC license, a permissive free software
+license written by the Internet Systems Consortium and functionally
+equivalent to the 2-clause BSD license. Initially used for the ISC's own
+software releases, it has since become the preferred license of many
+other projects.
+
+The correlation data provided is augmented by manual research but built
+primarily by aggregating sources within the USA Public Domain (U.S.
+Census Bureau Gazetteer and publications of the National Oceanic and
+Atmospheric Administration's National Climatic Data Center and National
+Weather Service including its National Centers for Environmental
+Prediction and Office of Science and Technology/Systems Engineering
+Center Geographic Information Systems Map Group). Copies of the original
+external data sources have been provided with this software for
+reference, but are not covered by the copyright or permission notices
+which follow.
 
 Copyright Notice
 ----------------
-Copyright (c) 2006-2010 Jeremy Stanley <fungi@yuggoth.org>
+Copyright (c) 2006-2012 Jeremy Stanley <fungi@yuggoth.org>
 
 Permission Notice
 -----------------
-Permission to use, copy, modify, and distribute this software for any purpose
-with or without fee is hereby granted, provided that the above copyright notice
-and this permission notice appear in all copies.
+Permission to use, copy, modify, and distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
 
 Disclaimer
 ----------
-The software is provided "as is" and the author disclaims all warranties with
-regard to this software including all implied warranties of merchantability and
-fitness. In no event shall the author be liable for any special, direct,
-indirect, or consequential damages or any damages whatsoever resulting from
-loss of use, data or profits, whether in an action of contract, negligence or
-other tortious action, arising out of or in connection with the use or
-performance of this software.
+The software is provided "as is" and the author disclaims all warranties
+with regard to this software including all implied warranties of
+merchantability and fitness. In no event shall the author be liable for
+any special, direct, indirect, or consequential damages or any damages
+whatsoever resulting from loss of use, data or profits, whether in an
+action of contract, negligence or other tortious action, arising out of
+or in connection with the use or performance of this software.

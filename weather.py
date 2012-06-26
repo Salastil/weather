@@ -1,564 +1,2063 @@
-# Copyright (c) 2006-2010 Jeremy Stanley <fungi@yuggoth.org>. Permission to
-# use, copy, modify, and distribute this software is granted under terms
-# provided in the LICENSE file distributed with this software.
-
 """Contains various object definitions needed by the weather utility."""
 
-version = "1.5"
+weather_copyright = """\
+# Copyright (c) 2006-2012 Jeremy Stanley <fungi@yuggoth.org>. Permission to
+# use, copy, modify, and distribute this software is granted under terms
+# provided in the LICENSE file distributed with this software.
+#"""
+
+weather_version = "2.0"
+
+radian_to_km = 6372.795484
+radian_to_mi = 3959.871528
+
+def pyversion(ref=None):
+    """Determine the Python version and optionally compare to a reference."""
+    import platform
+    ver = platform.python_version()
+    if ref:
+        return [
+            int(x) for x in ver.split(".")[:2]
+        ] >= [
+            int(x) for x in ref.split(".")[:2]
+        ]
+    else: return ver
 
 class Selections:
-   """An object to contain selection data."""
-   def __init__(self):
-      """Store the config, options and arguments."""
-      self.config = get_config()
-      self.options, self.arguments = get_options(self.config)
-      if self.arguments:
-         self.arguments = [(x.lower()) for x in self.arguments]
-      else: self.arguments = [ None ]
-   def get(self, option, argument=None):
-      """Retrieve data from the config or options."""
-      if not argument: return self.options.__dict__[option]
-      elif not self.config.has_section(argument):
-         import sys
-         sys.stderr.write("weather: error: no alias defined for " \
-            + argument + "\n")
-         sys.exit(1)
-      elif self.config.has_option(argument, option):
-         return self.config.get(argument, option)
-      else: return self.options.__dict__[option]
-   def get_bool(self, option, argument=None):
-      """Get data and coerce to a boolean if necessary."""
-      return bool(self.get(option, argument))
+    """An object to contain selection data."""
+    def __init__(self):
+        """Store the config, options and arguments."""
+        self.config = get_config()
+        self.options, self.arguments = get_options(self.config)
+        if self.get_bool("cache") and self.get_bool("cache_search") \
+            and not self.get_bool("longlist"):
+            integrate_search_cache(
+                self.config,
+                self.get("cachedir"),
+                self.get("setpath")
+            )
+        if not self.arguments:
+            if "id" in self.options.__dict__ \
+                and self.options.__dict__["id"]:
+                self.arguments.append( self.options.__dict__["id"] )
+                del( self.options.__dict__["id"] )
+                import sys
+                message = "WARNING: the --id option is deprecated and will eventually be removed\n"
+                sys.stderr.write(message)
+            elif "city" in self.options.__dict__ \
+                and self.options.__dict__["city"] \
+                and "st" in self.options.__dict__ \
+                and self.options.__dict__["st"]:
+                self.arguments.append(
+                    "^%s city, %s" % (
+                        self.options.__dict__["city"],
+                        self.options.__dict__["st"]
+                    )
+                )
+                del( self.options.__dict__["city"] )
+                del( self.options.__dict__["st"] )
+                import sys
+                message = "WARNING: the --city/--st options are deprecated and will eventually be removed\n"
+                sys.stderr.write(message)
+    def get(self, option, argument=None):
+        """Retrieve data from the config or options."""
+        if argument:
+            if self.config.has_section(argument) and (
+                self.config.has_option(argument, "city") \
+                    or self.config.has_option(argument, "id") \
+                    or self.config.has_option(argument, "st")
+            ):
+                self.config.remove_section(argument)
+                import sys
+                message = "WARNING: the city/id/st options are now unsupported in aliases\n"
+                sys.stderr.write(message)
+            if not self.config.has_section(argument):
+                guessed = guess(
+                    argument,
+                    path=self.get("setpath"),
+                    info=self.get("info"),
+                    cache_search=(
+                        self.get("cache") and self.get("cache_search")
+                    ),
+                    cachedir=self.get("cachedir")
+                )
+                self.config.add_section(argument)
+                for item in guessed.items():
+                    self.config.set(argument, *item)
+            if self.config.has_option(argument, option):
+                return self.config.get(argument, option)
+        if option in self.options.__dict__:
+            return self.options.__dict__[option]
+        else:
+            import os, sys
+            message = "%s error: no URI defined for %s\n" % (
+                os.path.basename( sys.argv[0] ),
+                option
+            )
+            sys.stderr.write(message)
+            exit(1)
+    def get_bool(self, option, argument=None):
+        """Get data and coerce to a boolean if necessary."""
+        return bool(self.get(option, argument))
+    def getint(self, option, argument=None):
+        """Get data and coerce to an integer if necessary."""
+        value = self.get(option, argument)
+        if value: return int(value)
+        else: return 0
 
-def bool(data):
-   """Coerce data to a boolean value."""
-   if type(data) is str:
-      if eval(data): return True
-      else: return False
-   else:
-      if data: return True
-      else: return False
-
-def quote(words):
-   """Wrap a string in quotes if it contains spaces."""
-   if words.find(" ") != -1: words = "\"" + words + "\""
-   return words
-
-def titlecap(words):
-   """Perform English-language title capitalization."""
-   words = words.lower().strip()
-   for separator in [" ", "-", "'"]:
-      newwords = []
-      wordlist = words.split(separator)
-      for word in wordlist:
-         if word:
-            newwords.append(word[0].upper() + word[1:])
-      words = separator.join(newwords)
-   end = len(words)
-   for prefix in ["Mac", "Mc"]:
-      position = 0
-      offset = len(prefix)
-      while position < end:
-         position = words.find(prefix, position)
-         if position == -1:
-            position = end
-         position += offset
-         import string
-         if position < end and words[position] in string.letters:
-            words = words[:position] \
-               + words[position].upper() \
-               + words[position+1:]
-   return words
+def average(coords):
+    """Average a list of coordinates."""
+    x = 0
+    y = 0
+    for coord in coords:
+        x += coord[0]
+        y += coord[1]
+    count = len(coords)
+    return (x/count, y/count)
 
 def filter_units(line, units="imperial"):
-   """Filter or convert units in a line of text between US/UK and metric."""
-   import re
-   # filter lines with both pressures in the form of "X inches (Y hPa)" or
-   # "X in. Hg (Y hPa)"
-   dual_p = re.match(
-      "(.* )(\d*(\.\d+)? (inches|in\. Hg)) \((\d*(\.\d+)? hPa)\)(.*)",
-      line
-   )
-   if dual_p:
-      preamble, in_hg, i_fr, i_un, hpa, h_fr, trailer = dual_p.groups()
-      if units == "imperial": line = preamble + in_hg + trailer
-      elif units == "metric": line = preamble + hpa + trailer
-   # filter lines with both temperatures in the form of "X F (Y C)"
-   dual_t = re.match(
-      "(.* )(\d*(\.\d+)? F) \((\d*(\.\d+)? C)\)(.*)",
-      line
-   )
-   if dual_t:
-      preamble, fahrenheit, f_fr, celsius, c_fr, trailer = dual_t.groups()
-      if units == "imperial": line = preamble + fahrenheit + trailer
-      elif units == "metric": line = preamble + celsius + trailer
-   # if metric is desired, convert distances in the form of "X mile(s)" to
-   # "Y kilometer(s)"
-   if units == "metric":
-      imperial_d = re.match(
-         "(.* )(\d+)( mile\(s\))(.*)",
-         line
-      )
-      if imperial_d:
-         preamble, mi, m_u, trailer = imperial_d.groups()
-         line = preamble + str(int(round(int(mi)*1.609344))) \
-            + " kilometer(s)" + trailer
-   # filter speeds in the form of "X MPH (Y KT)" to just "X MPH"; if metric is
-   # desired, convert to "Z KPH"
-   imperial_s = re.match(
-      "(.* )(\d+)( MPH)( \(\d+ KT\))(.*)",
-      line
-   )
-   if imperial_s:
-      preamble, mph, m_u, kt, trailer = imperial_s.groups()
-      if units == "imperial": line = preamble + mph + m_u + trailer
-      elif units == "metric": 
-         line = preamble + str(int(round(int(mph)*1.609344))) + " KPH" + \
-            trailer
-   # if imperial is desired, qualify given forcast temperatures like "X F"; if
-   # metric is desired, convert to "Y C"
-   imperial_t = re.match(
-      "(.* )(High |high |Low |low )(\d+)(\.|,)(.*)",
-      line
-   )
-   if imperial_t:
-      preamble, parameter, fahrenheit, sep, trailer = imperial_t.groups()
-      if units == "imperial":
-         line = preamble + parameter + fahrenheit + " F" + sep + trailer
-      elif units == "metric":
-         line = preamble + parameter \
-            + str(int(round((int(fahrenheit)-32)*5/9))) + " C" + sep + trailer
-   # hand off the resulting line
-   return line
+    """Filter or convert units in a line of text between US/UK and metric."""
+    import re
+    # filter lines with both pressures in the form of "X inches (Y hPa)" or
+    # "X in. Hg (Y hPa)"
+    dual_p = re.match(
+        "(.* )(\d*(\.\d+)? (inches|in\. Hg)) \((\d*(\.\d+)? hPa)\)(.*)",
+        line
+    )
+    if dual_p:
+        preamble, in_hg, i_fr, i_un, hpa, h_fr, trailer = dual_p.groups()
+        if units == "imperial": line = preamble + in_hg + trailer
+        elif units == "metric": line = preamble + hpa + trailer
+    # filter lines with both temperatures in the form of "X F (Y C)"
+    dual_t = re.match(
+        "(.* )(-?\d*(\.\d+)? F) \((-?\d*(\.\d+)? C)\)(.*)",
+        line
+    )
+    if dual_t:
+        preamble, fahrenheit, f_fr, celsius, c_fr, trailer = dual_t.groups()
+        if units == "imperial": line = preamble + fahrenheit + trailer
+        elif units == "metric": line = preamble + celsius + trailer
+    # if metric is desired, convert distances in the form of "X mile(s)" to
+    # "Y kilometer(s)"
+    if units == "metric":
+        imperial_d = re.match(
+            "(.* )(\d+)( mile\(s\))(.*)",
+            line
+        )
+        if imperial_d:
+            preamble, mi, m_u, trailer = imperial_d.groups()
+            line = preamble + str(int(round(int(mi)*1.609344))) \
+                + " kilometer(s)" + trailer
+    # filter speeds in the form of "X MPH (Y KT)" to just "X MPH"; if metric is
+    # desired, convert to "Z KPH"
+    imperial_s = re.match(
+        "(.* )(\d+)( MPH)( \(\d+ KT\))(.*)",
+        line
+    )
+    if imperial_s:
+        preamble, mph, m_u, kt, trailer = imperial_s.groups()
+        if units == "imperial": line = preamble + mph + m_u + trailer
+        elif units == "metric": 
+            line = preamble + str(int(round(int(mph)*1.609344))) + " KPH" + \
+                trailer
+    imperial_s = re.match(
+        "(.* )(\d+)( MPH)( \(\d+ KT\))(.*)",
+        line
+    )
+    if imperial_s:
+        preamble, mph, m_u, kt, trailer = imperial_s.groups()
+        if units == "imperial": line = preamble + mph + m_u + trailer
+        elif units == "metric": 
+            line = preamble + str(int(round(int(mph)*1.609344))) + " KPH" + \
+                trailer
+    # if imperial is desired, qualify given forcast temperatures like "X F"; if
+    # metric is desired, convert to "Y C"
+    imperial_t = re.match(
+        "(.* )(High |high |Low |low )(\d+)(\.|,)(.*)",
+        line
+    )
+    if imperial_t:
+        preamble, parameter, fahrenheit, sep, trailer = imperial_t.groups()
+        if units == "imperial":
+            line = preamble + parameter + fahrenheit + " F" + sep + trailer
+        elif units == "metric":
+            line = preamble + parameter \
+                + str(int(round((int(fahrenheit)-32)*5/9))) + " C" + sep \
+                + trailer
+    # hand off the resulting line
+    return line
 
-def sorted(data):
-   """Return a sorted copy of a list."""
-   new_copy = data[:]
-   new_copy.sort()
-   return new_copy
-
-def get_url(url, ignore_fail=False):
-   """Return a string containing the results of a URL GET."""
-   import urllib2
-   try: return urllib2.urlopen(url).read()
-   except urllib2.URLError:
-      if ignore_fail: return ""
-      else:
-         import sys, traceback
-         sys.stderr.write("weather: error: failed to retrieve\n   " \
-            + url + "\n   " + \
-            traceback.format_exception_only(sys.exc_type, sys.exc_value)[0])
-         sys.exit(1)
+def get_uri(
+    uri,
+    ignore_fail=False,
+    cache_data=False,
+    cacheage=900,
+    cachedir="."
+):
+    """Return a string containing the results of a URI GET."""
+    if pyversion("3"):
+        import urllib, urllib.error, urllib.request
+        URLError = urllib.error.URLError
+        urlopen = urllib.request.urlopen
+    else:
+        import urllib2 as urllib
+        URLError = urllib.URLError
+        urlopen = urllib.urlopen
+    import os, time
+    if cache_data:
+        dcachedir = os.path.join( os.path.expanduser(cachedir), "datacache" )
+        if not os.path.exists(dcachedir):
+            try: os.makedirs(dcachedir)
+            except (IOError, OSError): pass
+        dcache_fn = os.path.join(
+            dcachedir,
+            uri.split(":")[1].replace("/","_")
+        )
+    now = time.time()
+    if cache_data and os.access(dcache_fn, os.R_OK) \
+        and now-cacheage < os.stat(dcache_fn).st_mtime <= now:
+        dcache_fd = open(dcache_fn)
+        data = dcache_fd.read()
+        dcache_fd.close()
+    else:
+        try:
+            if pyversion("3"): data = urlopen(uri).read().decode("utf-8")
+            else: data = urlopen(uri).read()
+        except URLError:
+            if ignore_fail: return ""
+            else:
+                import os, sys, traceback
+                message = "%s error: failed to retrieve\n   %s\n   %s" % (
+                        os.path.basename( sys.argv[0] ),
+                        uri,
+                        traceback.format_exception_only(
+                            sys.exc_type,
+                            sys.exc_value
+                        )[0]
+                    )
+                sys.stderr.write(message)
+                sys.exit(1)
+        if cache_data:
+            try:
+                import codecs
+                dcache_fd = codecs.open(dcache_fn, "w", "utf-8")
+                dcache_fd.write(data)
+                dcache_fd.close()
+            except (IOError, OSError): pass
+    return data
 
 def get_metar(
-   id,
-   verbose=False,
-   quiet=False,
-   headers=None,
-   murl=None,
-   imperial=False,
-   metric=False
+    uri=None,
+    verbose=False,
+    quiet=False,
+    headers=None,
+    imperial=False,
+    metric=False,
+    cache_data=False,
+    cacheage=900,
+    cachedir="."
 ):
-   """Return a summarized METAR for the specified station."""
-   if not id:
-      import sys
-      sys.stderr.write("weather: error: id required for conditions\n")
-      sys.exit(1)
-   if not murl:
-      murl = \
-         "http://weather.noaa.gov/pub/data/observations/metar/decoded/%ID%.TXT"
-   murl = murl.replace("%ID%", id.upper())
-   murl = murl.replace("%Id%", id.capitalize())
-   murl = murl.replace("%iD%", id)
-   murl = murl.replace("%id%", id.lower())
-   murl = murl.replace(" ", "_")
-   metar = get_url(murl)
-   if verbose: return metar
-   else:
-      lines = metar.split("\n")
-      if not headers:
-         headers = \
-            "relative_humidity," \
-            + "precipitation_last_hour," \
-            + "sky conditions," \
-            + "temperature," \
-            + "weather," \
-            + "wind"
-      headerlist = headers.lower().replace("_"," ").split(",")
-      output = []
-      if not quiet:
-         title = "Current conditions at %s"
-         place = lines[0].split(", ")
-         if len(place) > 1:
-            place = "%s, %s (%s)" % (titlecap(place[0]), place[1], id.upper())
-         else: place = id.upper()
-         output.append(title%place)
-         output.append("Last updated " + lines[1])
-      for header in headerlist:
-         for line in lines:
-            if line.lower().startswith(header + ":"):
-               if line.endswith(":0") or line.endswith(":1"):
-                  line = line[:-2]
-               if imperial: line = filter_units(line, units="imperial")
-               elif metric: line = filter_units(line, units="metric")
-               if quiet: output.append(line)
-               else: output.append("   " + line)
-      return "\n".join(output)
+    """Return a summarized METAR for the specified station."""
+    if not uri:
+        import os, sys
+        message = "%s error: METAR URI required for conditions\n" % \
+            os.path.basename( sys.argv[0] )
+        sys.stderr.write(message)
+        sys.exit(1)
+    metar = get_uri(
+        uri,
+        cache_data=cache_data,
+        cacheage=cacheage,
+        cachedir=cachedir
+    )
+    if pyversion("3") and type(metar) is bytes: metar = metar.decode("utf-8")
+    if verbose: return metar
+    else:
+        import re
+        lines = metar.split("\n")
+        if not headers:
+            headers = \
+                "relative_humidity," \
+                + "precipitation_last_hour," \
+                + "sky conditions," \
+                + "temperature," \
+                + "heat index," \
+                + "windchill," \
+                + "weather," \
+                + "wind"
+        headerlist = headers.lower().replace("_"," ").split(",")
+        output = []
+        if not quiet:
+            title = "Current conditions at %s"
+            place = lines[0].split(", ")
+            if len(place) > 1:
+                place = "%s, %s" % ( place[0].title(), place[1] )
+            else: place = "<UNKNOWN>"
+            output.append(title%place)
+            output.append("Last updated " + lines[1])
+        header_match = False
+        for header in headerlist:
+            for line in lines:
+                if line.lower().startswith(header + ":"):
+                    if re.match(r".*:\d+$", line): line = line[:line.rfind(":")]
+                    if imperial: line = filter_units(line, units="imperial")
+                    elif metric: line = filter_units(line, units="metric")
+                    if quiet: output.append(line)
+                    else: output.append("   " + line)
+                    header_match = True
+        if not header_match:
+            output.append(
+                "(no conditions matched your header list, try with --verbose)"
+            )
+        return "\n".join(output)
 
 def get_alert(
-   zone,
-   verbose=False,
-   quiet=False,
-   atype=None,
-   aurl=None,
-   imperial=False,
-   metric=False
+    uri=None,
+    verbose=False,
+    quiet=False,
+    cache_data=False,
+    cacheage=900,
+    cachedir="."
 ):
-   """Return alert notice for the specified zone and type."""
-   if not zone:
-      import sys
-      sys.stderr.write("weather: error: zone required for alerts\n")
-      sys.exit(1)
-   if not atype: atype = "severe_weather_stmt"
-   if not aurl:
-      aurl = \
-         "http://weather.noaa.gov/pub/data/watches_warnings/%atype%/%zone%.txt"
-   aurl = aurl.replace("%ATYPE%", atype.upper())
-   aurl = aurl.replace("%Atype%", atype.capitalize())
-   aurl = aurl.replace("%atypE%", atype)
-   aurl = aurl.replace("%atype%", atype.lower())
-   aurl = aurl.replace("%ZONE%", zone.upper())
-   aurl = aurl.replace("%Zone%", zone.capitalize())
-   aurl = aurl.replace("%zonE%", zone)
-   aurl = aurl.replace("%zone%", zone.lower())
-   aurl = aurl.replace(" ", "_")
-   alert = get_url(aurl, ignore_fail=True).strip()
-   if alert:
-      if verbose: return alert
-      else:
-         lines = alert.split("\n")
-         muted = True
-         import calendar, re, time
-         valid_time = time.strftime("%Y%m%d%H%M")
-         #if not quiet: output = [ lines[3], lines[5] ]
-         #if not quiet: output = [ lines[8], lines[10] ]
-         #else: output = []
-         output = []
-         for line in lines:
-            if line.startswith("Expires:") and "Expires:"+valid_time > line:
-               return ""
-            if muted and line.find("...") != -1:
-               muted = False
-            if line == "$$" \
-               or line.startswith("LAT...LON") \
-               or line.startswith("TIME...MOT...LOC"):
-               muted = True
-            if line and not (
-               muted \
-               or line == "&&"
-               or re.match("^/.*/$", line) \
-               or re.match("^"+zone.split("/")[1][:3].upper()+".*", line)
-            ):
-               if quiet: output.append(line)
-               else: output.append("   " + line)
-         return "\n".join(output)
-
-def get_forecast(
-   city,
-   st,
-   verbose=False,
-   quiet=False,
-   flines="0",
-   furl=None,
-   imperial=False,
-   metric=False
-):
-   """Return the forecast for a specified city/st combination."""
-   if not city or not st:
-      import sys
-      sys.stderr.write("weather: error: city and st required for forecast\n")
-      sys.exit(1)
-   if not furl:
-      furl = "http://weather.noaa.gov/pub/data/forecasts/city/%st%/%city%.txt"
-   furl = furl.replace("%CITY%", city.upper())
-   furl = furl.replace("%City%", city.capitalize())
-   furl = furl.replace("%citY%", city)
-   furl = furl.replace("%city%", city.lower())
-   furl = furl.replace("%ST%", st.upper())
-   furl = furl.replace("%St%", st.capitalize())
-   furl = furl.replace("%sT%", st)
-   furl = furl.replace("%st%", st.lower())
-   furl = furl.replace(" ", "_")
-   forecast = get_url(furl)
-   if verbose: return forecast
-   else:
-      lines = forecast.split("\n")
-      output = []
-      if not quiet: output += lines[2:4]
-      flines = int(flines)
-      if not flines: flines = len(lines) - 5
-      for line in lines[5:flines+5]:
-         if imperial: line = filter_units(line, units="imperial")
-         elif metric: line = filter_units(line, units="metric")
-         if line.startswith("."):
-            if quiet: output.append(line.replace(".", "", 1))
-            else: output.append(line.replace(".", "   ", 1))
-      return "\n".join(output)
+    """Return alert notice for the specified URI."""
+    if not uri:
+        import os, sys
+        message = "%s error: Alert URI required for alerts\n" % \
+            os.path.basename( sys.argv[0] )
+        sys.stderr.write(message)
+        sys.exit(1)
+    alert = get_uri(
+        uri,
+        ignore_fail=True,
+        cache_data=cache_data,
+        cacheage=cacheage,
+        cachedir=cachedir
+    ).strip()
+    if pyversion("3") and type(alert) is bytes: alert = alert.decode("utf-8")
+    if alert:
+        if verbose: return alert
+        else:
+            if alert.find("\nNATIONAL WEATHER SERVICE") == -1:
+                muted = False
+            else:
+                muted = True
+            lines = alert.split("\n")
+            import time
+            valid_time = time.strftime("%Y%m%d%H%M")
+            output = []
+            for line in lines:
+                if line.startswith("Expires:") \
+                    and "Expires:" + valid_time > line:
+                    return ""
+                if muted and line.startswith("NATIONAL WEATHER SERVICE"):
+                    muted = False
+                    line = ""
+                elif line == "&&":
+                    line = ""
+                elif line == "$$":
+                    muted = True
+                if line and not muted:
+                    if quiet: output.append(line)
+                    else: output.append("   " + line)
+            return "\n".join(output)
 
 def get_options(config):
-   """Parse the options passed on the command line."""
+    """Parse the options passed on the command line."""
 
-   # for optparse's builtin -h/--help option
-   usage = "usage: %prog [ options ] [ alias [ alias [...] ] ]"
+    # for optparse's builtin -h/--help option
+    usage = \
+        "usage: %prog [options] [alias1|search1 [alias2|search2 [...]]]"
 
-   # for optparse's builtin --version option
-   verstring = "%prog " + version
+    # for optparse's builtin --version option
+    verstring = "%prog " + weather_version
 
-   # create the parser
-   import optparse
-   option_parser = optparse.OptionParser(usage=usage, version=verstring)
+    # create the parser
+    import optparse
+    option_parser = optparse.OptionParser(usage=usage, version=verstring)
+    # separate options object from list of arguments and return both
 
-   # the -a/--alert option
-   if config.has_option("default", "alert"):
-      default_alert = bool(config.get("default", "alert"))
-   else: default_alert = False
-   option_parser.add_option("-a", "--alert",
-      dest="alert",
-      action="store_true",
-      default=default_alert,
-      help="include local alert notices")
+    # the -a/--alert option
+    if config.has_option("default", "alert"):
+        default_alert = bool(config.get("default", "alert"))
+    else: default_alert = False
+    option_parser.add_option("-a", "--alert",
+        dest="alert",
+        action="store_true",
+        default=default_alert,
+        help="include local alert notices")
 
-   # the --atypes option
-   if config.has_option("default", "atypes"):
-      default_atypes = config.get("default", "atypes")
-   else:
-      default_atypes = \
-         "flash_flood/statement," \
-         + "flash_flood/warning," \
-         + "flash_flood/watch," \
-         + "flood/coastal," \
-         + "flood/statement," \
-         + "flood/warning," \
-         + "non_precip," \
-         + "severe_weather_stmt," \
-         + "special_weather_stmt," \
-         + "thunderstorm," \
-         + "tornado," \
-         + "urgent_weather_message"
-   option_parser.add_option("--atypes",
-      dest="atypes",
-      default=default_atypes,
-      help="alert notification types to display")
+    # the --atypes option
+    if config.has_option("default", "atypes"):
+        default_atypes = config.get("default", "atypes")
+    else:
+        default_atypes = \
+            "coastal_flood_statement," \
+            + "flash_flood_statement," \
+            + "flash_flood_warning," \
+            + "flash_flood_watch," \
+            + "flood_statement," \
+            + "flood_warning," \
+            + "marine_weather_statement," \
+            + "river_statement," \
+            + "severe_thunderstorm_warning," \
+            + "severe_weather_statement," \
+            + "short_term_forecast," \
+            + "special_marine_warning," \
+            + "special_weather_statement," \
+            + "tornado_warning," \
+            + "urgent_weather_message"
+    option_parser.add_option("--atypes",
+        dest="atypes",
+        default=default_atypes,
+        help="list of alert notification types to display")
 
-   # the --aurl option
-   if config.has_option("default", "aurl"):
-      default_aurl = config.get("default", "aurl")
-   else:
-      default_aurl = \
-         "http://weather.noaa.gov/pub/data/watches_warnings/%atype%/%zone%.txt"
-   option_parser.add_option("--aurl",
-      dest="aurl",
-      default=default_aurl,
-      help="alert URL (including %atype% and %zone%)")
+    # the --build-sets option
+    option_parser.add_option("--build-sets",
+        dest="build_sets",
+        action="store_true",
+        default=False,
+        help="(re)build location correlation sets")
 
-   # separate options object from list of arguments and return both
-   # the -c/--city option
-   if config.has_option("default", "city"):
-      default_city = config.get("default", "city")
-   else: default_city = ""
-   option_parser.add_option("-c", "--city",
-      dest="city",
-      default=default_city,
-      help="the city name (ex: \"Raleigh Durham\")")
+    # the --cacheage option
+    if config.has_option("default", "cacheage"):
+        default_cacheage = config.getint("default", "cacheage")
+    else: default_cacheage = 900
+    option_parser.add_option("--cacheage",
+        dest="cacheage",
+        default=default_cacheage,
+        help="duration in seconds to refresh cached data")
 
-   # the --flines option
-   if config.has_option("default", "flines"):
-      default_flines = config.get("default", "flines")
-   else: default_flines = "0"
-   option_parser.add_option("--flines",
-      dest="flines",
-      default=default_flines,
-      help="maximum number of forecast lines to show")
+    # the --cachedir option
+    if config.has_option("default", "cachedir"):
+        default_cachedir = config.get("default", "cachedir")
+    else: default_cachedir = "~/.weather"
+    option_parser.add_option("--cachedir",
+        dest="cachedir",
+        default=default_cachedir,
+        help="directory for storing cached searches and data")
 
-   # the -f/--forecast option
-   if config.has_option("default", "forecast"):
-      default_forecast = bool(config.get("default", "forecast"))
-   else: default_forecast = False
-   option_parser.add_option("-f", "--forecast",
-      dest="forecast",
-      action="store_true",
-      default=default_forecast,
-      help="include a local forecast")
+    # the -f/--forecast option
+    if config.has_option("default", "forecast"):
+        default_forecast = bool(config.get("default", "forecast"))
+    else: default_forecast = False
+    option_parser.add_option("-f", "--forecast",
+        dest="forecast",
+        action="store_true",
+        default=default_forecast,
+        help="include a local forecast")
 
-   # the --furl option
-   if config.has_option("default", "furl"):
-      default_furl = config.get("default", "furl")
-   else:
-      default_furl = \
-         "http://weather.noaa.gov/pub/data/forecasts/city/%st%/%city%.txt"
-   option_parser.add_option("--furl",
-      dest="furl",
-      default=default_furl,
-      help="forecast URL (including %city% and %st%)")
+    # the --headers option
+    if config.has_option("default", "headers"):
+        default_headers = config.get("default", "headers")
+    else:
+        default_headers = \
+            "temperature," \
+            + "relative_humidity," \
+            + "wind," \
+            + "heat_index," \
+            + "windchill," \
+            + "weather," \
+            + "sky_conditions," \
+            + "precipitation_last_hour"
+    option_parser.add_option("--headers",
+        dest="headers",
+        default=default_headers,
+        help="list of conditions headers to display")
 
-   # the --headers option
-   if config.has_option("default", "headers"):
-      default_headers = config.get("default", "headers")
-   else:
-      default_headers = \
-         "temperature," \
-         + "relative_humidity," \
-         + "wind," \
-         + "weather," \
-         + "sky_conditions," \
-         + "precipitation_last_hour"
-   option_parser.add_option("--headers",
-      dest="headers",
-      default=default_headers,
-      help="the conditions headers to display")
+    # the --imperial option
+    if config.has_option("default", "imperial"):
+        default_imperial = bool(config.get("default", "imperial"))
+    else: default_imperial = False
+    option_parser.add_option("--imperial",
+        dest="imperial",
+        action="store_true",
+        default=default_imperial,
+        help="filter/convert conditions for US/UK units")
 
-   # the -i/--id option
-   if config.has_option("default", "id"):
-      default_id = config.get("default", "id")
-   else: default_id = ""
-   option_parser.add_option("-i", "--id",
-      dest="id",
-      default=default_id,
-      help="the METAR station ID (ex: KRDU)")
+    # the --info option
+    option_parser.add_option("--info",
+        dest="info",
+        action="store_true",
+        default=False,
+        help="output detailed information for your search")
 
-   # the --imperial option
-   if config.has_option("default", "imperial"):
-      default_imperial = bool(config.get("default", "imperial"))
-   else: default_imperial = False
-   option_parser.add_option("--imperial",
-      dest="imperial",
-      action="store_true",
-      default=default_imperial,
-      help="filter/convert for US/UK units")
+    # the -l/--list option
+    option_parser.add_option("-l", "--list",
+        dest="list",
+        action="store_true",
+        default=False,
+        help="list all configured aliases and cached searches")
 
-   # the -l/--list option
-   option_parser.add_option("-l", "--list",
-      dest="list",
-      action="store_true",
-      default=False,
-      help="print a list of configured aliases")
+    # the --longlist option
+    option_parser.add_option("--longlist",
+        dest="longlist",
+        action="store_true",
+        default=False,
+        help="display details of all configured aliases")
 
-   # the -m/--metric option
-   if config.has_option("default", "metric"):
-      default_metric = bool(config.get("default", "metric"))
-   else: default_metric = False
-   option_parser.add_option("-m", "--metric",
-      dest="metric",
-      action="store_true",
-      default=default_metric,
-      help="filter/convert for metric units")
+    # the -m/--metric option
+    if config.has_option("default", "metric"):
+        default_metric = bool(config.get("default", "metric"))
+    else: default_metric = False
+    option_parser.add_option("-m", "--metric",
+        dest="metric",
+        action="store_true",
+        default=default_metric,
+        help="filter/convert conditions for metric units")
 
-   # the --murl option
-   if config.has_option("default", "murl"):
-      default_murl = config.get("default", "murl")
-   else:
-      default_murl = \
-         "http://weather.noaa.gov/pub/data/observations/metar/decoded/%ID%.TXT"
-   option_parser.add_option("--murl",
-      dest="murl",
-      default=default_murl,
-      help="METAR URL (including %id%)")
+    # the -n/--no-conditions option
+    if config.has_option("default", "conditions"):
+        default_conditions = bool(config.get("default", "conditions"))
+    else: default_conditions = True
+    option_parser.add_option("-n", "--no-conditions",
+        dest="conditions",
+        action="store_false",
+        default=default_conditions,
+        help="disable output of current conditions")
 
-   # the -n/--no-conditions option
-   if config.has_option("default", "conditions"):
-      default_conditions = bool(config.get("default", "conditions"))
-   else: default_conditions = True
-   option_parser.add_option("-n", "--no-conditions",
-      dest="conditions",
-      action="store_false",
-      default=default_conditions,
-      help="disable output of current conditions (forces -f)")
+    # the --no-cache option
+    if config.has_option("default", "cache"):
+        default_cache = bool(config.get("default", "cache"))
+    else: default_cache = True
+    option_parser.add_option("--no-cache",
+        dest="cache",
+        action="store_false",
+        default=True,
+        help="disable all caching (searches and data)")
 
-   # the -o/--omit-forecast option
-   option_parser.add_option("-o", "--omit-forecast",
-      dest="forecast",
-      action="store_false",
-      default=default_forecast,
-      help="omit the local forecast (cancels -f)")
+    # the --no-cache-data option
+    if config.has_option("default", "cache_data"):
+        default_cache_data = bool(config.get("default", "cache_data"))
+    else: default_cache_data = True
+    option_parser.add_option("--no-cache-data",
+        dest="cache_data",
+        action="store_false",
+        default=True,
+        help="disable retrieved data caching")
 
-   # the -q/--quiet option
-   if config.has_option("default", "quiet"):
-      default_quiet = bool(config.get("default", "quiet"))
-   else: default_quiet = False
-   option_parser.add_option("-q", "--quiet",
-      dest="quiet",
-      action="store_true",
-      default=default_quiet,
-      help="skip preambles and don't indent")
+    # the --no-cache-search option
+    if config.has_option("default", "cache_search"):
+        default_cache_search = bool(config.get("default", "cache_search"))
+    else: default_cache_search = True
+    option_parser.add_option("--no-cache-search",
+        dest="cache_search",
+        action="store_false",
+        default=True,
+        help="disable search result caching")
 
-   # the -s/--st option
-   if config.has_option("default", "st"):
-      default_st = config.get("default", "st")
-   else: default_st = ""
-   option_parser.add_option("-s", "--st",
-      dest="st",
-      default=default_st,
-      help="the state abbreviation (ex: NC)")
+    # the -q/--quiet option
+    if config.has_option("default", "quiet"):
+        default_quiet = bool(config.get("default", "quiet"))
+    else: default_quiet = False
+    option_parser.add_option("-q", "--quiet",
+        dest="quiet",
+        action="store_true",
+        default=default_quiet,
+        help="skip preambles and don't indent")
 
-   # the -v/--verbose option
-   if config.has_option("default", "verbose"):
-      default_verbose = bool(config.get("default", "verbose"))
-   else: default_verbose = False
-   option_parser.add_option("-v", "--verbose",
-      dest="verbose",
-      action="store_true",
-      default=default_verbose,
-      help="show full decoded feeds (cancels -q)")
+    # the --setpath option
+    if config.has_option("default", "setpath"):
+        default_setpath = config.get("default", "setpath")
+    else: default_setpath = ".:~/.weather"
+    option_parser.add_option("--setpath",
+        dest="setpath",
+        default=default_setpath,
+        help="directory search path for correlation sets")
 
-   # the -z/--zones option
-   if config.has_option("default", "zones"):
-      default_zones = config.get("default", "zones")
-   else: default_zones = ""
-   option_parser.add_option("-z", "--zones",
-      dest="zones",
-      default=default_zones,
-      help="alert zones (ex: nc/ncc183,nc/ncz041)")
+    # the -v/--verbose option
+    if config.has_option("default", "verbose"):
+        default_verbose = bool(config.get("default", "verbose"))
+    else: default_verbose = False
+    option_parser.add_option("-v", "--verbose",
+        dest="verbose",
+        action="store_true",
+        default=default_verbose,
+        help="show full decoded feeds")
 
-   options, arguments = option_parser.parse_args()
-   return options, arguments
+    # deprecated options
+    if config.has_option("default", "city"):
+        default_city = config.get("default", "city")
+    else: default_city = ""
+    option_parser.add_option("-c", "--city",
+        dest="city",
+        default=default_city,
+        help=optparse.SUPPRESS_HELP)
+    if config.has_option("default", "id"):
+        default_id = config.get("default", "id")
+    else: default_id = ""
+    option_parser.add_option("-i", "--id",
+        dest="id",
+        default=default_id,
+        help=optparse.SUPPRESS_HELP)
+    if config.has_option("default", "st"):
+        default_st = config.get("default", "st")
+    else: default_st = ""
+    option_parser.add_option("-s", "--st",
+        dest="st",
+        default=default_st,
+        help=optparse.SUPPRESS_HELP)
+
+    options, arguments = option_parser.parse_args()
+    return options, arguments
 
 def get_config():
-   """Parse the aliases and configuration."""
-   import ConfigParser
-   config = ConfigParser.ConfigParser()
-   import os.path
-   rcfiles = [
-      "/etc/weatherrc",
-      os.path.expanduser("~/.weatherrc"),
-      "weatherrc"
-      ]
-   import os
-   for rcfile in rcfiles:
-      if os.access(rcfile, os.R_OK): config.read(rcfile)
-   for section in config.sections():
-      if section != section.lower():
-         if config.has_section(section.lower()):
-            config.remove_section(section.lower())
-         config.add_section(section.lower())
-         for option,value in config.items(section):
-            config.set(section.lower(), option, value)
-   return config
+    """Parse the aliases and configuration."""
+    if pyversion("3"): import configparser
+    else: import ConfigParser as configparser
+    config = configparser.ConfigParser()
+    import os
+    rcfiles = [
+        "/etc/weatherrc",
+        os.path.expanduser("~/.weather/weatherrc"),
+        os.path.expanduser("~/.weatherrc"),
+        "weatherrc"
+        ]
+    for rcfile in rcfiles:
+        if os.access(rcfile, os.R_OK): config.read(rcfile)
+    for section in config.sections():
+        if section != section.lower():
+            if config.has_section(section.lower()):
+                config.remove_section(section.lower())
+            config.add_section(section.lower())
+            for option,value in config.items(section):
+                config.set(section.lower(), option, value)
+    return config
 
-def list_aliases(config):
-   """Return a formatted list of aliases defined in the config."""
-   sections = []
-   for section in sorted(config.sections()):
-      if section.lower() not in sections and section != "default":
-         sections.append(section.lower())
-   output = "configured aliases..."
-   for section in sorted(sections):
-      output += "\n   " \
-         + section \
-         + ": --id=" \
-         + quote(config.get(section, "id")) \
-         + " --city=" \
-         + quote(config.get(section, "city")) \
-         + " --st=" \
-         + quote(config.get(section, "st"))
-   return output
+def integrate_search_cache(config, cachedir, setpath):
+    """Add cached search results into the configuration."""
+    if pyversion("3"): import configparser
+    else: import ConfigParser as configparser
+    import os, time
+    scache_fn = os.path.join( os.path.expanduser(cachedir), "searches" )
+    if not os.access(scache_fn, os.R_OK): return config
+    scache_fd = open(scache_fn)
+    created = float( scache_fd.readline().split(":")[1].strip().split()[0] )
+    scache_fd.close()
+    now = time.time()
+    datafiles = data_index(setpath)
+    if datafiles:
+        data_freshness = sorted(
+            [ x[1] for x in datafiles.values() ],
+            reverse=True
+        )[0]
+    else: data_freshness = now
+    if created < data_freshness <= now:
+        try:
+            os.remove(scache_fn)
+            print( "[clearing outdated %s]" % scache_fn )
+        except (IOError, OSError):
+            pass
+        return config
+    scache = configparser.ConfigParser()
+    scache.read(scache_fn)
+    for section in scache.sections():
+        if not config.has_section(section):
+            config.add_section(section)
+            for option,value in scache.items(section):
+                config.set(section, option, value)
+    return config
 
+def list_aliases(config, detail=False):
+    """Return a formatted list of aliases defined in the config."""
+    if detail:
+        output = "\n# configured alias details..."
+        for section in sorted(config.sections()):
+            output += "\n\n[%s]" % section
+            for item in sorted(config.items(section)):
+                output += "\n%s = %s" % item
+        output += "\n"
+    else:
+        output = "configured aliases and cached searches..."
+        for section in sorted(config.sections()):
+            if config.has_option(section, "description"):
+                description = config.get(section, "description")
+            else: description = "(no description provided)"
+            output += "\n   %s: %s" % (section, description)
+    return output
+
+def data_index(path):
+    import os
+    datafiles = {}
+    for filename in ("airports", "places", "stations", "zctas", "zones"):
+        for dirname in path.split(":"):
+            for extension in ("", ".gz", ".txt"):
+                candidate = os.path.expanduser(
+                    os.path.join( dirname, "".join( (filename, extension) ) )
+                )
+                if os.path.exists(candidate):
+                    datafiles[filename] = (
+                        candidate,
+                        os.stat(candidate).st_mtime
+                    )
+                    break
+    return datafiles
+
+def guess(
+    expression,
+    path=".",
+    max_results=20,
+    info=False,
+    cache_search=False,
+    cacheage=900,
+    cachedir="."
+):
+    """Find URIs using airport, gecos, placename, station, ZCTA/ZIP, zone."""
+    import codecs, datetime, time, os, re, sys
+    if pyversion("3"): import configparser
+    else: import ConfigParser as configparser
+    datafiles = data_index(path)
+    if re.match("[A-Za-z]{3}$", expression): searchtype = "airport"
+    elif re.match("[A-Za-z0-9]{4}$", expression): searchtype = "station"
+    elif re.match("[A-Za-z]{2}[Zz][0-9]{3}$", expression): searchtype = "zone"
+    elif re.match("[0-9]{5}$", expression): searchtype = "ZCTA"
+    elif re.match(
+        r"[\+-]?\d+(\.\d+)?(-\d+){,2}[ENSWensw]?, *[\+-]?\d+(\.\d+)?(-\d+){,2}[ENSWensw]?$",
+        expression
+    ):
+        searchtype = "coordinates"
+    elif re.match(r"(FIPS|fips)\d+$", expression): searchtype = "FIPS"
+    else:
+        searchtype = "name"
+        cache_search = False
+    if cache_search: action = "caching"
+    else: action = "using"
+    if info:
+        scores = [
+            (0.005, "bad"),
+            (0.025, "poor"),
+            (0.160, "suspect"),
+            (0.500, "mediocre"),
+            (0.840, "good"),
+            (0.975, "great"),
+            (0.995, "excellent"),
+            (1.000, "ideal"),
+        ]
+    print("Searching via %s..."%searchtype)
+    stations = configparser.ConfigParser()
+    dataname = "stations"
+    if dataname in datafiles:
+        datafile = datafiles[dataname][0]
+        if datafile.endswith(".gz"):
+            import gzip
+            stations.readfp( gzip.open(datafile) )
+        else:
+            stations.read(datafile)
+    else:
+        message = "%s error: can't find \"%s\" data file\n" % (
+            os.path.basename( sys.argv[0] ),
+            dataname
+        )
+        sys.stderr.write(message)
+        exit(1)
+    zones = configparser.ConfigParser()
+    dataname = "zones"
+    if dataname in datafiles:
+        datafile = datafiles[dataname][0]
+        if datafile.endswith(".gz"):
+            import gzip
+            zones.readfp( gzip.open(datafile) )
+        else:
+            zones.read(datafile)
+    else:
+        message = "%s error: can't find \"%s\" data file\n" % (
+            os.path.basename( sys.argv[0] ),
+            dataname
+        )
+        sys.stderr.write(message)
+        exit(1)
+    search = None
+    station = ("", 0)
+    zone = ("", 0)
+    dataset = None
+    possibilities = []
+    uris = {}
+    if searchtype == "airport":
+        expression = expression.lower()
+        airports = configparser.ConfigParser()
+        dataname = "airports"
+        if dataname in datafiles:
+            datafile = datafiles[dataname][0]
+            if datafile.endswith(".gz"):
+                import gzip
+                airports.readfp( gzip.open(datafile) )
+            else:
+                airports.read(datafile)
+        else:
+            message = "%s error: can't find \"%s\" data file\n" % (
+                os.path.basename( sys.argv[0] ),
+                dataname
+            )
+            sys.stderr.write(message)
+            exit(1)
+        if airports.has_section(expression) \
+            and airports.has_option(expression, "station"):
+            search = (expression, "IATA/FAA airport code %s" % expression)
+            station = ( airports.get(expression, "station"), 0 )
+            if stations.has_option(station[0], "zone"):
+                zone = eval( stations.get(station[0], "zone") )
+                dataset = stations
+            if not info and stations.has_option( station[0], "description" ):
+                print(
+                    "[%s result %s]" % (
+                        action,
+                        stations.get(station[0], "description")
+                    )
+                )
+        else:
+            message = "No IATA/FAA airport code \"%s\" in the %s file.\n" % (
+                expression,
+                datafiles["airports"][0]
+            )
+            sys.stderr.write(message)
+            exit(1)
+    elif searchtype == "station":
+        expression = expression.lower()
+        if stations.has_section(expression):
+            station = (expression, 0)
+            if not search:
+                search = (expression, "ICAO station code %s" % expression)
+            if stations.has_option(expression, "zone"):
+                zone = eval( stations.get(expression, "zone") )
+                dataset = stations
+            if not info and stations.has_option(expression, "description"):
+                print(
+                    "[%s result %s]" % (
+                        action,
+                        stations.get(expression, "description")
+                    )
+                )
+        else:
+            message = "No ICAO weather station \"%s\" in the %s file.\n" % (
+                expression,
+                datafiles["stations"][0]
+            )
+            sys.stderr.write(message)
+            exit(1)
+    elif searchtype == "zone":
+        expression = expression.lower()
+        if zones.has_section(expression) \
+            and zones.has_option(expression, "station"):
+            zone = (expression, 0)
+            station = eval( zones.get(expression, "station") )
+            dataset = zones
+            search = (expression, "NWS/NOAA weather zone %s" % expression)
+            if not info and zones.has_option(expression, "description"):
+                print(
+                    "[%s result %s]" % (
+                        action,
+                        zones.get(expression, "description")
+                    )
+                )
+        else:
+            message = "No usable NWS weather zone \"%s\" in the %s file.\n" % (
+                expression,
+                datafiles["zones"][0]
+            )
+            sys.stderr.write(message)
+            exit(1)
+    elif searchtype == "ZCTA":
+        zctas = configparser.ConfigParser()
+        dataname = "zctas"
+        if dataname in datafiles:
+            datafile = datafiles[dataname][0]
+            if datafile.endswith(".gz"):
+                import gzip
+                zctas.readfp( gzip.open(datafile) )
+            else:
+                zctas.read(datafile)
+        else:
+            message = "%s error: can't find \"%s\" data file\n" % (
+                os.path.basename( sys.argv[0] ),
+                dataname
+            )
+            sys.stderr.write(message)
+            exit(1)
+        dataset = zctas
+        if zctas.has_section(expression) \
+            and zctas.has_option(expression, "station"):
+            station = eval( zctas.get(expression, "station") )
+            search = (expression, "Census ZCTA (ZIP code) %s" % expression)
+            if zctas.has_option(expression, "zone"):
+                zone = eval( zctas.get(expression, "zone") )
+        else:
+            message = "No census ZCTA (ZIP code) \"%s\" in the %s file.\n" % (
+                expression,
+                datafiles["zctas"][0]
+            )
+            sys.stderr.write(message)
+            exit(1)
+    elif searchtype == "coordinates":
+        search = (expression, "Geographic coordinates %s" % expression)
+        stationtable = {}
+        for station in stations.sections():
+            if stations.has_option(station, "location"):
+                stationtable[station] = {
+                    "location": eval( stations.get(station, "location") )
+                }
+        station = closest( gecos(expression), stationtable, "location", 0.1 )
+        if not station[0]:
+            message = "No ICAO weather station found near %s.\n" % expression
+            sys.stderr.write(message)
+            exit(1)
+        zonetable = {}
+        for zone in zones.sections():
+            if zones.has_option(zone, "centroid"):
+                zonetable[zone] = {
+                    "centroid": eval( zones.get(zone, "centroid") )
+                }
+        zone = closest( gecos(expression), zonetable, "centroid", 0.1 )
+        if not zone[0]:
+            message = "No NWS weather zone near %s; forecasts unavailable.\n" \
+                % expression
+            sys.stderr.write(message)
+    elif searchtype in ("FIPS", "name"):
+        places = configparser.ConfigParser()
+        dataname = "places"
+        if dataname in datafiles:
+            datafile = datafiles[dataname][0]
+            if datafile.endswith(".gz"):
+                import gzip
+                places.readfp( gzip.open(datafile) )
+            else:
+                places.read(datafile)
+        else:
+            message = "%s error: can't find \"%s\" data file\n" % (
+                os.path.basename( sys.argv[0] ),
+                dataname
+            )
+            sys.stderr.write(message)
+            exit(1)
+        dataset = places
+        place = expression.lower()
+        if places.has_section(place) and places.has_option(place, "station"):
+            station = eval( places.get(place, "station") )
+            search = (expression, "Census Place %s" % expression)
+            if places.has_option(place, "description"):
+                search = (
+                    search[0],
+                    search[1] + ", %s" % places.get(place, "description")
+                )
+            if places.has_option(place, "zone"):
+                zone = eval( places.get(place, "zone") )
+            if not info and places.has_option(place, "description"):
+                print(
+                    "[%s result %s]" % (
+                        action,
+                        places.get(place, "description")
+                    )
+                )
+        else:
+            for place in places.sections():
+                if places.has_option(place, "description") \
+                    and places.has_option(place, "station") \
+                    and re.search(
+                        expression,
+                        places.get(place, "description"),
+                        re.I
+                    ):
+                        possibilities.append(place)
+            for place in stations.sections():
+                if stations.has_option(place, "description") \
+                    and re.search(
+                        expression,
+                        stations.get(place, "description"),
+                        re.I
+                    ):
+                        possibilities.append(place)
+            for place in zones.sections():
+                if zones.has_option(place, "description") \
+                    and zones.has_option(place, "station") \
+                    and re.search(
+                        expression,
+                        zones.get(place, "description"),
+                        re.I
+                    ):
+                        possibilities.append(place)
+            if len(possibilities) == 1:
+                place = possibilities[0]
+                if places.has_section(place):
+                    station = eval( places.get(place, "station") )
+                    description = places.get(place, "description")
+                    if places.has_option(place, "zone"):
+                        zone = eval( places.get(place, "zone" ) )
+                    search = ( expression, "%s: %s" % (place, description) )
+                elif stations.has_section(place):
+                    station = (place, 0.0)
+                    description = stations.get(place, "description")
+                    if stations.has_option(place, "zone"):
+                        zone = eval( stations.get(place, "zone" ) )
+                    search = ( expression, "ICAO station code %s" % place )
+                elif zones.has_section(place):
+                    station = eval( zones.get(place, "station") )
+                    description = zones.get(place, "description")
+                    zone = (place, 0.0)
+                    search = ( expression, "NWS/NOAA weather zone %s" % place )
+                if not info: print( "[%s result %s]" % (action, description) )
+            if not possibilities and not station[0]:
+                message = "No FIPS code/census area match in the %s file.\n" % (
+                    datafiles["places"][0]
+                )
+                sys.stderr.write(message)
+                exit(1)
+    if station[0]:
+        uris["metar"] = stations.get( station[0], "metar" )
+        if zone[0]:
+            for key,value in zones.items( zone[0] ):
+                if key not in ("centroid", "description", "station"):
+                    uris[key] = value
+    elif possibilities:
+        count = len(possibilities)
+        if count <= max_results:
+            print( "Your search is ambiguous, returning %s matches:" % count )
+            for place in sorted(possibilities):
+                if places.has_section(place):
+                    print(
+                        "   [%s] %s" % (
+                            place,
+                            places.get(place, "description")
+                        )
+                    )
+                elif stations.has_section(place):
+                    print(
+                        "   [%s] %s" % (
+                            place,
+                            stations.get(place, "description")
+                        )
+                    )
+                elif zones.has_section(place):
+                    print(
+                        "   [%s] %s" % (
+                            place,
+                            zones.get(place, "description")
+                        )
+                    )
+        else:
+            print(
+                "Your search is too ambiguous, returning %s matches." % count
+            )
+        exit(0)
+    if info:
+        stationlist = []
+        zonelist = []
+        if dataset:
+            for section in dataset.sections():
+                if dataset.has_option(section, "station"):
+                    stationlist.append(
+                        eval( dataset.get(section, "station") )[1]
+                    )
+                if dataset.has_option(section, "zone"):
+                    zonelist.append( eval( dataset.get(section, "zone") )[1] )
+        stationlist.sort()
+        zonelist.sort()
+        scount = len(stationlist)
+        zcount = len(zonelist)
+        sranks = []
+        zranks = []
+        for score in scores:
+            if stationlist:
+                sranks.append( stationlist[ int( (1-score[0]) * scount ) ] )
+            if zonelist:
+                zranks.append( zonelist[ int( (1-score[0]) * zcount ) ] )
+        description = search[1]
+        uris["description"] = description
+        print(
+            "%s\n%s" % ( description, "-" * len(description) )
+        )
+        print(
+            "%s: %s" % (
+                station[0],
+                stations.get( station[0], "description" )
+            )
+        )
+        km = radian_to_km*station[1]
+        mi = radian_to_mi*station[1]
+        if sranks and not description.startswith("ICAO station code "):
+            for index in range(0, len(scores)):
+                if station[1] >= sranks[index]:
+                    score = scores[index][1]
+                    break
+            print(
+                "   (proximity %s, %.3gkm, %.3gmi)" % ( score, km, mi )
+            )
+        elif searchtype is "coordinates":
+            print( "   (%.3gkm, %.3gmi)" % (km, mi) )
+        if zone[0]:
+            print(
+                "%s: %s" % ( zone[0], zones.get( zone[0], "description" ) )
+            )
+        km = radian_to_km*zone[1]
+        mi = radian_to_mi*zone[1]
+        if zranks and not description.startswith("NWS/NOAA weather zone "):
+            for index in range(0, len(scores)):
+                if zone[1] >= zranks[index]:
+                    score = scores[index][1]
+                    break
+            print(
+                "   (proximity %s, %.3gkm, %.3gmi)" % ( score, km, mi )
+            )
+        elif searchtype is "coordinates" and zone[0]:
+            print( "   (%.3gkm, %.3gmi)" % (km, mi) )
+    if cache_search:
+        now = time.time()
+        nowstamp = "%s (%s)" % (
+            now,
+            datetime.datetime.isoformat(
+                datetime.datetime.fromtimestamp(now),
+                " "
+            )
+        )
+        search_cache = ["\n"]
+        search_cache.append( "[%s]\n" % search[0] ) 
+        search_cache.append( "description = cached %s\n" % nowstamp )
+        for uriname in sorted(uris.keys()):
+            search_cache.append( "%s = %s\n" % ( uriname, uris[uriname] ) )
+        real_cachedir = os.path.expanduser(cachedir)
+        if not os.path.exists(real_cachedir):
+            try: os.makedirs(real_cachedir)
+            except (IOError, OSError): pass
+        scache_fn = os.path.join(real_cachedir, "searches")
+        if not os.path.exists(scache_fn):
+            then = sorted(
+                    [ x[1] for x in datafiles.values() ],
+                    reverse=True
+                )[0]
+            thenstamp = "%s (%s)" % (
+                then,
+                datetime.datetime.isoformat(
+                    datetime.datetime.fromtimestamp(then),
+                    " "
+                )
+            )
+            search_cache.insert(
+                0,
+                "# based on data files from: %s\n" % thenstamp
+            )
+        try:
+            scache_existing = configparser.ConfigParser()
+            scache_existing.read(scache_fn)
+            if not scache_existing.has_section(search[0]):
+                scache_fd = codecs.open(scache_fn, "a", "utf-8")
+                scache_fd.writelines(search_cache)
+                scache_fd.close()
+        except (IOError, OSError): pass
+    if not info:
+        return(uris)
+
+def closest(position, nodes, fieldname, angle=None):
+    import math
+    if not angle: angle = 2*math.pi
+    match = None
+    for name in nodes:
+        if fieldname in nodes[name]:
+            node = nodes[name][fieldname]
+            if node and abs( position[0]-node[0] ) < angle:
+                if abs( position[1]-node[1] ) < angle \
+                    or abs( abs( position[1]-node[1] ) - 2*math.pi ) < angle:
+                    if position == node:
+                        angle = 0
+                        match = name
+                    else:
+                        candidate = math.acos(
+                            math.sin( position[0] ) * math.sin( node[0] ) \
+                                + math.cos( position[0] ) \
+                                * math.cos( node[0] ) \
+                                * math.cos( position[1] - node[1] )
+                            )
+                        if candidate < angle:
+                            angle = candidate
+                            match = name
+    if match: match = str(match)
+    return (match, angle)
+
+def gecos(formatted):
+    import math, re
+    coordinates = formatted.split(",")
+    for coordinate in range(0, 2):
+        degrees, foo, minutes, bar, seconds, hemisphere = re.match(
+            r"([\+-]?\d+\.?\d*)(-(\d+))?(-(\d+))?([ensw]?)$",
+            coordinates[coordinate].strip().lower()
+        ).groups()
+        value = float(degrees)
+        if minutes: value += float(minutes)/60
+        if seconds: value += float(seconds)/3600
+        if hemisphere and hemisphere in "sw": value *= -1
+        coordinates[coordinate] = math.radians(value)
+    return tuple(coordinates)
+
+def correlate():
+    import codecs, datetime, hashlib, os, re, sys, tarfile, time, zipfile
+    if pyversion("3"): import configparser
+    else: import ConfigParser as configparser
+    gcounties_an = "Gaz_counties_national.zip"
+    gcounties_fn = "Gaz_counties_national.txt"
+    gcousubs_an = "Gaz_cousubs_national.zip"
+    gcousubs_fn = "Gaz_cousubs_national.txt"
+    gplaces_an = "Gaz_places_national.zip"
+    gplaces_fn = "Gaz_places_national.txt"
+    gzcta_an = "Gaz_zcta_national.zip"
+    gzcta_fn = "Gaz_zcta_national.txt"
+    for filename in os.listdir("."):
+        if re.match("bp[0-9][0-9][a-z][a-z][0-9][0-9].dbx$", filename):
+            cpfzcf_fn = filename
+            break
+    nsdcccc_fn = "nsd_cccc.txt"
+    zcatalog_an = "zonecatalog.curr.tar"
+    metartbl_fn = "metar.tbl"
+    coopact_fn = "COOP-ACT.TXT"
+    overrides_fn = "overrides.conf"
+    overrideslog_fn = "overrides.log"
+    slist_fn = "slist"
+    zlist_fn = "zlist"
+    qalog_fn = "qa.log"
+    airports_fn = "airports"
+    places_fn = "places"
+    stations_fn = "stations"
+    zctas_fn = "zctas"
+    zones_fn = "zones"
+    header = """\
+%s
+# generated by %s on %s from these public domain sources:
+#
+# http://www.census.gov/geo/www/gazetteer/gazetteer2010.html
+# %s %s %s
+# %s %s %s
+# %s %s %s
+# %s %s %s
+#
+# http://www.weather.gov/geodata/catalog/wsom/html/cntyzone.htm
+# %s %s %s
+#
+# http://weather.noaa.gov/data/nsd_cccc.txt
+# %s %s %s
+#
+# http://weather.noaa.gov/pub/data/zonecatalog.curr.tar
+# %s %s %s
+#
+# http://www.nco.ncep.noaa.gov/pmb/codes/nwprod/dictionaries/metar.tbl
+# %s %s %s
+#
+# ftp://ftp.ncdc.noaa.gov/pub/data/inventories/COOP-ACT.TXT
+# %s %s %s
+#
+# ...and these manually-generated or hand-compiled adjustments:
+# %s %s %s
+# %s %s %s
+# %s %s %s\
+""" % (
+        weather_copyright,
+        os.path.basename( sys.argv[0] ),
+        datetime.date.isoformat(
+            datetime.datetime.fromtimestamp( time.time() )
+        ),
+        hashlib.md5( open(gcounties_an, "rb").read() ).hexdigest(),
+        datetime.date.isoformat(
+            datetime.datetime.fromtimestamp( os.path.getmtime(gcounties_an) )
+        ),
+        gcounties_an,
+        hashlib.md5( open(gcousubs_an, "rb").read() ).hexdigest(),
+        datetime.date.isoformat(
+            datetime.datetime.fromtimestamp( os.path.getmtime(gcousubs_an) )
+        ),
+        gcousubs_an,
+        hashlib.md5( open(gplaces_an, "rb").read() ).hexdigest(),
+        datetime.date.isoformat(
+            datetime.datetime.fromtimestamp( os.path.getmtime(gplaces_an) )
+        ),
+        gplaces_an,
+        hashlib.md5( open(gzcta_an, "rb").read() ).hexdigest(),
+        datetime.date.isoformat(
+            datetime.datetime.fromtimestamp( os.path.getmtime(gzcta_an) )
+        ),
+        gzcta_an,
+        hashlib.md5( open(cpfzcf_fn, "rb").read() ).hexdigest(),
+        datetime.date.isoformat(
+            datetime.datetime.fromtimestamp( os.path.getmtime(cpfzcf_fn) )
+        ),
+        cpfzcf_fn,
+        hashlib.md5( open(nsdcccc_fn, "rb").read() ).hexdigest(),
+        datetime.date.isoformat(
+            datetime.datetime.fromtimestamp( os.path.getmtime(nsdcccc_fn) )
+        ),
+        nsdcccc_fn,
+        hashlib.md5( open(zcatalog_an, "rb").read() ).hexdigest(),
+        datetime.date.isoformat(
+            datetime.datetime.fromtimestamp( os.path.getmtime(zcatalog_an) )
+        ),
+        zcatalog_an,
+        hashlib.md5( open(metartbl_fn, "rb").read() ).hexdigest(),
+        datetime.date.isoformat(
+            datetime.datetime.fromtimestamp( os.path.getmtime(metartbl_fn) )
+        ),
+        metartbl_fn,
+        hashlib.md5( open(coopact_fn, "rb").read() ).hexdigest(),
+        datetime.date.isoformat(
+            datetime.datetime.fromtimestamp( os.path.getmtime(coopact_fn) )
+        ),
+        coopact_fn,
+        hashlib.md5( open(overrides_fn, "rb").read() ).hexdigest(),
+        datetime.date.isoformat(
+            datetime.datetime.fromtimestamp( os.path.getmtime(overrides_fn) )
+        ),
+        overrides_fn,
+        hashlib.md5( open(slist_fn, "rb").read() ).hexdigest(),
+        datetime.date.isoformat(
+            datetime.datetime.fromtimestamp( os.path.getmtime(slist_fn) )
+        ),
+        slist_fn,
+        hashlib.md5( open(zlist_fn, "rb").read() ).hexdigest(),
+        datetime.date.isoformat(
+            datetime.datetime.fromtimestamp( os.path.getmtime(zlist_fn) )
+        ),
+        zlist_fn
+    )
+    airports = {}
+    places = {}
+    stations = {}
+    zctas = {}
+    zones = {}
+    message = "Reading %s:%s..." % (gcounties_an, gcounties_fn)
+    sys.stdout.write(message)
+    sys.stdout.flush()
+    count = 0
+    gcounties = zipfile.ZipFile(gcounties_an).open(gcounties_fn, "rU")
+    for line in gcounties:
+        fields = line.decode("latin1").strip().split("\t")
+        if len(fields) == 10 and fields[0] != "STUSPS":
+            fips = "fips%s" % fields[1]
+            description = "%s, %s" % ( fields[3], fields[0] )
+            centroid = gecos( ",".join( fields[8:10] ) )
+            if fips not in places: places[fips] = {}
+            places[fips]["centroid"] = centroid
+            places[fips]["description"] = description
+            count += 1
+    gcounties.close()
+    print("done (%s lines)." % count)
+    message = "Reading %s:%s..." % (gcousubs_an, gcousubs_fn)
+    sys.stdout.write(message)
+    sys.stdout.flush()
+    count = 0
+    gcousubs = zipfile.ZipFile(gcousubs_an).open(gcousubs_fn, "rU")
+    for line in gcousubs:
+        fields = line.decode("latin1").strip().split("\t")
+        if len(fields) == 10 and fields[0] != "STUSPS":
+            fips = "fips%s" % fields[1]
+            description = "%s, %s" % ( fields[3], fields[0] )
+            centroid = gecos( ",".join( fields[8:10] ) )
+            if fips not in places: places[fips] = {}
+            places[fips]["centroid"] = centroid
+            places[fips]["description"] = description
+            count += 1
+    gcousubs.close()
+    print("done (%s lines)." % count)
+    message = "Reading %s:%s..." % (gplaces_an, gplaces_fn)
+    sys.stdout.write(message)
+    sys.stdout.flush()
+    count = 0
+    gplaces = zipfile.ZipFile(gplaces_an).open(gplaces_fn, "rU")
+    for line in gplaces:
+        fields = line.decode("latin1").strip().split("\t")
+        if len(fields) == 10 and fields[0] != "STUSPS":
+            fips = "fips%s" % fields[1]
+            description = "%s, %s" % ( fields[3], fields[0] )
+            centroid = gecos( ",".join( fields[8:10] ) )
+            if fips not in places: places[fips] = {}
+            places[fips]["centroid"] = centroid
+            places[fips]["description"] = description
+            count += 1
+    gplaces.close()
+    print("done (%s lines)." % count)
+    message = "Reading %s..." % slist_fn
+    sys.stdout.write(message)
+    sys.stdout.flush()
+    count = 0
+    slist = codecs.open(slist_fn, "rU")
+    for line in slist:
+        icao = line.split("#")[0].strip()
+        if icao:
+            stations[icao] = {
+                "metar": "http://weather.noaa.gov/pub/data/observations/"\
+                    + "metar/decoded/%s.TXT" % icao.upper()
+            }
+            count += 1
+    slist.close()
+    print("done (%s lines)." % count)
+    message = "Reading %s..." % metartbl_fn
+    sys.stdout.write(message)
+    sys.stdout.flush()
+    count = 0
+    metartbl = codecs.open(metartbl_fn, "rU")
+    for line in metartbl:
+        icao = line[:4].strip().lower()
+        if icao in stations:
+            description = []
+            name = " ".join(
+                line[16:48].replace("_", " ").strip().title().split()
+            )
+            if name: description.append(name)
+            st = line[49:51].strip()
+            if st: description.append(st)
+            cn = line[52:54].strip()
+            if cn: description.append(cn)
+            if description:
+                stations[icao]["description"] = ", ".join(description)
+            lat = line[55:60].strip()
+            if lat:
+                lat = int(lat)/100.0
+                lon = line[61:67].strip()
+                if lon:
+                    lon = int(lon)/100.0
+                    stations[icao]["location"] = gecos( "%s,%s" % (lat, lon) )
+        count += 1
+    metartbl.close()
+    print("done (%s lines)." % count)
+    message = "Reading %s..." % nsdcccc_fn
+    sys.stdout.write(message)
+    sys.stdout.flush()
+    count = 0
+    nsdcccc = codecs.open(nsdcccc_fn, "rU", "latin1")
+    for line in nsdcccc:
+        line = str(line)
+        fields = line.split(";")
+        icao = fields[0].strip().lower()
+        if icao in stations:
+            description = []
+            name = " ".join( fields[3].strip().title().split() )
+            if name: description.append(name)
+            st = fields[4].strip()
+            if st: description.append(st)
+            country = " ".join( fields[5].strip().title().split() )
+            if country: description.append(country)
+            if description:
+                stations[icao]["description"] = ", ".join(description)
+            lat, lon = fields[7:9]
+            if lat and lon:
+                stations[icao]["location"] = gecos( "%s,%s" % (lat, lon) )
+            elif "location" not in stations[icao]:
+                lat, lon = fields[5:7]
+                if lat and lon:
+                    stations[icao]["location"] = gecos( "%s,%s" % (lat, lon) )
+        count += 1
+    nsdcccc.close()
+    print("done (%s lines)." % count)
+    message = "Reading %s..." % coopact_fn
+    sys.stdout.write(message)
+    sys.stdout.flush()
+    count = 0
+    coopact = open(coopact_fn)
+    for line in coopact:
+        icao = line[33:37].strip().lower()
+        if icao in stations:
+            iata = line[22:26].strip().lower()
+            if len(iata) == 3: airports[iata] = { "station": icao }
+            if "description" not in stations[icao]:
+                description = []
+                name = " ".join( line[99:129].strip().title().split() )
+                if name: description.append(name)
+                st = line[59:61].strip()
+                if st: description.append(st)
+                country = " ".join( line[38:58].strip().title().split() )
+                if country: description.append(country)
+                if description:
+                    stations[icao]["description"] = ", ".join(description)
+            if "location" not in stations[icao]:
+                lat = line[130:139].strip()
+                if lat:
+                    lat = lat.replace(" ", "-")
+                    lon = line[140:150].strip()
+                    if lon:
+                        lon = lon.replace(" ", "-")
+                        stations[icao]["location"] = gecos(
+                            "%s,%s" % (lat, lon)
+                        )
+        count += 1
+    coopact.close()
+    print("done (%s lines)." % count)
+    message = "Reading %s..." % zlist_fn
+    sys.stdout.write(message)
+    sys.stdout.flush()
+    count = 0
+    zlist = codecs.open(zlist_fn, "rU")
+    for line in zlist:
+        line = line.split("#")[0].strip()
+        if line:
+            zones[line] = {}
+            count += 1
+    zlist.close()
+    print("done (%s lines)." % count)
+    message = "Reading %s:*..." % zcatalog_an
+    sys.stdout.write(message)
+    sys.stdout.flush()
+    count = 0
+    zcatalog = tarfile.open(zcatalog_an)
+    for entry in zcatalog.getmembers():
+        if entry.isfile():
+            fnmatch = re.match(
+                r"([a-z]+z[0-9]+)\.txt$",
+                os.path.basename(entry.name)
+            )
+            if fnmatch:
+                zone = fnmatch.group(1)
+                if zone in zones:
+                    data = zcatalog.extractfile(entry).readlines()
+                    description = data[0].decode("ascii").strip()
+                    zones[zone]["description"] = description
+                    for line in data[1:]:
+                        line = line.decode("latin1").strip()
+                        urimatch = re.match("/webdocs/(.+):(.+) for ", line)
+                        if urimatch:
+                            uritype = urimatch.group(2).lower().replace(" ","_")
+                            zones[zone][uritype] \
+                                = "http://weather.noaa.gov/%s" \
+                                % urimatch.group(1)
+        count += 1
+    zcatalog.close()
+    print("done (%s files)." % count)
+    message = "Reading %s..." % cpfzcf_fn
+    sys.stdout.write(message)
+    sys.stdout.flush()
+    count = 0
+    cpfz = {}
+    cpfzcf = open(cpfzcf_fn)
+    for line in cpfzcf:
+        fields = line.split("|")
+        if len(fields) == 11 \
+            and fields[0] and fields[1] and fields[9] and fields[10]:
+            zone = "z".join( fields[:2] ).lower()
+            if zone in zones:
+                zones[zone]["centroid"] = gecos( ",".join( fields[9:] ) )
+            elif fields[6]:
+                state = fields[0]
+                description = fields[3]
+                county = fields[5]
+                fips = "fips%s"%fields[6]
+                possible = [
+                    "%s, %s" % (county, state),
+                    "%s County, %s" % (county, state),
+                ]
+                if description.endswith(" Counties"):
+                    description = description[:-9]
+                for addition in description.split(" and "):
+                    possible.append( "%s, %s" % (addition, state) )
+                    possible.append( "%s County, %s" % (addition, state) )
+                if fips in places and "centroid" in places[fips]:
+                    for candidate in zones:
+                        if "centroid" not in zones[candidate] and \
+                            "description" in zones[candidate] and \
+                            zones[candidate]["description"] in possible:
+                            zones[candidate]["centroid"] = \
+                                places[fips]["centroid"]
+        count += 1
+    cpfzcf.close()
+    print("done (%s lines)." % count)
+    message = "Reading %s:%s..." % (gzcta_an, gzcta_fn)
+    sys.stdout.write(message)
+    sys.stdout.flush()
+    count = 0
+    gzcta = zipfile.ZipFile(gzcta_an).open(gzcta_fn, "rU")
+    for line in gzcta:
+        fields = line.decode("latin1").strip().split("\t")
+        if len(fields) == 7 and fields[0] != "GEOID":
+            zcta = fields[0]
+            if zcta not in zctas: zctas[zcta] = {}
+            zctas[zcta]["centroid"] = gecos(
+                ",".join( ( fields[6], fields[5] ) )
+            )
+            count += 1
+    gzcta.close()
+    print("done (%s lines)." % count)
+    message = "Reading %s..." % overrides_fn
+    sys.stdout.write(message)
+    sys.stdout.flush()
+    count = 0
+    added = 0
+    removed = 0
+    changed = 0
+    overrides = configparser.ConfigParser()
+    overrides.readfp( codecs.open(overrides_fn, "r", "utf8") )
+    overrideslog = []
+    for section in overrides.sections():
+        addopt = 0
+        chgopt = 0
+        if section.startswith("-"):
+            section = section[1:]
+            delete = True
+        else: delete = False
+        if re.match("[A-Za-z]{3}$", section):
+            if delete:
+                if section in airports:
+                    del( airports[section] )
+                    logact = "removed airport %s" % section
+                    removed += 1
+                else:
+                    logact = "tried to remove nonexistent airport %s" % section
+            else:
+                if section in airports:
+                    logact = "changed airport %s" % section
+                    changed += 1
+                else:
+                    airports[section] = {}
+                    logact = "added airport %s" % section
+                    added += 1
+                for key,value in overrides.items(section):
+                    if key in airports[section]: chgopt += 1
+                    else: addopt += 1
+                    if key in ("centroid", "location"):
+                        airports[section][key] = eval(value)
+                    else:
+                        airports[section][key] = value
+                if addopt and chgopt:
+                    logact += " (+%s/!%s options)" % (addopt, chgopt)
+                elif addopt: logact += " (+%s options)" % addopt
+                elif chgopt: logact += " (!%s options)" % chgopt
+        elif re.match("[A-Za-z0-9]{4}$", section):
+            if delete:
+                if section in stations:
+                    del( stations[section] )
+                    logact = "removed station %s" % section
+                    removed += 1
+                else:
+                    logact = "tried to remove nonexistent station %s" % section
+            else:
+                if section in stations:
+                    logact = "changed station %s" % section
+                    changed += 1
+                else:
+                    stations[section] = {}
+                    logact = "added station %s" % section
+                    added += 1
+                for key,value in overrides.items(section):
+                    if key in stations[section]: chgopt += 1
+                    else: addopt += 1
+                    if key in ("centroid", "location"):
+                        stations[section][key] = eval(value)
+                    else:
+                        stations[section][key] = value
+                if addopt and chgopt:
+                    logact += " (+%s/!%s options)" % (addopt, chgopt)
+                elif addopt: logact += " (+%s options)" % addopt
+                elif chgopt: logact += " (!%s options)" % chgopt
+        elif re.match("[0-9]{5}$", section):
+            if delete:
+                if section in zctas:
+                    del( zctas[section] )
+                    logact = "removed zcta %s" % section
+                    removed += 1
+                else:
+                    logact = "tried to remove nonexistent zcta %s" % section
+            else:
+                if section in zctas:
+                    logact = "changed zcta %s" % section
+                    changed += 1
+                else:
+                    zctas[section] = {}
+                    logact = "added zcta %s" % section
+                    added += 1
+                for key,value in overrides.items(section):
+                    if key in zctas[section]: chgopt += 1
+                    else: addopt += 1
+                    if key in ("centroid", "location"):
+                        zctas[section][key] = eval(value)
+                    else:
+                        zctas[section][key] = value
+                if addopt and chgopt:
+                    logact += " (+%s/!%s options)" % (addopt, chgopt)
+                elif addopt: logact += " (+%s options)" % addopt
+                elif chgopt: logact += " (!%s options)" % chgopt
+        elif re.match("[A-Za-z]{2}[Zz][0-9]{3}$", section):
+            if delete:
+                if section in zones:
+                    del( zones[section] )
+                    logact = "removed zone %s" % section
+                    removed += 1
+                else:
+                    logact = "tried to remove nonexistent zone %s" % section
+            else:
+                if section in zones:
+                    logact = "changed zone %s" % section
+                    changed += 1
+                else:
+                    zones[section] = {}
+                    logact = "added zone %s" % section
+                    added += 1
+                for key,value in overrides.items(section):
+                    if key in zones[section]: chgopt += 1
+                    else: addopt += 1
+                    if key in ("centroid", "location"):
+                        zones[section][key] = eval(value)
+                    else:
+                        zones[section][key] = value
+                if addopt and chgopt:
+                    logact += " (+%s/!%s options)" % (addopt, chgopt)
+                elif addopt: logact += " (+%s options)" % addopt
+                elif chgopt: logact += " (!%s options)" % chgopt
+        elif re.match("fips[0-9]+$", section):
+            if delete:
+                if section in places:
+                    del( places[section] )
+                    logact = "removed place %s" % section
+                    removed += 1
+                else:
+                    logact = "tried to remove nonexistent place %s" % section
+            else:
+                if section in places:
+                    logact = "changed place %s" % section
+                    changed += 1
+                else:
+                    places[section] = {}
+                    logact = "added place %s" % section
+                    added += 1
+                for key,value in overrides.items(section):
+                    if key in places[section]: chgopt += 1
+                    else: addopt += 1
+                    if key in ("centroid", "location"):
+                        places[section][key] = eval(value)
+                    else:
+                        places[section][key] = value
+                if addopt and chgopt:
+                    logact += " (+%s/!%s options)" % (addopt, chgopt)
+                elif addopt: logact += " (+%s options)" % addopt
+                elif chgopt: logact += " (!%s options)" % chgopt
+        count += 1
+        overrideslog.append("%s\n" % logact)
+    overrideslog.sort()
+    if os.path.exists(overrideslog_fn):
+        os.rename(overrideslog_fn, "%s_old"%overrideslog_fn)
+    overrideslog_fd = codecs.open(overrideslog_fn, "w", "utf8")
+    overrideslog_fd.writelines(overrideslog)
+    overrideslog_fd.close()
+    print("done (%s overridden sections: +%s/-%s/!%s)." % (
+        count,
+        added,
+        removed,
+        changed
+    ) )
+    estimate = 2*len(places) + len(stations) + 2*len(zctas) + len(zones)
+    print(
+        "Correlating places, stations, ZCTAs and zones (upper bound is %s):" % \
+            estimate
+    )
+    count = 0
+    milestones = list( range(51) )
+    message = "   "
+    sys.stdout.write(message)
+    sys.stdout.flush()
+    for fips in places:
+        centroid = places[fips]["centroid"]
+        if centroid:
+            station = closest(centroid, stations, "location", 0.1)
+        if station[0]:
+            places[fips]["station"] = station
+            count += 1
+            if not count%100:
+                level = int(50*count/estimate)
+                if level in milestones:
+                    for remaining in milestones[:milestones.index(level)+1]:
+                        if remaining%5:
+                            message = "."
+                            sys.stdout.write(message)
+                            sys.stdout.flush()
+                        else:
+                            message = "%s%%" % (remaining*2,)
+                            sys.stdout.write(message)
+                            sys.stdout.flush()
+                        milestones.remove(remaining)
+        if centroid:
+            zone = closest(centroid, zones, "centroid", 0.1)
+        if zone[0]:
+            places[fips]["zone"] = zone
+            count += 1
+            if not count%100:
+                level = int(50*count/estimate)
+                if level in milestones:
+                    for remaining in milestones[:milestones.index(level)+1]:
+                        if remaining%5:
+                            message = "."
+                            sys.stdout.write(message)
+                            sys.stdout.flush()
+                        else:
+                            message = "%s%%" % (remaining*2,)
+                            sys.stdout.write(message)
+                            sys.stdout.flush()
+                        milestones.remove(remaining)
+    for station in stations:
+        if "location" in stations[station]:
+            location = stations[station]["location"]
+            if location:
+                zone = closest(location, zones, "centroid", 0.1)
+            if zone[0]:
+                stations[station]["zone"] = zone
+                count += 1
+                if not count%100:
+                    level = int(50*count/estimate)
+                    if level in milestones:
+                        for remaining in milestones[:milestones.index(level)+1]:
+                            if remaining%5:
+                                message = "."
+                                sys.stdout.write(message)
+                                sys.stdout.flush()
+                            else:
+                                message = "%s%%" % (remaining*2,)
+                                sys.stdout.write(message)
+                                sys.stdout.flush()
+                            milestones.remove(remaining)
+    for zcta in zctas.keys():
+        centroid = zctas[zcta]["centroid"]
+        if centroid:
+            station = closest(centroid, stations, "location", 0.1)
+        if station[0]:
+            zctas[zcta]["station"] = station
+            count += 1
+            if not count%100:
+                level = int(50*count/estimate)
+                if level in milestones:
+                    for remaining in milestones[ : milestones.index(level)+1 ]:
+                        if remaining%5:
+                            message = "."
+                            sys.stdout.write(message)
+                            sys.stdout.flush()
+                        else:
+                            message = "%s%%" % (remaining*2,)
+                            sys.stdout.write(message)
+                            sys.stdout.flush()
+                        milestones.remove(remaining)
+        if centroid:
+            zone = closest(centroid, zones, "centroid", 0.1)
+        if zone[0]:
+            zctas[zcta]["zone"] = zone
+            count += 1
+            if not count%100:
+                level = int(50*count/estimate)
+                if level in milestones:
+                    for remaining in milestones[:milestones.index(level)+1]:
+                        if remaining%5:
+                            message = "."
+                            sys.stdout.write(message)
+                            sys.stdout.flush()
+                        else:
+                            message = "%s%%" % (remaining*2,)
+                            sys.stdout.write(message)
+                            sys.stdout.flush()
+                        milestones.remove(remaining)
+    for zone in zones.keys():
+        if "centroid" in zones[zone]:
+            centroid = zones[zone]["centroid"]
+            if centroid:
+                station = closest(centroid, stations, "location", 0.1)
+            if station[0]:
+                zones[zone]["station"] = station
+                count += 1
+                if not count%100:
+                    level = int(50*count/estimate)
+                    if level in milestones:
+                        for remaining in milestones[:milestones.index(level)+1]:
+                            if remaining%5:
+                                message = "."
+                                sys.stdout.write(message)
+                                sys.stdout.flush()
+                            else:
+                                message = "%s%%" % (remaining*2,)
+                                sys.stdout.write(message)
+                                sys.stdout.flush()
+                            milestones.remove(remaining)
+    for remaining in milestones:
+        if remaining%5:
+            message = "."
+            sys.stdout.write(message)
+            sys.stdout.flush()
+        else:
+            message = "%s%%" % (remaining*2,)
+            sys.stdout.write(message)
+            sys.stdout.flush()
+    print("\n   done (%s correlations)." % count)
+    message = "Writing %s..." % airports_fn
+    sys.stdout.write(message)
+    sys.stdout.flush()
+    count = 0
+    if os.path.exists(airports_fn):
+        os.rename(airports_fn, "%s_old"%airports_fn)
+    airports_fd = codecs.open(airports_fn, "w", "utf8")
+    airports_fd.write(header)
+    for airport in sorted( airports.keys() ):
+        airports_fd.write("\n\n[%s]" % airport)
+        for key, value in sorted( airports[airport].items() ):
+            airports_fd.write( "\n%s = %s" % (key, value) )
+        count += 1
+    airports_fd.close()
+    print("done (%s sections)." % count)
+    message = "Writing %s..." % places_fn
+    sys.stdout.write(message)
+    sys.stdout.flush()
+    count = 0
+    if os.path.exists(places_fn):
+        os.rename(places_fn, "%s_old"%places_fn)
+    places_fd = codecs.open(places_fn, "w", "utf8")
+    places_fd.write(header)
+    for fips in sorted( places.keys() ):
+        places_fd.write("\n\n[%s]" % fips)
+        for key, value in sorted( places[fips].items() ):
+            places_fd.write( "\n%s = %s" % (key, value) )
+        count += 1
+    places_fd.close()
+    print("done (%s sections)." % count)
+    message = "Writing %s..." % stations_fn
+    sys.stdout.write(message)
+    sys.stdout.flush()
+    count = 0
+    if os.path.exists(stations_fn):
+        os.rename(stations_fn, "%s_old"%stations_fn)
+    stations_fd = codecs.open(stations_fn, "w", "utf8")
+    stations_fd.write(header)
+    for station in sorted( stations.keys() ):
+        stations_fd.write("\n\n[%s]" % station)
+        for key, value in sorted( stations[station].items() ):
+            stations_fd.write( "\n%s = %s" % (key, value) )
+        count += 1
+    stations_fd.close()
+    print("done (%s sections)." % count)
+    message = "Writing %s..." % zctas_fn
+    sys.stdout.write(message)
+    sys.stdout.flush()
+    count = 0
+    if os.path.exists(zctas_fn):
+        os.rename(zctas_fn, "%s_old"%zctas_fn)
+    zctas_fd = codecs.open(zctas_fn, "w", "utf8")
+    zctas_fd.write(header)
+    for zcta in sorted( zctas.keys() ):
+        zctas_fd.write("\n\n[%s]" % zcta)
+        for key, value in sorted( zctas[zcta].items() ):
+            zctas_fd.write( "\n%s = %s" % (key, value) )
+        count += 1
+    zctas_fd.close()
+    print("done (%s sections)." % count)
+    message = "Writing %s..." % zones_fn
+    sys.stdout.write(message)
+    sys.stdout.flush()
+    count = 0
+    if os.path.exists(zones_fn):
+        os.rename(zones_fn, "%s_old"%zones_fn)
+    zones_fd = codecs.open(zones_fn, "w", "utf8")
+    zones_fd.write(header)
+    for zone in sorted( zones.keys() ):
+        zones_fd.write("\n\n[%s]" % zone)
+        for key, value in sorted( zones[zone].items() ):
+            zones_fd.write( "\n%s = %s" % (key, value) )
+        count += 1
+    zones_fd.close()
+    print("done (%s sections)." % count)
+    message = "Starting QA check..."
+    sys.stdout.write(message)
+    sys.stdout.flush()
+    airports = configparser.ConfigParser()
+    airports.read(airports_fn)
+    places = configparser.ConfigParser()
+    places.read(places_fn)
+    stations = configparser.ConfigParser()
+    stations.read(stations_fn)
+    zctas = configparser.ConfigParser()
+    zctas.read(zctas_fn)
+    zones = configparser.ConfigParser()
+    zones.read(zones_fn)
+    qalog = []
+    places_nocentroid = 0
+    places_nodescription = 0
+    for place in sorted( places.sections() ):
+        if not places.has_option(place, "centroid"):
+            qalog.append("%s: no centroid\n" % place)
+            places_nocentroid += 1
+        if not places.has_option(place, "description"):
+            qalog.append("%s: no description\n" % place)
+            places_nodescription += 1
+    stations_nodescription = 0
+    stations_nolocation = 0
+    stations_nometar = 0
+    for station in sorted( stations.sections() ):
+        if not stations.has_option(station, "description"):
+            qalog.append("%s: no description\n" % station)
+            stations_nodescription += 1
+        if not stations.has_option(station, "location"):
+            qalog.append("%s: no location\n" % station)
+            stations_nolocation += 1
+        if not stations.has_option(station, "metar"):
+            qalog.append("%s: no metar\n" % station)
+            stations_nometar += 1
+    airports_badstation = 0
+    airports_nostation = 0
+    for airport in sorted( airports.sections() ):
+        if not airports.has_option(airport, "station"):
+            qalog.append("%s: no station\n" % airport)
+            airports_nostation += 1
+        else:
+            station = airports.get(airport, "station")
+            if station not in stations.sections():
+                qalog.append( "%s: bad station %s\n" % (airport, station) )
+                airports_badstation += 1
+    zctas_nocentroid = 0
+    for zcta in sorted( zctas.sections() ):
+        if not zctas.has_option(zcta, "centroid"):
+            qalog.append("%s: no centroid\n" % zcta)
+            zctas_nocentroid += 1
+    zones_nocentroid = 0
+    zones_nodescription = 0
+    zones_noforecast = 0
+    zones_overlapping = 0
+    zonetable = {}
+    for zone in zones.sections():
+        if zones.has_option(zone, "centroid"):
+            zonetable[zone] = {
+                "centroid": eval( zones.get(zone, "centroid") )
+            }
+    for zone in sorted( zones.sections() ):
+        if zones.has_option(zone, "centroid"):
+            zonetable_local = zonetable.copy()
+            del( zonetable_local[zone] )
+            centroid = eval( zones.get(zone, "centroid") )
+            if centroid:
+                nearest = closest(centroid, zonetable_local, "centroid", 0.1)
+            if nearest[1]*radian_to_km < 1:
+                qalog.append( "%s: within one km of %s\n" % (
+                    zone,
+                    nearest[0]
+                ) )
+                zones_overlapping += 1
+        else:
+            qalog.append("%s: no centroid\n" % zone)
+            zones_nocentroid += 1
+        if not zones.has_option(zone, "description"):
+            qalog.append("%s: no description\n" % zone)
+            zones_nodescription += 1
+        if not zones.has_option(zone, "zone_forecast"):
+            qalog.append("%s: no forecast\n" % zone)
+            zones_noforecast += 1
+    if os.path.exists(qalog_fn):
+        os.rename(qalog_fn, "%s_old"%qalog_fn)
+    qalog_fd = codecs.open(qalog_fn, "w", "utf8")
+    qalog_fd.writelines(qalog)
+    qalog_fd.close()
+    if qalog:
+        print("issues found (see %s for details):"%qalog_fn)
+        if airports_badstation:
+            print("   %s airports with invalid station"%airports_badstation)
+        if airports_nostation:
+            print("   %s airports with no station"%airports_nostation)
+        if places_nocentroid:
+            print("   %s places with no centroid"%places_nocentroid)
+        if places_nodescription:
+            print("   %s places with no description"%places_nodescription)
+        if stations_nodescription:
+            print("   %s stations with no description"%stations_nodescription)
+        if stations_nolocation:
+            print("   %s stations with no location"%stations_nolocation)
+        if stations_nometar:
+            print("   %s stations with no METAR"%stations_nometar)
+        if zctas_nocentroid:
+            print("   %s ZCTAs with no centroid"%zctas_nocentroid)
+        if zones_nocentroid:
+            print("   %s zones with no centroid"%zones_nocentroid)
+        if zones_nodescription:
+            print("   %s zones with no description"%zones_nodescription)
+        if zones_noforecast:
+            print("   %s zones with no forecast"%zones_noforecast)
+        if zones_overlapping:
+            print("   %s zones within one km of another"%zones_overlapping)
+    else: print("no issues found.")
+    print("Indexing complete!")

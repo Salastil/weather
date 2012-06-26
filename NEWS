@@ -1,0 +1,51 @@
+=================================================
+ New Version Information for the Weather Utility
+=================================================
+
+:Copyright: (c) 2006-2012 Jeremy Stanley <fungi@yuggoth.org>. Permission
+            to use, copy, modify, and distribute this software is
+            granted under terms provided in the LICENSE file distributed
+            with this software.
+
+.. contents::
+
+2.0 Release
+-----------
+The 2.0 release involves a major rewrite of the underlying code and
+addition of large volumes of previously-unneeded location correlation
+data. In the Spring of 2011 the USA NOAA/NWS made significant changes to
+the way they organized and published forecast data such that it could
+no longer be supported by design assumptions inherent within this
+utility. Attempts were made to preserve backward compatability with 1.x
+command-line usage and configuration file formats where possible, but
+some regressions are unfortunately unavoidable. The aurl, city, flines,
+furl, id, murl, st and zones options have been removed. Minimal logic
+was retained to recognize and continue supporting limited use of city,
+id and st in configuration files, though these are deprecated for
+eventual removal in a future release.
+
+On a positive note, this provided an opportunity to design out
+some reported bugs and add in numerous requested features. Highlights
+include:
+
+ * Because NOAA/NWS now treats forecast data in the same way as alerts,
+   the alert reporting features are now much better integrated and no
+   longer considered a beta test.
+
+ * The lack of memorable alert/forecast zone coding in the new scheme
+   drove development of intelligent search functionality, allowing users
+   to find stations and zones through a variety of methods like place
+   names, IATA/FAA/ICAO/FIPS/ZIP codes and even raw coordinates.
+
+ * To reduce unnecessary load on NOAA/NWS servers, the utility now
+   caches retrieved data for a configurable period of time.
+
+ * Airport code lists are no longer maintained in configuration (though
+   they are still easily overridden through configuration), and are
+   instead now separately managed in a manner similar to the other
+   pregenerated correlation data.
+
+Worth noting, however, is that the new forecast data publication format
+(now essentially identical to the alert format) is all-caps freeform
+prose, and not easily parsed as a result. Due to the lengthy nature of
+this output, piping it through a pager is highly recommended.
