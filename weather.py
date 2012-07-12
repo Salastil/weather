@@ -79,7 +79,8 @@ class Selections:
                     cache_search=(
                         self.get("cache") and self.get("cache_search")
                     ),
-                    cachedir=self.get("cachedir")
+                    cachedir=self.get("cachedir"),
+                    quiet=self.get_bool("quiet")
                 )
                 self.config.add_section(argument)
                 for item in guessed.items():
@@ -699,7 +700,8 @@ def guess(
     info=False,
     cache_search=False,
     cacheage=900,
-    cachedir="."
+    cachedir=".",
+    quiet=False
 ):
     """Find URIs using airport, gecos, placename, station, ZCTA/ZIP, zone."""
     import codecs, datetime, time, os, re, sys
@@ -732,7 +734,7 @@ def guess(
             (0.995, "excellent"),
             (1.000, "ideal"),
         ]
-    print("Searching via %s..."%searchtype)
+    if not quiet: print("Searching via %s..."%searchtype)
     stations = configparser.ConfigParser()
     dataname = "stations"
     if dataname in datafiles:
@@ -796,7 +798,8 @@ def guess(
             if stations.has_option(station[0], "zone"):
                 zone = eval( stations.get(station[0], "zone") )
                 dataset = stations
-            if not info and stations.has_option( station[0], "description" ):
+            if not ( info or quiet ) \
+                and stations.has_option( station[0], "description" ):
                 print(
                     "[%s result %s]" % (
                         action,
@@ -819,7 +822,8 @@ def guess(
             if stations.has_option(expression, "zone"):
                 zone = eval( stations.get(expression, "zone") )
                 dataset = stations
-            if not info and stations.has_option(expression, "description"):
+            if not ( info or quiet ) \
+                and stations.has_option(expression, "description"):
                 print(
                     "[%s result %s]" % (
                         action,
@@ -841,7 +845,8 @@ def guess(
             station = eval( zones.get(expression, "station") )
             dataset = zones
             search = (expression, "NWS/NOAA weather zone %s" % expression)
-            if not info and zones.has_option(expression, "description"):
+            if not ( info or quiet ) \
+                and zones.has_option(expression, "description"):
                 print(
                     "[%s result %s]" % (
                         action,
@@ -939,7 +944,8 @@ def guess(
                 )
             if places.has_option(place, "zone"):
                 zone = eval( places.get(place, "zone") )
-            if not info and places.has_option(place, "description"):
+            if not ( info or quiet ) \
+                and places.has_option(place, "description"):
                 print(
                     "[%s result %s]" % (
                         action,
@@ -992,7 +998,8 @@ def guess(
                     description = zones.get(place, "description")
                     zone = (place, 0.0)
                     search = ( expression, "NWS/NOAA weather zone %s" % place )
-                if not info: print( "[%s result %s]" % (action, description) )
+                if not ( info or quiet ):
+                    print( "[%s result %s]" % (action, description) )
             if not possibilities and not station[0]:
                 message = "No FIPS code/census area match in the %s file.\n" % (
                     datafiles["places"][0]
