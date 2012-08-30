@@ -609,6 +609,7 @@ def get_config():
     import os
     rcfiles = [
         "/etc/weatherrc",
+        "/etc/weather/weatherrc",
         os.path.expanduser("~/.weather/weatherrc"),
         os.path.expanduser("~/.weatherrc"),
         "weatherrc"
