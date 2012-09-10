@@ -1328,15 +1328,21 @@ def correlate():
     sys.stdout.flush()
     count = 0
     gcounties = zipfile.ZipFile(gcounties_an).open(gcounties_fn, "rU")
+    columns = gcounties.readline().decode("latin1").strip().split("\t")
     for line in gcounties:
         fields = line.decode("latin1").strip().split("\t")
-        if len(fields) == 10 and fields[0] != "STUSPS":
-            fips = "fips%s" % fields[1]
-            description = "%s, %s" % ( fields[3], fields[0] )
-            centroid = gecos( ",".join( fields[8:10] ) )
+        f_geoid = fields[ columns.index("GEOID") ].strip()
+        f_name = fields[ columns.index("NAME") ].strip()
+        f_usps = fields[ columns.index("USPS") ].strip()
+        f_intptlat = fields[ columns.index("INTPTLAT") ].strip()
+        f_intptlong = fields[ columns.index("INTPTLONG") ].strip()
+        if f_geoid and f_name and f_usps and f_intptlat and f_intptlong:
+            fips = "fips%s" % f_geoid
             if fips not in places: places[fips] = {}
-            places[fips]["centroid"] = centroid
-            places[fips]["description"] = description
+            places[fips]["centroid"] = gecos(
+                "%s,%s" % (f_intptlat, f_intptlong)
+            )
+            places[fips]["description"] = "%s, %s" % (f_name, f_usps)
             count += 1
     gcounties.close()
     print("done (%s lines)." % count)
@@ -1345,15 +1351,21 @@ def correlate():
     sys.stdout.flush()
     count = 0
     gcousubs = zipfile.ZipFile(gcousubs_an).open(gcousubs_fn, "rU")
+    columns = gcousubs.readline().decode("latin1").strip().split("\t")
     for line in gcousubs:
         fields = line.decode("latin1").strip().split("\t")
-        if len(fields) == 10 and fields[0] != "STUSPS":
-            fips = "fips%s" % fields[1]
-            description = "%s, %s" % ( fields[3], fields[0] )
-            centroid = gecos( ",".join( fields[8:10] ) )
+        f_geoid = fields[ columns.index("GEOID") ].strip()
+        f_name = fields[ columns.index("NAME") ].strip()
+        f_usps = fields[ columns.index("USPS") ].strip()
+        f_intptlat = fields[ columns.index("INTPTLAT") ].strip()
+        f_intptlong = fields[ columns.index("INTPTLONG") ].strip()
+        if f_geoid and f_name and f_usps and f_intptlat and f_intptlong:
+            fips = "fips%s" % f_geoid
             if fips not in places: places[fips] = {}
-            places[fips]["centroid"] = centroid
-            places[fips]["description"] = description
+            places[fips]["centroid"] = gecos(
+                "%s,%s" % (f_intptlat, f_intptlong)
+            )
+            places[fips]["description"] = "%s, %s" % (f_name, f_usps)
             count += 1
     gcousubs.close()
     print("done (%s lines)." % count)
@@ -1362,15 +1374,21 @@ def correlate():
     sys.stdout.flush()
     count = 0
     gplaces = zipfile.ZipFile(gplaces_an).open(gplaces_fn, "rU")
+    columns = gplaces.readline().decode("latin1").strip().split("\t")
     for line in gplaces:
         fields = line.decode("latin1").strip().split("\t")
-        if len(fields) == 10 and fields[0] != "STUSPS":
-            fips = "fips%s" % fields[1]
-            description = "%s, %s" % ( fields[3], fields[0] )
-            centroid = gecos( ",".join( fields[8:10] ) )
+        f_geoid = fields[ columns.index("GEOID") ].strip()
+        f_name = fields[ columns.index("NAME") ].strip()
+        f_usps = fields[ columns.index("USPS") ].strip()
+        f_intptlat = fields[ columns.index("INTPTLAT") ].strip()
+        f_intptlong = fields[ columns.index("INTPTLONG") ].strip()
+        if f_geoid and f_name and f_usps and f_intptlat and f_intptlong:
+            fips = "fips%s" % f_geoid
             if fips not in places: places[fips] = {}
-            places[fips]["centroid"] = centroid
-            places[fips]["description"] = description
+            places[fips]["centroid"] = gecos(
+                "%s,%s" % (f_intptlat, f_intptlong)
+            )
+            places[fips]["description"] = "%s, %s" % (f_name, f_usps)
             count += 1
     gplaces.close()
     print("done (%s lines)." % count)
@@ -1562,13 +1580,16 @@ def correlate():
     sys.stdout.flush()
     count = 0
     gzcta = zipfile.ZipFile(gzcta_an).open(gzcta_fn, "rU")
+    columns = gzcta.readline().decode("latin1").strip().split("\t")
     for line in gzcta:
         fields = line.decode("latin1").strip().split("\t")
-        if len(fields) == 7 and fields[0] != "GEOID":
-            zcta = fields[0]
-            if zcta not in zctas: zctas[zcta] = {}
-            zctas[zcta]["centroid"] = gecos(
-                ",".join( ( fields[6], fields[5] ) )
+        f_geoid = fields[ columns.index("GEOID") ].strip()
+        f_intptlat = fields[ columns.index("INTPTLAT") ].strip()
+        f_intptlong = fields[ columns.index("INTPTLONG") ].strip()
+        if f_geoid and f_intptlat and f_intptlong:
+            if f_geoid not in zctas: zctas[f_geoid] = {}
+            zctas[f_geoid]["centroid"] = gecos(
+                "%s,%s" % (f_intptlat, f_intptlong)
             )
             count += 1
     gzcta.close()
