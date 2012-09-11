@@ -1911,6 +1911,7 @@ def correlate():
         for key, value in sorted( airports[airport].items() ):
             airports_fd.write( "\n%s = %s" % (key, value) )
         count += 1
+    airports_fd.write("\n")
     airports_fd.close()
     print("done (%s sections)." % count)
     message = "Writing %s..." % places_fn
@@ -1926,6 +1927,7 @@ def correlate():
         for key, value in sorted( places[fips].items() ):
             places_fd.write( "\n%s = %s" % (key, value) )
         count += 1
+    places_fd.write("\n")
     places_fd.close()
     print("done (%s sections)." % count)
     message = "Writing %s..." % stations_fn
@@ -1941,6 +1943,7 @@ def correlate():
         for key, value in sorted( stations[station].items() ):
             stations_fd.write( "\n%s = %s" % (key, value) )
         count += 1
+    stations_fd.write("\n")
     stations_fd.close()
     print("done (%s sections)." % count)
     message = "Writing %s..." % zctas_fn
@@ -1956,6 +1959,7 @@ def correlate():
         for key, value in sorted( zctas[zcta].items() ):
             zctas_fd.write( "\n%s = %s" % (key, value) )
         count += 1
+    zctas_fd.write("\n")
     zctas_fd.close()
     print("done (%s sections)." % count)
     message = "Writing %s..." % zones_fn
@@ -1971,6 +1975,7 @@ def correlate():
         for key, value in sorted( zones[zone].items() ):
             zones_fd.write( "\n%s = %s" % (key, value) )
         count += 1
+    zones_fd.write("\n")
     zones_fd.close()
     print("done (%s sections)." % count)
     message = "Starting QA check..."
