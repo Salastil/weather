@@ -1909,6 +1909,13 @@ def correlate():
     for airport in sorted( airports.keys() ):
         airports_fd.write("\n\n[%s]" % airport)
         for key, value in sorted( airports[airport].items() ):
+            if type(value) is float: value = "%.7f"%value
+            elif type(value) is tuple:
+                elements = []
+                for element in value:
+                    if type(element) is float: elements.append("%.7f"%element)
+                    else: elements.append( repr(element) )
+                value = "(%s)"%", ".join(elements)
             airports_fd.write( "\n%s = %s" % (key, value) )
         count += 1
     airports_fd.write("\n")
@@ -1925,6 +1932,13 @@ def correlate():
     for fips in sorted( places.keys() ):
         places_fd.write("\n\n[%s]" % fips)
         for key, value in sorted( places[fips].items() ):
+            if type(value) is float: value = "%.7f"%value
+            elif type(value) is tuple:
+                elements = []
+                for element in value:
+                    if type(element) is float: elements.append("%.7f"%element)
+                    else: elements.append( repr(element) )
+                value = "(%s)"%", ".join(elements)
             places_fd.write( "\n%s = %s" % (key, value) )
         count += 1
     places_fd.write("\n")
@@ -1941,6 +1955,13 @@ def correlate():
     for station in sorted( stations.keys() ):
         stations_fd.write("\n\n[%s]" % station)
         for key, value in sorted( stations[station].items() ):
+            if type(value) is float: value = "%.7f"%value
+            elif type(value) is tuple:
+                elements = []
+                for element in value:
+                    if type(element) is float: elements.append("%.7f"%element)
+                    else: elements.append( repr(element) )
+                value = "(%s)"%", ".join(elements)
             stations_fd.write( "\n%s = %s" % (key, value) )
         count += 1
     stations_fd.write("\n")
@@ -1957,6 +1978,13 @@ def correlate():
     for zcta in sorted( zctas.keys() ):
         zctas_fd.write("\n\n[%s]" % zcta)
         for key, value in sorted( zctas[zcta].items() ):
+            if type(value) is float: value = "%.7f"%value
+            elif type(value) is tuple:
+                elements = []
+                for element in value:
+                    if type(element) is float: elements.append("%.7f"%element)
+                    else: elements.append( repr(element) )
+                value = "(%s)"%", ".join(elements)
             zctas_fd.write( "\n%s = %s" % (key, value) )
         count += 1
     zctas_fd.write("\n")
@@ -1973,6 +2001,13 @@ def correlate():
     for zone in sorted( zones.keys() ):
         zones_fd.write("\n\n[%s]" % zone)
         for key, value in sorted( zones[zone].items() ):
+            if type(value) is float: value = "%.7f"%value
+            elif type(value) is tuple:
+                elements = []
+                for element in value:
+                    if type(element) is float: elements.append("%.7f"%element)
+                    else: elements.append( repr(element) )
+                value = "(%s)"%", ".join(elements)
             zones_fd.write( "\n%s = %s" % (key, value) )
         count += 1
     zones_fd.write("\n")
