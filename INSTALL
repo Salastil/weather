@@ -2,7 +2,7 @@
  Basic Unix Installation Instructions for the Weather Utility
 ==============================================================
 
-:Copyright: (c) 2006-2012 Jeremy Stanley <fungi@yuggoth.org>. Permission
+:Copyright: (c) 2006-2014 Jeremy Stanley <fungi@yuggoth.org>. Permission
             to use, copy, modify, and distribute this software is
             granted under terms provided in the LICENSE file distributed
             with this software.
@@ -66,3 +66,41 @@ Manuals
 Optionally, the weather.1 and weatherrc.5 files can be placed in sane
 locations for TROFF/NROFF manual files on your system (for example,
 /usr/local/share/man/ or ~/man/).
+
+Updating Correlation Sets
+-------------------------
+The version control repository and tarballs are occasionally updated
+with refreshed correlation sets (the files which track what the nearest
+stations and weather zones are to various places). If you find you need
+to generate updated correlation sets yourself, however, it can be done.
+
+You'll need to retrieve the most recent source databases from the
+different sites mentioned in the comments at the top of a recent
+correlation data file--each one includes a comment block with a list of
+the origins and checksums of the data files used along with the date and
+time they were built. You'll also want to generate recent slist and
+zlist files (look at the comments at the top of each for the shell
+commands used to generate them). You probably also need the most recent
+overrides.conf from the weather source repository or tarball, since that
+contains known corrections for errors in the original data. Put all of
+these files in your current working directory and then call::
+
+    weather --build-sets
+
+Then wait, and wait, and wait some more. After loading and analyzing the
+source data, it will guess an upper-bound for the number of great-arc
+distance calculations it may have to perform and attempt to give you a
+progress bar indicating percent completion. If you're lucky, it will
+finish successfully also generate some automated quality assurance
+analysis of the results (mostly checking for obviously bad airports,
+stations, zones). If you are UNlucky, it will break, which is not
+terribly uncommon because the government-provided source data is often
+misformatted or gets sudden schema changes requiring updates to the
+parsing routines in weather.
+
+If you're using a system-wide (for example, distribution packaged) copy
+of weather and its data, you may want to place the new airports,
+stations, places, zctas and zones files into your ~/.weather directory
+and make use of the setpath configuration or command-line options to
+override where weather looks for them. See the weather(1) and
+weatherrc(5) manpages for details.
