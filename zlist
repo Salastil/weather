@@ -1,7 +1,7 @@
 # Copyright (c) 2006-2012 Jeremy Stanley <fungi@yuggoth.org>. Permission to     # use, copy, modify, and distribute this software is granted under terms
 # provided in the LICENSE file distributed with this software.
 #
-# generated on 2014-02-12 by running:
+# generated on 2014-11-10 by running:
 #
 # for area in $(
 #  wget -qO- http://weather.noaa.gov/pub/data/forecasts/zone/ \
@@ -3386,10 +3386,8 @@ waz045
 waz046
 waz503
 waz504
-waz505
 waz506
 waz507
-waz508
 waz509
 waz510
 waz511
@@ -3399,10 +3397,15 @@ waz514
 waz515
 waz516
 waz517
-waz518
-waz519
 waz520
 waz521
+waz555
+waz556
+waz558
+waz559
+waz567
+waz568
+waz569
 wiz001
 wiz002
 wiz003
@@ -3521,7 +3524,6 @@ wvz041
 wvz042
 wvz043
 wvz044
-wvz045
 wvz046
 wvz047
 wvz050
@@ -3535,6 +3537,8 @@ wvz503
 wvz504
 wvz505
 wvz506
+wvz507
+wvz508
 wyz001
 wyz002
 wyz003
