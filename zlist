@@ -4,11 +4,11 @@
 # generated on 2014-11-10 by running:
 #
 # for area in $(
-#  wget -qO- http://weather.noaa.gov/pub/data/forecasts/zone/ \
+#  wget -qO- http://tgftp.nws.noaa.gov/data/forecasts/zone/ \
 #  | grep '<a href="[^/]*/">' \
 #  | sed 's,.*<a href="\([^/]*\)/">.*,\1,'
 # ) ; do
-#  wget -qO- http://weather.noaa.gov/pub/data/forecasts/zone/$area \
+#  wget -qO- http://tgftp.nws.noaa.gov/data/forecasts/zone/$area \
 #  | grep '<a href="[^\.]*\.txt">.*-'$( date +%b-%Y )' ' \
 #  | sed 's,.*<a href="\([^\.]*\)\.txt">.*,\1,'
 #  sleep 1

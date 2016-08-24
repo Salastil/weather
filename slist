@@ -4,7 +4,7 @@
 #
 # generated on 2014-11-10 by running:
 #
-# wget -qO- http://weather.noaa.gov/pub/data/observations/metar/decoded/ \
+# wget -qO- http://tgftp.nws.noaa.gov/data/observations/metar/decoded/ \
 # | grep '<a href="[^\.]*\.TXT">.*-'$( date +%b-%Y )' ' \
 # | sed 's,.*<a href="\([^\.]*\)\.TXT">.*,\1,' \
 # | tr A-Z a-z

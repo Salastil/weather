@@ -1238,7 +1238,7 @@ def correlate():
 # http://weather.noaa.gov/data/nsd_cccc.txt
 # %s %s %s
 #
-# http://weather.noaa.gov/pub/data/zonecatalog.curr.tar
+# http://tgftp.nws.noaa.gov/data/zonecatalog.curr.tar
 # %s %s %s
 #
 # http://www.nco.ncep.noaa.gov/pmb/codes/nwprod/dictionaries/metar.tbl
@@ -1401,7 +1401,7 @@ def correlate():
         icao = line.split("#")[0].strip()
         if icao:
             stations[icao] = {
-                "metar": "http://weather.noaa.gov/pub/data/observations/"\
+                "metar": "http://tgftp.nws.noaa.gov/data/observations/"\
                     + "metar/decoded/%s.TXT" % icao.upper()
             }
             count += 1

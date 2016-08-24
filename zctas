@@ -16,7 +16,7 @@
 # http://weather.noaa.gov/data/nsd_cccc.txt
 # 6561bd4dc1ffd4147e35cf6dee7503d5 2011-05-04 nsd_cccc.txt
 #
-# http://weather.noaa.gov/pub/data/zonecatalog.curr.tar
+# http://tgftp.nws.noaa.gov/data/zonecatalog.curr.tar
 # 748043471973d418cb415fccc3a0000b 2007-06-07 zonecatalog.curr.tar
 #
 # http://www.nco.ncep.noaa.gov/pmb/codes/nwprod/dictionaries/metar.tbl
