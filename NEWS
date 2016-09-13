@@ -12,8 +12,8 @@
 2.1 Release
 -----------
 The old http://weather.noaa.gov/pub site was deprecated and as of August
-23 and subsequently removed from service. Correlation data files have
-been updated to use the working http://tgftp.nws.noaa.gov URL instead.
+23 subsequently removed from service. Correlation data files have been
+updated to use the working http://tgftp.nws.noaa.gov URL instead.
 
 Updated correlation data is included based on newer 2014 Census data.
 
