@@ -2,12 +2,30 @@
  New Version Information for the Weather Utility
 =================================================
 
-:Copyright: (c) 2006-2012 Jeremy Stanley <fungi@yuggoth.org>. Permission
+:Copyright: (c) 2006-2016 Jeremy Stanley <fungi@yuggoth.org>. Permission
             to use, copy, modify, and distribute this software is
             granted under terms provided in the LICENSE file distributed
             with this software.
 
 .. contents::
+
+2.1 Release
+-----------
+The old http://weather.noaa.gov/pub site was deprecated and as of August
+23 and subsequently removed from service. Correlation data files have
+been updated to use the working http://tgftp.nws.noaa.gov URL instead.
+
+Updated correlation data is included based on newer 2014 Census data.
+
+The correlation data rebuilding process has been improved and more
+thoroughly documented.
+
+Radian floats in correlation data are now truncated to 7 decimal places,
+significantly reducing rounding error fuzz against future data file
+updates.
+
+The /etc/weather/weatherrc file mentioned in documentation is now
+properly read.
 
 2.0 Release
 -----------
