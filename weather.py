@@ -692,6 +692,8 @@ def data_index(path):
                         os.stat(candidate).st_mtime
                     )
                     break
+            if filename in datafiles:
+                break
     return datafiles
 
 def guess(
