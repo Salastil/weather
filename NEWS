@@ -9,6 +9,14 @@
 
 .. contents::
 
+2.2 Release
+-----------
+Fixed a bug where the setpath search order was effectively being
+reversed.
+
+Updated correlation data is included based on newer 2015 Census data and
+2016 NWS station and zone lists.
+
 2.1 Release
 -----------
 The old http://weather.noaa.gov/pub site was deprecated and as of August

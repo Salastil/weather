@@ -6,7 +6,7 @@ weather_copyright = """\
 # provided in the LICENSE file distributed with this software.
 #"""
 
-weather_version = "2.1"
+weather_version = "2.2"
 
 radian_to_km = 6372.795484
 radian_to_mi = 3959.871528
