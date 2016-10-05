@@ -1,7 +1,8 @@
-# Copyright (c) 2006-2012 Jeremy Stanley <fungi@yuggoth.org>. Permission to     # use, copy, modify, and distribute this software is granted under terms
+# Copyright (c) 2006-2016 Jeremy Stanley <fungi@yuggoth.org>. Permission to
+# use, copy, modify, and distribute this software is granted under terms
 # provided in the LICENSE file distributed with this software.
 #
-# generated on 2014-11-10 by running:
+# generated on 2016-10-04 by running:
 #
 # for area in $(
 #  wget -qO- http://tgftp.nws.noaa.gov/data/forecasts/zone/ \
@@ -14,7 +15,6 @@
 #  sleep 1
 # done
 
-akz017
 akz017
 akz018
 akz019
@@ -132,15 +132,17 @@ alz057
 alz058
 alz059
 alz060
-alz061
-alz062
-alz063
-alz064
 alz065
 alz066
 alz067
 alz068
 alz069
+alz261
+alz262
+alz263
+alz264
+alz265
+alz266
 arz001
 arz002
 arz003
@@ -266,10 +268,6 @@ azz512
 azz513
 azz514
 azz515
-caz001
-caz002
-caz003
-caz004
 caz006
 caz013
 caz014
@@ -290,7 +288,6 @@ caz038
 caz039
 caz040
 caz041
-caz042
 caz043
 caz044
 caz045
@@ -311,6 +308,7 @@ caz061
 caz062
 caz063
 caz064
+caz065
 caz066
 caz067
 caz068
@@ -319,7 +317,6 @@ caz070
 caz071
 caz072
 caz073
-caz076
 caz080
 caz081
 caz082
@@ -339,6 +336,19 @@ caz096
 caz097
 caz098
 caz099
+caz101
+caz102
+caz103
+caz104
+caz105
+caz106
+caz107
+caz108
+caz109
+caz110
+caz111
+caz112
+caz113
 caz505
 caz506
 caz507
@@ -365,6 +375,10 @@ caz529
 caz530
 caz547
 caz548
+caz549
+caz550
+caz552
+caz554
 coz001
 coz002
 coz003
@@ -468,12 +482,6 @@ dez001
 dez002
 dez003
 dez004
-flz001
-flz002
-flz003
-flz004
-flz005
-flz006
 flz007
 flz008
 flz009
@@ -542,6 +550,8 @@ flz112
 flz114
 flz115
 flz118
+flz124
+flz125
 flz127
 flz128
 flz134
@@ -561,6 +571,12 @@ flz168
 flz172
 flz173
 flz174
+flz201
+flz202
+flz203
+flz204
+flz205
+flz206
 flz239
 flz242
 flz248
@@ -1422,10 +1438,7 @@ mdz003
 mdz004
 mdz005
 mdz006
-mdz007
 mdz008
-mdz009
-mdz010
 mdz011
 mdz012
 mdz013
@@ -1443,6 +1456,12 @@ mdz024
 mdz025
 mdz501
 mdz502
+mdz503
+mdz504
+mdz505
+mdz506
+mdz507
+mdz508
 mez001
 mez002
 mez003
@@ -3273,14 +3292,12 @@ vaz037
 vaz038
 vaz039
 vaz040
-vaz042
 vaz043
 vaz044
 vaz045
 vaz046
 vaz047
 vaz048
-vaz049
 vaz050
 vaz051
 vaz052
@@ -3294,18 +3311,12 @@ vaz059
 vaz060
 vaz061
 vaz062
-vaz063
 vaz064
 vaz065
 vaz066
 vaz067
 vaz068
 vaz069
-vaz070
-vaz071
-vaz072
-vaz073
-vaz074
 vaz075
 vaz076
 vaz077
@@ -3322,10 +3333,8 @@ vaz087
 vaz088
 vaz089
 vaz090
-vaz091
 vaz092
 vaz093
-vaz094
 vaz095
 vaz096
 vaz097
@@ -3336,6 +3345,27 @@ vaz501
 vaz502
 vaz503
 vaz504
+vaz505
+vaz506
+vaz507
+vaz508
+vaz509
+vaz510
+vaz511
+vaz512
+vaz513
+vaz514
+vaz515
+vaz516
+vaz517
+vaz518
+vaz519
+vaz520
+vaz521
+vaz522
+vaz523
+vaz524
+vaz525
 viz001
 viz002
 vtz001
@@ -3501,8 +3531,6 @@ wvz018
 wvz019
 wvz020
 wvz021
-wvz022
-wvz023
 wvz024
 wvz025
 wvz026
@@ -3520,7 +3548,6 @@ wvz037
 wvz038
 wvz039
 wvz040
-wvz041
 wvz042
 wvz043
 wvz044
@@ -3539,6 +3566,12 @@ wvz505
 wvz506
 wvz507
 wvz508
+wvz509
+wvz510
+wvz511
+wvz512
+wvz513
+wvz514
 wyz001
 wyz002
 wyz003
