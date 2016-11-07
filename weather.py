@@ -1531,12 +1531,13 @@ def correlate():
                     zones[zone]["description"] = description
                     for line in data[1:]:
                         line = line.decode("latin1").strip()
-                        urimatch = re.match("/webdocs/(.+):(.+) for ", line)
+                        urimatch = re.match("/webdocs/pub/(.+):(.+) for ",
+                                            line)
                         if urimatch:
                             uritype = urimatch.group(2).lower().replace(" ","_")
-                            zones[zone][uritype] \
-                                = "http://weather.noaa.gov/%s" \
-                                % urimatch.group(1)
+                            zones[zone][uritype]  = (
+                                "http://tgftp.nws.noaa.gov/%s"
+                                % urimatch.group(1))
         count += 1
     zcatalog.close()
     print("done (%s files)." % count)
