@@ -9,6 +9,12 @@
 
 .. contents::
 
+2.3 Release
+-----------
+Fixed a regression in the correlate function which reintroduced the
+wrong (old) URLs for zone-specific data sources, and corrected the
+entries in the zones file accordingly.
+
 2.2 Release
 -----------
 Fixed a bug where the setpath search order was effectively being
