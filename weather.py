@@ -744,7 +744,10 @@ def guess(
         datafile = datafiles[dataname][0]
         if datafile.endswith(".gz"):
             import gzip
-            stations.readfp( gzip.open(datafile) )
+            if pyversion("3"):
+                stations.read_string(
+                    gzip.open(datafile).read().decode("utf-8") )
+            else: stations.readfp( gzip.open(datafile) )
         else:
             stations.read(datafile)
     else:
@@ -760,7 +763,9 @@ def guess(
         datafile = datafiles[dataname][0]
         if datafile.endswith(".gz"):
             import gzip
-            zones.readfp( gzip.open(datafile) )
+            if pyversion("3"):
+                zones.read_string( gzip.open(datafile).read().decode("utf-8") )
+            else: zones.readfp( gzip.open(datafile) )
         else:
             zones.read(datafile)
     else:
@@ -784,7 +789,10 @@ def guess(
             datafile = datafiles[dataname][0]
             if datafile.endswith(".gz"):
                 import gzip
-                airports.readfp( gzip.open(datafile) )
+                if pyversion("3"):
+                    airports.read_string(
+                        gzip.open(datafile).read().decode("utf-8") )
+                else: airports.readfp( gzip.open(datafile) )
             else:
                 airports.read(datafile)
         else:
@@ -870,7 +878,10 @@ def guess(
             datafile = datafiles[dataname][0]
             if datafile.endswith(".gz"):
                 import gzip
-                zctas.readfp( gzip.open(datafile) )
+                if pyversion("3"):
+                    zctas.read_string(
+                        gzip.open(datafile).read().decode("utf-8") )
+                else: zctas.readfp( gzip.open(datafile) )
             else:
                 zctas.read(datafile)
         else:
@@ -925,7 +936,10 @@ def guess(
             datafile = datafiles[dataname][0]
             if datafile.endswith(".gz"):
                 import gzip
-                places.readfp( gzip.open(datafile) )
+                if pyversion("3"):
+                    places.read_string(
+                        gzip.open(datafile).read().decode("utf-8") )
+                else: places.readfp( gzip.open(datafile) )
             else:
                 places.read(datafile)
         else:
