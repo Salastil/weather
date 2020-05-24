@@ -20,7 +20,7 @@
 # ab78f945488371035514fc2c14e4679a 2020-05-24 airports.csv
 #
 # ...and these manually-generated or hand-compiled adjustments:
-# e9ba8f8c8f071024fba39c48f92041e7 2020-05-24 overrides.conf
+# aadcf8801156f29dc5c622bb5e874e88 2020-05-24 overrides.conf
 # ab8545489a62124779edf7214a619325 2020-05-24 slist
 # 12c84e28cdb6da9eeba12b5a4af034b0 2020-05-24 zlist
 
@@ -140,7 +140,11 @@ location = (0.7430355, 0.3671440)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/BKPR.TXT
 
 [cahr]
+comment = manually researched on 2020-05-24
+description = Harrington Cda Cs, PEI, Canada
+location = (0.8088486, -1.1025196)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CAHR.TXT
+zone = ('mez002', 0.0609699)
 
 [cbbc]
 description = Bella Bella (Campbell Island) Airport, Bella Bella, BC, CA
@@ -149,49 +153,101 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CBBC.TXT
 zone = ('akz029', 0.0678154)
 
 [cerm]
+comment = manually researched on 2020-05-24
+description = Edmundston, NB, Canada
+location = (0.8275770, -1.1924865)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CERM.TXT
+zone = ('mez002', 0.0121134)
 
 [cmfm]
+comment = manually researched on 2020-05-24
+description = Fort Montmorency Rc RCS, QC, Canada
+location = (0.8259383, -1.2417727)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CMFM.TXT
+zone = ('mez003', 0.0236043)
 
 [cmgb]
+comment = manually researched on 2020-05-24
+description = Granby, Quebec, Canada
+location = (0.7919048, -1.2701442)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CMGB.TXT
+zone = ('vtz016', 0.0088619)
 
 [cpbt]
+comment = manually researched on 2020-05-24
+description = Blood Tribe Ag. Project IMCIN, AB, Canada
+location = (0.8650063, -1.9733359)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CPBT.TXT
+zone = ('mtz010', 0.0151361)
 
 [cpeh]
+comment = manually researched on 2020-05-24
+description = Enchant Agdm, ALTA, Canada
+location = (0.8757020, -1.9623856)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CPEH.TXT
+zone = ('mtz010', 0.0250326)
 
 [cpfi]
+comment = manually researched on 2020-05-24
+description = Fincastle Agdm, ALTA, Canada
+location = (0.8692825, -1.9554244)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CPFI.TXT
+zone = ('mtz010', 0.0196698)
 
 [cpir]
+comment = manually researched on 2020-05-24
+description = Iron Springs Agdm, ALTA, Canada
+location = (0.8709626, -1.9677760)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CPIR.TXT
+zone = ('mtz010', 0.0202611)
 
 [cpro]
+comment = manually researched on 2020-05-24
+description = Rosemary Agdm, ALTA, Canada
+location = (0.8872635, -1.9557698)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CPRO.TXT
+zone = ('mtz010', 0.0370507)
 
 [cpry]
+comment = manually researched on 2020-05-24
+description = Raymond Agdm, ALTA, Canada
+location = (0.8637479, -1.9665573)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CPRY.TXT
+zone = ('mtz010', 0.0130111)
 
 [cpst]
+comment = manually researched on 2020-05-24
+description = Strathmore Agdm, ALTA, Canada
+location = (0.8907932, -1.9772807)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CPST.TXT
+zone = ('mtz010', 0.0407466)
 
 [cpsv]
+comment = manually researched on 2020-05-24
+description = Seven Persons Agdm, ALTA, Canada
+location = (0.8712744, -1.9358312)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CPSV.TXT
+zone = ('mtz045', 0.0237458)
 
 [cpxl]
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CPXL.TXT
 
 [ctck]
+comment = manually researched on 2020-05-24
+description = Moose Creek, Ontario, Canada
+location = (0.7897807, -1.3083477)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CTCK.TXT
+zone = ('nyz026', 0.0070823)
 
 [ctnk]
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CTNK.TXT
 
 [ctra]
+comment = manually researched on 2020-05-24
+description = Rawson Lake (aut), Ontario, Canada
+location = (0.8668038, -1.6359460)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CTRA.TXT
+zone = ('mnz006', 0.0205213)
 
 [cwae]
 description = Whistler, Canada
@@ -1106,7 +1162,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CWTN.TXT
 zone = ('mez003', 0.0175606)
 
 [cwtt]
+comment = manually researched on 2020-05-24
+description = Lac Memphremagog, Quebec, Canada
+location = (0.7900699, -1.2594593)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CWTT.TXT
+zone = ('vtz003', 0.0077263)
 
 [cwty]
 description = Trois Rivieres, Canada
@@ -1312,25 +1372,51 @@ location = (1.0181087, -1.0922852)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CWZZ.TXT
 
 [cxaf]
+comment = manually researched on 2020-05-24
+description = Abee Agdm, ALTA, Canada
+location = (0.9473521, -1.9716185)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXAF.TXT
+zone = ('mtz010', 0.0966719)
 
 [cxag]
+comment = manually researched on 2020-05-24
+description = Andrew Agdm, ALTA, Canada
+location = (0.9410282, -1.9596411)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXAG.TXT
+zone = ('mtz010', 0.0903495)
 
 [cxaj]
+comment = manually researched on 2020-05-24
+description = Atmore Agdm, ALTA, Canada
+location = (0.9561205, -1.9691677)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXAJ.TXT
 
 [cxak]
+comment = manually researched on 2020-05-24
+description = Stettler Agdm, ALTA, Canada
+location = (0.9136265, -1.9651632)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXAK.TXT
+zone = ('mtz010', 0.0628732)
 
 [cxat]
+comment = manually researched on 2020-05-24
+description = Arctic Bay Airfield, NU, Canada
+location = (1.2741949, -1.4841016)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXAT.TXT
 
 [cxba]
+comment = manually researched on 2020-05-24
+description = Bodo Agdm, ALTA, Canada
+location = (0.9097383, -1.9216317)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXBA.TXT
+zone = ('mtz011', 0.0610162)
 
 [cxbi]
+comment = manually researched on 2020-05-24
+description = Barrie-oro, ONT, Canada
+location = (0.7764008, -1.3883511)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXBI.TXT
+zone = ('nyz001', 0.0245802)
 
 [cxbk]
 description = Bratts Lake, Sask., Canada
@@ -1348,12 +1434,23 @@ zone = ('mez003', 0.0180549)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXBR.TXT
 
 [cxbw]
+comment = manually researched on 2020-05-24
+description = Barnwell Agdm, ALTA, Canada
+location = (0.8691874, -1.9600480)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXBW.TXT
+zone = ('mtz010', 0.0187792)
 
 [cxca]
+comment = manually researched on 2020-05-24
+description = Cameron Falls (aut), ONT, Canada
+location = (0.8578972, -1.5419063)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXCA.TXT
+zone = ('miz001', 0.0270882)
 
 [cxcd]
+comment = manually researched on 2020-05-24
+description = Cleardale Agdm, ALTA, Canada
+location = (0.9828725, -2.0899445)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXCD.TXT
 
 [cxck]
@@ -1363,13 +1460,25 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXCK.TXT
 zone = ('akz018', 0.0451951)
 
 [cxcp]
+comment = manually researched on 2020-05-24
+description = Champion Agdm, ALTA, Canada
+location = (0.8775855, -1.9783356)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXCP.TXT
+zone = ('mtz010', 0.0280872)
 
 [cxcs]
+comment = manually researched on 2020-05-24
+description = Consort Agdm, ALTA, Canada
+location = (0.9064707, -1.9323074)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXCS.TXT
+zone = ('mtz011', 0.0581366)
 
 [cxdb]
+comment = manually researched on 2020-05-24
+description = Del Bonita Agdm, ALTA, Canada
+location = (0.8561189, -1.9689047)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXDB.TXT
+zone = ('mtz010', 0.0058021)
 
 [cxde]
 description = Deline , N. W. T., Canada
@@ -1383,10 +1492,17 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXDI.TXT
 zone = ('paz001', 0.0144291)
 
 [cxdk]
+comment = manually researched on 2020-05-24
+description = Deadmen Valley, NWT, Canada
+location = (1.0691305, -2.1723822)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXDK.TXT
 
 [cxdp]
+comment = manually researched on 2020-05-24
+description = Dapp Agdm, ALTA, Canada
+location = (0.9482548, -1.9885329)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXDP.TXT
+zone = ('mtz010', 0.0985392)
 
 [cxdw]
 description = Deerwood Rcs , Man., Canada
@@ -1395,7 +1511,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXDW.TXT
 zone = ('ndz007', 0.0110876)
 
 [cxea]
+comment = manually researched on 2020-05-24
+description = Ear Falls (aut), ONT, Canada
+location = (0.8836699, -1.6270202)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXEA.TXT
+zone = ('mnz006', 0.0375951)
 
 [cxec]
 description = Edmonton Municipal Cr10 , Alta., Canada
@@ -1413,9 +1533,16 @@ zone = ('mtz010', 0.0802331)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXET.TXT
 
 [cxfm]
+comment = manually researched on 2020-05-24
+description = Foremost Agdm, ALTA, Canada
+location = (0.8636471, -1.9457997)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXFM.TXT
+zone = ('mtz044', 0.0146510)
 
 [cxfr]
+comment = manually researched on 2020-05-24
+description = Fairview Agdm, ALTA, Canada
+location = (0.9788049, -2.0671583)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXFR.TXT
 
 [cxgh]
@@ -1425,10 +1552,18 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXGH.TXT
 zone = ('mnz004', 0.0324456)
 
 [cxha]
+comment = manually researched on 2020-05-24
+description = Harrow Cda Auto, ONT, Canada
+location = (0.7336151, -1.4468085)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXHA.TXT
+zone = ('miz076', 0.0066863)
 
 [cxhd]
+comment = manually researched on 2020-05-24
+description = Holden Agdm, ALTA, Canada
+location = (0.9282534, -1.9590642)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXHD.TXT
+zone = ('mtz010', 0.0776067)
 
 [cxhf]
 description = High Falls , Que., Canada
@@ -1437,28 +1572,54 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXHF.TXT
 zone = ('nyz026', 0.0194354)
 
 [cxhm]
+comment = manually researched on 2020-05-24
+description = Hamilton | Mount Hope RBG CS, ON, Canada
+location = (0.7554919, -1.3946076)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXHM.TXT
+zone = ('nyz085', 0.0186299)
 
 [cxhp]
+comment = manually researched on 2020-05-24
+description = High Prairie Agdm, ALTA, Canada
+location = (0.9668397, -2.0329498)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXHP.TXT
 
 [cxhr]
+comment = manually researched on 2020-05-24
+description = Hussar Agdm, ALTA, Canada
+location = (0.8934525, -1.9635417)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXHR.TXT
+zone = ('mtz010', 0.0427182)
 
 [cxib]
+comment = manually researched on 2020-05-24
+description = Ingonish Beach Rcs, NS, Canada
+location = (0.8144191, -1.0542904)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXIB.TXT
 
 [cxka]
+comment = manually researched on 2020-05-24
+description = Kapuskasing Cda On, ONT, Canada
+location = (0.8623042, -1.4389125)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXKA.TXT
+zone = ('miz087', 0.0583206)
 
 [cxke]
+comment = manually researched on 2020-05-24
+description = Kemptville Cs, ONT, Canada
+location = (0.7854900, -1.3201238)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXKE.TXT
+zone = ('nyz087', 0.0094551)
 
 [cxki]
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXKI.TXT
 
 [cxkm]
+comment = manually researched on 2020-05-24
+description = Killam Agdm, ALTA, Canada
+location = (0.9219135, -1.9522897)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXKM.TXT
+zone = ('mtz010', 0.0716503)
 
 [cxkt]
 description = Kentville , N. S., Canada
@@ -1467,7 +1628,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXKT.TXT
 zone = ('mez030', 0.0384165)
 
 [cxlb]
+comment = manually researched on 2020-05-24
+description = Lunenburg, Nova Scotia, Canada
+location = (0.7742281, -1.1221786)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXLB.TXT
+zone = ('mez032', 0.0468284)
 
 [cxll]
 description = Lindberg Landing , N. W. T., Canada
@@ -1481,6 +1646,9 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXMD.TXT
 zone = ('ndz007', 0.0084027)
 
 [cxmg]
+comment = manually researched on 2020-05-24
+description = Manning Agdm, ALTA, Canada
+location = (0.9943820, -2.0499037)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXMG.TXT
 
 [cxmi]
@@ -1495,7 +1663,11 @@ location = (0.9887290, -1.9410970)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXMM.TXT
 
 [cxmo]
+comment = manually researched on 2020-05-24
+description = Morrin Agdm, ALTA, Canada
+location = (0.9016419, -1.9665497)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXMO.TXT
+zone = ('mtz010', 0.0508922)
 
 [cxmy]
 description = Malay Falls , N. S., Canada
@@ -1509,10 +1681,18 @@ location = (0.8171050, -1.0588331)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXNM.TXT
 
 [cxnp]
+comment = manually researched on 2020-05-24
+description = Nappan (auto), NS, Canada
+location = (0.7986562, -1.1212246)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXNP.TXT
+zone = ('mez002', 0.0508745)
 
 [cxol]
+comment = manually researched on 2020-05-24
+description = Olds College AGDM, AB, Canada
+location = (0.9033582, -1.9911540)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXOL.TXT
+zone = ('mtz010', 0.0550911)
 
 [cxox]
 description = La Ronge , Sask., Canada
@@ -1520,18 +1700,36 @@ location = (0.9625491, -1.8372499)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXOX.TXT
 
 [cxoy]
+comment = manually researched on 2020-05-24
+description = Oyen Agdm, ALTA, Canada
+location = (0.8967795, -1.9260622)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXOY.TXT
+zone = ('mtz011', 0.0481351)
 
 [cxpa]
+comment = manually researched on 2020-05-24
+description = Peoria Agdm, ALTA, Canada
+location = (0.9707715, -2.0646033)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXPA.TXT
 
 [cxpc]
+comment = manually researched on 2020-05-24
+description = Parry Sound Ccg, ONT, Canada
+location = (0.7914050, -1.3970343)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXPC.TXT
+zone = ('nyz001', 0.0407862)
 
 [cxpl]
+comment = manually researched on 2020-05-24
+description = Pollockville Agdm, ALTA, Canada
+location = (0.8923044, -1.9496249)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXPL.TXT
+zone = ('mtz010', 0.0427945)
 
 [cxrb]
+comment = manually researched on 2020-05-24
+description = Resolute Cs, NT, Canada
+location = (1.3040373, -1.6577671)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXRB.TXT
 
 [cxrh]
@@ -1540,12 +1738,22 @@ location = (0.8651015, -1.0102547)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXRH.TXT
 
 [cxrl]
+comment = manually researched on 2020-05-24
+description = Rich Lake Agdm, ALTA, Canada
+location = (0.9512596, -1.9493833)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXRL.TXT
 
 [cxsc]
+comment = manually researched on 2020-05-24
+description = Schuler Agdm, ALTA, Canada
+location = (0.8780218, -1.9214427)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXSC.TXT
+zone = ('mtz011', 0.0293006)
 
 [cxse]
+comment = manually researched on 2020-05-24
+description = Stefansson Island, NU, Canada
+location = (1.2874567, -1.8377541)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXSE.TXT
 
 [cxsh]
@@ -1555,16 +1763,31 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXSH.TXT
 zone = ('vtz016', 0.0300196)
 
 [cxsl]
+comment = manually researched on 2020-05-24
+description = Smoky Lake Agdm, ALTA, Canada
+location = (0.9473211, -1.9634809)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXSL.TXT
+zone = ('mtz010', 0.0965758)
 
 [cxsp]
+comment = manually researched on 2020-05-24
+description = St. Paul Agcm, ALTA, Canada
+location = (0.9426717, -1.9420618)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXSP.TXT
+zone = ('mtz010', 0.0930746)
 
 [cxtd]
+comment = manually researched on 2020-05-24
+description = TRACADIE: NS, NS, Canada
+location = (0.7960156, -1.0765142)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXTD.TXT
 
 [cxth]
+comment = manually researched on 2020-05-24
+description = Two Hills Agdm, ALTA, Canada
+location = (0.9359377, -1.9491546)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXTH.TXT
+zone = ('mtz010', 0.0857990)
 
 [cxtn]
 description = Tuktut Nogait , N. W. T., Canada
@@ -1585,19 +1808,37 @@ location = (1.1999139, -2.3300146)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXTV.TXT
 
 [cxvm]
+comment = manually researched on 2020-05-24
+description = Vermilion Agdm, ALTA, Canada
+location = (0.9310265, -1.9352550)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXVM.TXT
+zone = ('mtz044', 0.0823182)
 
 [cxvn]
+comment = manually researched on 2020-05-24
+description = Vineland Station Rcs, ONT, Canada
+location = (0.7538243, -1.3857682)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXVN.TXT
+zone = ('nyz001', 0.0083508)
 
 [cxvw]
+comment = manually researched on 2020-05-24
+description = Valleyview Agdm, ALTA, Canada
+location = (0.9616425, -2.0455113)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXVW.TXT
 
 [cxwb]
+comment = manually researched on 2020-05-24
+description = Wager Bay (aut), NU, Canada
+location = (1.1498084, -1.5611243)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXWB.TXT
 
 [cxwm]
+comment = manually researched on 2020-05-24
+description = Wrentham Agdm, ALTA, Canada
+location = (0.8638899, -1.9567178)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXWM.TXT
+zone = ('mtz010', 0.0143501)
 
 [cxwn]
 description = Winnipeg The Forks, Man., Canada
@@ -1606,10 +1847,17 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXWN.TXT
 zone = ('mnz004', 0.0197237)
 
 [cxyh]
+comment = manually researched on 2020-05-24
+description = Yohin, NWT, Canada
+location = (1.0688736, -2.1596995)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXYH.TXT
 
 [cxzc]
+comment = manually researched on 2020-05-24
+description = Moosonee Rcs, ONT, Canada
+location = (0.8952085, -1.4070505)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXZC.TXT
+zone = ('miz087', 0.0967890)
 
 [cxzv]
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CXZV.TXT
@@ -2971,13 +3219,21 @@ location = (1.2234758, -2.1767165)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZCP.TXT
 
 [czcr]
+comment = manually researched on 2020-05-24
+description = Charlo Airport, NB, Canada
+location = (0.8375835, -1.1577496)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZCR.TXT
+zone = ('mez002', 0.0313439)
 
 [czdb]
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZDB.TXT
 
 [czel]
+comment = manually researched on 2020-05-24
+description = Elora Rcs, ONT, Canada
+location = (0.7616980, -1.4034472)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZEL.TXT
+zone = ('paz001', 0.0271326)
 
 [czem]
 description = Eastmain River Airport, Canada
@@ -2985,6 +3241,9 @@ location = (0.9116436, -1.3703744)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZEM.TXT
 
 [czev]
+comment = manually researched on 2020-05-24
+description = Inuvik Climate, NWT, Canada
+location = (1.1921639, -2.3300390)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZEV.TXT
 
 [czfa]
@@ -3004,12 +3263,21 @@ location = (1.1330096, -2.1915518)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZFN.TXT
 
 [czfs]
+comment = manually researched on 2020-05-24
+description = Fort Simpson Climate, NWT, Canada
+location = (1.0779202, -2.1159790)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZFS.TXT
 
 [czhy]
+comment = manually researched on 2020-05-24
+description = Hay River Climate, NWT, Canada
+location = (1.0618389, -2.0206840)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZHY.TXT
 
 [czkd]
+comment = manually researched on 2020-05-24
+description = Kelsey Dam Cs, MAN, Canada
+location = (0.9780389, -1.6844124)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZKD.TXT
 
 [czmd]
@@ -3019,7 +3287,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZMD.TXT
 zone = ('mnz006', 0.0884524)
 
 [czmj]
+comment = manually researched on 2020-05-24
+description = Moose Jaw Cs, SASK, Canada
+location = (0.8784533, -1.8419769)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZMJ.TXT
+zone = ('mtz018', 0.0270157)
 
 [czmt]
 description = Masset Airport, Masset, BC, CA
@@ -3028,10 +3300,18 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZMT.TXT
 zone = ('akz027', 0.0238497)
 
 [czmu]
+comment = manually researched on 2020-05-24
+description = Mundare Agdm, ALTA, Canada
+location = (0.9348435, -1.9599364)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZMU.TXT
+zone = ('mtz010', 0.0841630)
 
 [czol]
+comment = manually researched on 2020-05-24
+description = Oliver Agdm, ALTA, Canada
+location = (0.9362373, -1.9785504)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZOL.TXT
+zone = ('mtz010', 0.0858699)
 
 [czpc]
 description = Pincher Creek Airport, Canada
@@ -3040,7 +3320,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZPC.TXT
 zone = ('mtz009', 0.0188367)
 
 [czps]
+comment = manually researched on 2020-05-24
+description = PRENTISS ALBERTA, AB, Canada
+location = (0.9151766, -1.9825506)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZPS.TXT
+zone = ('mtz010', 0.0653196)
 
 [czsj]
 description = Sandy Lake Airport, Sandy Lake, ON, CA
@@ -3049,10 +3333,17 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZSJ.TXT
 zone = ('mnz006', 0.0768528)
 
 [czsm]
+comment = manually researched on 2020-05-24
+description = Fort Smith Climate, NWT, Canada
+location = (1.0476533, -1.9535373)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZSM.TXT
 
 [czsp]
+comment = manually researched on 2020-05-24
+description = St. Peters, PEI, Canada
+location = (0.8107103, -1.0921543)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZSP.TXT
+zone = ('mez002', 0.0678342)
 
 [czst]
 description = Stewart Airport, Canada
@@ -3061,7 +3352,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZST.TXT
 zone = ('akz029', 0.0086648)
 
 [cztb]
+comment = manually researched on 2020-05-24
+description = Thunder Bay Cs, ONT, Canada
+location = (0.8442061, -1.5590541)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZTB.TXT
+zone = ('miz001', 0.0170556)
 
 [czum]
 description = Churchill Falls, Nfld., Canada
@@ -3075,7 +3370,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZVL.TXT
 zone = ('mtz010', 0.0869819)
 
 [czzj]
+comment = manually researched on 2020-05-24
+description = Edson Climate, ALTA, Canada
+location = (0.9352390, -2.0327276)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/CZZJ.TXT
+zone = ('idz001', 0.0897261)
 
 [daad]
 description = Bou-Saada, Algeria
@@ -4378,6 +4677,9 @@ location = (-0.9043714, -1.0201449)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/EGYP.TXT
 
 [ehak]
+comment = manually researched on 2020-05-24
+description = A12-cpp Sea, Netherlands
+location = (0.9668979, 0.0665019)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/EHAK.TXT
 
 [eham]
@@ -4396,6 +4698,9 @@ location = (0.9087348, 0.1026835)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/EHDL.TXT
 
 [ehdv]
+comment = manually researched on 2020-05-24
+description = D15-fa-1 Sea, Netherlands
+location = (0.9481598, 0.0512400)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/EHDV.TXT
 
 [eheh]
@@ -4404,12 +4709,21 @@ location = (0.8979719, 0.0945387)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/EHEH.TXT
 
 [ehfd]
+comment = manually researched on 2020-05-24
+description = F3-fb-1  Sea, Netherlands
+location = (0.9573810, 0.0819626)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/EHFD.TXT
 
 [ehfs]
+comment = manually researched on 2020-05-24
+description = Vlissingen, ZE, NL // Vlissingen, ZE, Netherlands
+location = (0.8978194, 0.0627605)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/EHFS.TXT
 
 [ehfz]
+comment = manually researched on 2020-05-24
+description = F16-a    Sea, Netherlands
+location = (0.9445140, 0.0700265)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/EHFZ.TXT
 
 [ehgg]
@@ -4428,6 +4742,9 @@ location = (0.9431218, 0.1054499)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/EHHW.TXT
 
 [ehja]
+comment = manually researched on 2020-05-24
+description = J6-a     Sea, Netherlands
+location = (0.9394089, 0.0514048)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/EHJA.TXT
 
 [ehjr]
@@ -4441,6 +4758,9 @@ location = (0.9235701, 0.0834849)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/EHKD.TXT
 
 [ehkv]
+comment = manually researched on 2020-05-24
+description = K14-fa-1c Sea, Netherlands
+location = (0.9297272, 0.0633167)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/EHKV.TXT
 
 [ehle]
@@ -4454,15 +4774,27 @@ location = (0.9288061, 0.1006473)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/EHLW.TXT
 
 [ehma]
+comment = manually researched on 2020-05-24
+description = Awg-1     Sea, Netherlands
+location = (0.9336057, 0.1037017)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/EHMA.TXT
 
 [ehmg]
+comment = manually researched on 2020-05-24
+description = L9-ff-1   Sea, Netherlands
+location = (0.9357486, 0.0865732)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/EHMG.TXT
 
 [ehpg]
+comment = manually researched on 2020-05-24
+description = P11-b     Sea, Netherlands
+location = (0.9138544, 0.0583231)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/EHPG.TXT
 
 [ehqe]
+comment = manually researched on 2020-05-24
+description = Hoorn-a   Sea, Netherlands
+location = (0.9235943, 0.0724360)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/EHQE.TXT
 
 [ehrd]
@@ -4861,6 +5193,9 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/ENSD.TXT
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/ENSE.TXT
 
 [ensf]
+comment = manually researched on 2020-05-24
+description = Statfjord A [oil platform], NO
+location = (1.0691063, 0.0323274)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/ENSF.TXT
 
 [ensg]
@@ -5047,6 +5382,9 @@ location = (0.6201737, 0.4214970)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/EQYG.TXT
 
 [eqyk]
+comment = manually researched on 2020-05-24
+description = Adana Incirlik/American AFB, ADA, Turkey
+location = (0.6455388, 0.6159771)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/EQYK.TXT
 
 [eqyl]
@@ -5650,6 +5988,9 @@ location = (-0.0840667, 0.2076942)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/FCPP.TXT
 
 [fdbb]
+comment = manually researched on 2020-05-24
+description = Big Bend Met Stn., Swaziland
+location = (-0.4686401, 0.5570794)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/FDBB.TXT
 
 [fdms]
@@ -5658,12 +5999,21 @@ location = (-0.4630940, 0.5462881)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/FDMS.TXT
 
 [fdmy]
+comment = manually researched on 2020-05-24
+description = Mayiwane Met Stn., SZ
+location = (-0.4519167, 0.5499527)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/FDMY.TXT
 
 [fdot]
+comment = manually researched on 2020-05-24
+description = Moti, Swaziland
+location = (-0.4660776, 0.5484790)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/FDOT.TXT
 
 [fdpp]
+comment = manually researched on 2020-05-24
+description = Piggs Peak Met Stn., Swaziland
+location = (-0.4532219, 0.5454294)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/FDPP.TXT
 
 [fdsk]
@@ -6180,6 +6530,9 @@ location = (0.2187479, -0.1387537)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/GABS.TXT
 
 [gakd]
+comment = manually researched on 2020-05-24
+description = Kayes Dag [Dag Airport], 1, ML
+location = (0.2527535, -0.1990014)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/GAKD.TXT
 
 [gako]
@@ -6348,6 +6701,9 @@ location = (0.5823582, -0.1323541)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/GMMN.TXT
 
 [gmmp]
+comment = manually researched on 2020-05-24
+description = Kenitra (rmaf), 2, Morocco
+location = (0.5986528, -0.1150996)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/GMMP.TXT
 
 [gmmw]
@@ -6541,6 +6897,9 @@ location = (0.4738569, 0.5884668)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/HEGN.TXT
 
 [heis]
+comment = manually researched on 2020-05-24
+description = Ismalia, IML, Egypt
+location = (0.5339253, 0.5628202)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/HEIS.TXT
 
 [helx]
@@ -6584,6 +6943,9 @@ location = (0.4182972, 0.5721771)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/HESN.TXT
 
 [hesw]
+comment = manually researched on 2020-05-24
+description = Siwa Oasis Arpt, Egypt
+location = (0.5121843, 0.4451811)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/HESW.TXT
 
 [hetr]
@@ -6811,7 +7173,11 @@ location = (0.0119264, 0.5963208)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/HUTO.TXT
 
 [k00u]
+comment = manually researched on 2020-05-24
+description = Big Horn County Airport, MT, United States Of America
+location = (0.7983902, -1.8790285)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K00U.TXT
+zone = ('mtz057', 0.0024571)
 
 [k04v]
 description = Saguache, Saguache Municipal Airport, CO, United States
@@ -6820,13 +7186,25 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K04V.TXT
 zone = ('coz065', 0.0023917)
 
 [k04w]
+comment = manually researched on 2020-05-24
+description = Field of Dreams AP, Hinckley, MN, United States of America
+location = (0.8032768, -1.6213943)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K04W.TXT
+zone = ('mnz038', 0.0025449)
 
 [k05u]
+comment = manually researched on 2020-05-24
+description = Eureka AP, Eureka, NV, United States of America
+location = (0.6911869, -2.0246910)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K05U.TXT
+zone = ('nvz037', 0.0094597)
 
 [k06c]
+comment = manually researched on 2020-05-24
+description = Chicago/schaumburg Schaumburg Rgnl, IL, United States of America
+location = (0.7328523, -1.5376568)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K06C.TXT
+zone = ('ilz103', 0.0021000)
 
 [k06d]
 description = Rolla Municipal Airport, ND, United States
@@ -6850,10 +7228,18 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K0A9.TXT
 zone = ('tnz046', 0.0001407)
 
 [k0co]
+comment = manually researched on 2020-05-24
+description = Berthoud Pass, CO, United States of America
+location = (0.6945456, -1.8459288)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K0CO.TXT
+zone = ('coz034', 0.0035161)
 
 [k0e0]
+comment = manually researched on 2020-05-24
+description = Moriarty Muni, Moriarty, NM, United States of America
+location = (0.6105814, -1.8499750)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K0E0.TXT
+zone = ('nmz412', 0.0341432)
 
 [k0f2]
 description = Bowie Municipal Airport, Bowie, TX, US
@@ -6937,7 +7323,11 @@ zone = ('gaz026', 0.0015110)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K18H.TXT
 
 [k19s]
+comment = manually researched on 2020-05-24
+description = Sublette Muni, Sublette, KS, United States of America
+location = (0.6544437, -1.7598664)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K19S.TXT
+zone = ('ksz076', 0.0012591)
 
 [k1a5]
 description = Franklin, Macon County Airport, NC, United States
@@ -6988,7 +7378,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K1DN.TXT
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K1DW.TXT
 
 [k1em]
+comment = manually researched on 2020-05-24
+description = Echo (winifred), MT, United States of America
+location = (0.8282198, -1.9096747)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K1EM.TXT
+zone = ('mtz051', 0.0040172)
 
 [k1en]
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K1EN.TXT
@@ -7024,7 +7418,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K1H2.TXT
 zone = ('ilz066', 0.0007896)
 
 [k1hm]
+comment = manually researched on 2020-05-24
+description = Hotel (fairfield), MT, United States of America
+location = (0.8324784, -1.9537722)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K1HM.TXT
+zone = ('mtz049', 0.0027811)
 
 [k1hn]
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K1HN.TXT
@@ -7045,13 +7443,21 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K1J0.TXT
 zone = ('flz009', 0.0032672)
 
 [k1jm]
+comment = manually researched on 2020-05-24
+description = Julie (power), MT, United States of America
+location = (0.8334209, -1.9468572)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K1JM.TXT
+zone = ('mtz049', 0.0028910)
 
 [k1jn]
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K1JN.TXT
 
 [k1k1]
+comment = manually researched on 2020-05-24
+description = Lloyd Stearman Field, Benton, KS, United States of America
+location = (0.6592884, -1.6949455)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K1K1.TXT
+zone = ('ksz069', 0.0037833)
 
 [k1km]
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K1KM.TXT
@@ -7126,7 +7532,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K1V4.TXT
 zone = ('vtz007', 0.0013560)
 
 [k1v6]
+comment = manually researched on 2020-05-24
+description = Fremont Cnty AP, Canon City, CO, United States of America
+location = (0.6706956, -1.8344430)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K1V6.TXT
+zone = ('coz083', 0.0003093)
 
 [k20u]
 description = Beach Airport Beach, ND, United States
@@ -7165,7 +7575,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K24J.TXT
 zone = ('flz021', 0.0018913)
 
 [k27k]
+comment = manually researched on 2020-05-24
+description = Georgetown Scott County - Marshall Fld, KY, United States of America
+location = (0.6673169, -1.4736633)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K27K.TXT
+zone = ('kyz036', 0.0022744)
 
 [k28j]
 description = Palatka Municipal - Lt. Kay Larkin Field, Palatka, FL, US
@@ -7198,7 +7612,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K2DP.TXT
 zone = ('ncz047', 0.0019885)
 
 [k2g4]
+comment = manually researched on 2020-05-24
+description = Oakland Garrett County Airport, MD, United States of America
+location = (0.6908489, -1.3847761)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K2G4.TXT
+zone = ('mdz001', 0.0013145)
 
 [k2g9]
 description = Somerset County Airport, Somerset, PA, US
@@ -7231,7 +7649,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K2J5.TXT
 zone = ('gaz087', 0.0017647)
 
 [k2j9]
+comment = manually researched on 2020-05-24
+description = Quincy Muni, Quincy, FL, United States of America
+location = (0.5340336, -1.4758055)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K2J9.TXT
+zone = ('flz016', 0.0009043)
 
 [k2ls]
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K2LS.TXT
@@ -7243,10 +7665,18 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K2M2.TXT
 zone = ('tnz094', 0.0019856)
 
 [k2p2]
+comment = manually researched on 2020-05-24
+description = Washington Island, Washington Island, WI, United States of America
+location = (0.7921753, -1.5171100)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K2P2.TXT
+zone = ('wiz022', 0.0091483)
 
 [k2r9]
+comment = manually researched on 2020-05-24
+description = Kenedy Karnes County, TX, United States of America
+location = (0.5030913, -1.7080766)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K2R9.TXT
+zone = ('txz222', 0.0014115)
 
 [k2v5]
 description = Wray Municipal Airport, Wray, CO, US
@@ -7255,10 +7685,18 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K2V5.TXT
 zone = ('coz090', 0.0029811)
 
 [k2v6]
+comment = manually researched on 2020-05-24
+description = Yuma Municipal Airport, United States of America
+location = (0.6999581, -1.7926762)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K2V6.TXT
+zone = ('coz090', 0.0042434)
 
 [k2w6]
+comment = manually researched on 2020-05-24
+description = Rgnl AP, St Mary&amp;#39;s, Leonardtown, MD, United States of America
+location = (0.6687292, -1.3360515)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K2W6.TXT
+zone = ('mdz017', 0.0008161)
 
 [k2wx]
 description = Buffalo, SD, United States
@@ -7267,7 +7705,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K2WX.TXT
 zone = ('sdz001', 0.0007441)
 
 [k33n]
+comment = manually researched on 2020-05-24
+description = Dover/cheswold Delaware Airpark, DE, United States of America
+location = (0.6844890, -1.3194107)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K33N.TXT
+zone = ('dez002', 0.0023282)
 
 [k33v]
 description = Walden Jackson County Airport, Walden, CO, US
@@ -7288,7 +7730,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K3AU.TXT
 zone = ('ksz069', 0.0038114)
 
 [k3d2]
+comment = manually researched on 2020-05-24
+description = Ephraim-Gilbraltar AP, Ephraim, WI, United States of America
+location = (0.7877667, -1.5217199)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K3D2.TXT
+zone = ('wiz022', 0.0037137)
 
 [k3f3]
 description = C E 'Rusty' Williams Airport, Mansfield, LA, US
@@ -7327,7 +7773,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K3LF.TXT
 zone = ('ilz060', 0.0029046)
 
 [k3n8]
+comment = manually researched on 2020-05-24
+description = Mahnomen Cnty AP, Mahnomen, MN, United States of America
+location = (0.8248513, -1.6742612)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K3N8.TXT
+zone = ('mnz022', 0.0018063)
 
 [k3r7]
 description = Jennings Airport, Jennings, LA, US
@@ -7336,7 +7786,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K3R7.TXT
 zone = ('laz042', 0.0021584)
 
 [k3s8]
+comment = manually researched on 2020-05-24
+description = Grants Pass, Grants Pass, OR, United States of America
+location = (0.7419225, -2.1535379)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K3S8.TXT
+zone = ('orz024', 0.0050281)
 
 [k3t5]
 description = La Grange, Fayette Regional Air Center Airport, TX, United States
@@ -7363,10 +7817,18 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K40J.TXT
 zone = ('flz028', 0.0005114)
 
 [k41u]
+comment = manually researched on 2020-05-24
+description = Manti-Ephraim AP, Manti, UT, United States of America
+location = (0.6864612, -1.9480096)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K41U.TXT
+zone = ('utz014', 0.0038961)
 
 [k42j]
+comment = manually researched on 2020-05-24
+description = Keystone Airpark, Keystone Heights, FL, United States of America
+location = (0.5208892, -1.4319995)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K42J.TXT
+zone = ('flz031', 0.0025999)
 
 [k46d]
 description = Carrington Municipal Airport, ND, United States
@@ -7468,7 +7930,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K4U6.TXT
 zone = ('mtz023', 0.0048166)
 
 [k4v0]
+comment = manually researched on 2020-05-24
+description = Rangely, Rangely, CO, United States of America
+location = (0.6998002, -1.8982081)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K4V0.TXT
+zone = ('coz001', 0.0061329)
 
 [k54a]
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K54A.TXT
@@ -7489,7 +7955,11 @@ zone = ('wiz070', 0.0031235)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K59K.TXT
 
 [k5a6]
+comment = manually researched on 2020-05-24
+description = Winona-montgomery County, Winona, MS, United States of America
+location = (0.5840742, -1.5660877)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K5A6.TXT
+zone = ('msz028', 0.0017330)
 
 [k5c1]
 description = Boerne Stage Field, San Antonio, TX, US
@@ -7522,13 +7992,25 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K5SM.TXT
 zone = ('coz008', 0.0058953)
 
 [k5t9]
+comment = manually researched on 2020-05-24
+description = Maverick County Memorial International Airport, United States of America
+location = (0.5036513, -1.7542910)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K5T9.TXT
+zone = ('txz217', 0.0036406)
 
 [k65s]
+comment = manually researched on 2020-05-24
+description = Boundary Cnty AP, Bonners Ferry, ID, United States of America
+location = (0.8504291, -2.0297307)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K65S.TXT
+zone = ('idz001', 0.0058224)
 
 [k66r]
+comment = manually researched on 2020-05-24
+description = Robert R Wells Jr, Columbus, TX, United States of America
+location = (0.5173342, -1.6845185)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K66R.TXT
+zone = ('txz210', 0.0003880)
 
 [k6a1]
 description = Butler Municipal Airport, Butler, GA, US
@@ -7543,7 +8025,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K6A2.TXT
 zone = ('gaz056', 0.0006067)
 
 [k6b0]
+comment = manually researched on 2020-05-24
+description = Middlebury State AP, Middlebury, VT, United States of America
+location = (0.7676913, -1.2757566)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K6B0.TXT
+zone = ('vtz018', 0.0019293)
 
 [k6b9]
 description = Skaneateles Aero Drome Airport, Skaneateles, NY, US
@@ -7558,10 +8044,18 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K6I2.TXT
 zone = ('kyz054', 0.0014651)
 
 [k6l4]
+comment = manually researched on 2020-05-24
+description = Logan Cnty AP, Logan, WV, United States of America
+location = (0.6607064, -1.4297019)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K6L4.TXT
+zone = ('wvz025', 0.0004983)
 
 [k6p9]
+comment = manually researched on 2020-05-24
+description = Ranger, TX, United States of America
+location = (0.5660118, -1.7207999)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K6P9.TXT
+zone = ('txz129', 0.0039382)
 
 [k6r3]
 description = Cleveland Municipal Airport, Cleveland, TX, US
@@ -7582,7 +8076,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K6S0.TXT
 zone = ('mtz141', 0.0028865)
 
 [k6s2]
+comment = manually researched on 2020-05-24
+description = Florence Muni, Florence, OR, United States of America
+location = (0.7676450, -2.1661520)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K6S2.TXT
+zone = ('orz004', 0.0085230)
 
 [k6s5]
 description = Ravalli County Airport, Hamilton, MT, US
@@ -7597,7 +8095,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K6S8.TXT
 zone = ('mtz235', 0.0036234)
 
 [k74v]
+comment = manually researched on 2020-05-24
+description = Roosevelt Muni, Roosevelt, UT, United States of America
+location = (0.7029888, -1.9207568)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K74V.TXT
+zone = ('utz011', 0.0036086)
 
 [k77s]
 description = Hobby Field, Creswell, OR, US
@@ -7630,7 +8132,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K7L2.TXT
 zone = ('ndz046', 0.0011295)
 
 [k7n0]
+comment = manually researched on 2020-05-24
+description = Downtown Heliport, New Orleans, LA, United States of America
+location = (0.5227729, -1.5722402)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K7N0.TXT
+zone = ('laz061', 0.0024736)
 
 [k7s0]
 description = Ronan Airport, Ronan, MT, US
@@ -7651,7 +8157,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K7S6.TXT
 zone = ('mtz054', 0.0016750)
 
 [k7w4]
+comment = manually researched on 2020-05-24
+description = Lake Anna AP, Bumpass, VA, United States of America
+location = (0.6626282, -1.3569219)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K7W4.TXT
+zone = ('vaz510', 0.0016788)
 
 [k7w6]
 description = Hyde County Airport, Engelhard, NC, US
@@ -7666,7 +8176,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K82C.TXT
 zone = ('wiz043', 0.0015269)
 
 [k82v]
+comment = manually researched on 2020-05-24
+description = Pine Bluffs Muni, Pine Bluffs, WY, United States of America
+location = (0.7182609, -1.8174154)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K82V.TXT
+zone = ('wyz119', 0.0026712)
 
 [k8a0]
 description = Albertville, Albertville Municipal Airport, AL, United States
@@ -7681,7 +8195,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K8A3.TXT
 zone = ('tnz033', 0.0012168)
 
 [k8b0]
+comment = manually researched on 2020-05-24
+description = Rangeley Steven A. Bean Muni, ME, United States of America
+location = (0.7852236, -1.2332898)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K8B0.TXT
+zone = ('mez008', 0.0022149)
 
 [k8d3]
 description = Sisseton Municipal Airport, SD, United States
@@ -7720,7 +8238,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K9L2.TXT
 zone = ('caz199', 0.0028734)
 
 [k9mn]
+comment = manually researched on 2020-05-24
+description = Rochester/St. Mary&amp;#39;s Hospital Heliport, MN, United States of America
+location = (0.7683044, -1.6141304)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K9MN.TXT
+zone = ('mnz087', 0.0010599)
 
 [k9v9]
 description = Chamberlain Municipal Airport, SD, United States
@@ -7729,10 +8251,18 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/K9V9.TXT
 zone = ('sdz057', 0.0030901)
 
 [ka08]
+comment = manually researched on 2020-05-24
+description = Vaiden Fld AP, Marion, AL, United States of America
+location = (0.5674153, -1.5251525)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KA08.TXT
+zone = ('alz033', 0.0026012)
 
 [ka39]
+comment = manually researched on 2020-05-24
+description = Ak-chin Rgnl, Maricopa, AZ, United States of America
+location = (0.5757982, -1.9533468)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KA39.TXT
+zone = ('azz553', 0.0025059)
 
 [kaaa]
 description = Lincoln, Logan County Airport, IL, United States
@@ -7771,7 +8301,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KABE.TXT
 zone = ('paz061', 0.0019942)
 
 [kabh]
+comment = manually researched on 2020-05-24
+description = Bullseye, USAF Acad, Ellicott,CO, United States of America
+location = (0.6764512, -1.8204011)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KABH.TXT
+zone = ('coz085', 0.0028628)
 
 [kabi]
 description = Abilene Regional Airport, TX, United States
@@ -8098,7 +8632,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KALI.TXT
 zone = ('txz241', 0.0011367)
 
 [kalk]
+comment = manually researched on 2020-05-24
+description = Pioneer Airfield, Cochise Cnty, AZ, United States of America
+location = (0.5516225, -1.9273339)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KALK.TXT
+zone = ('azz513', 0.0006663)
 
 [kalm]
 description = Alamogordo-White, NM, United States
@@ -9121,7 +9659,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KBOW.TXT
 zone = ('flz052', 0.0013189)
 
 [kbpc]
+comment = manually researched on 2020-05-24
+description = Mesa Vista Ranch AP, Pampa, TX, United States of America
+location = (0.6263812, -1.7633061)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KBPC.TXT
+zone = ('txz009', 0.0031879)
 
 [kbpg]
 description = Big Spring, Big Spring Mcmahon-Wrinkle Airport, TX, United States
@@ -9382,7 +9924,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KBZN.TXT
 zone = ('mtz055', 0.0037642)
 
 [kc07]
+comment = manually researched on 2020-05-24
+description = Walton Peak                      CO US NWS/FAA
+location = (0.7043175, -1.8622523)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KC07.TXT
+zone = ('coz005', 0.0035448)
 
 [kc09]
 description = Morris, Morris Municipal-James R Washburn Field Airport, IL, United States
@@ -9409,7 +9955,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KC62.TXT
 zone = ('inz008', 0.0024230)
 
 [kc65]
+comment = manually researched on 2020-05-24
+description = Plymouth Municipal Airport, United States of America
+location = (0.7219578, -1.5062280)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KC65.TXT
+zone = ('inz014', 0.0008648)
 
 [kc75]
 description = Lacon, Marshall County Airport, IL, United States
@@ -10027,7 +10577,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KCPC.TXT
 zone = ('ncz099', 0.0008747)
 
 [kcpf]
+comment = manually researched on 2020-05-24
+description = Hazard [Wendell H Ford Airport], KY, US // Wendell H Ford, KY, United States of America
+location = (0.6525325, -1.4531893)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KCPF.TXT
+zone = ('kyz112', 0.0024978)
 
 [kcpk]
 description = Chesapeake, Chesapeake Municipal Airport, VA, United States
@@ -10411,10 +10965,18 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KD60.TXT
 zone = ('ndz002', 0.0083981)
 
 [kd73]
+comment = manually researched on 2020-05-24
+description = Monroe Walton County Airport, United States of America
+location = (0.5896163, -1.4607150)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KD73.TXT
+zone = ('gaz047', 0.0005949)
 
 [kd95]
+comment = manually researched on 2020-05-24
+description = Dupont-Lapeer AP, Lapeer, MI, United States of America
+location = (0.7516517, -1.4533628)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KD95.TXT
+zone = ('miz062', 0.0007566)
 
 [kdaa]
 description = Fort Belvoir, VA, United States
@@ -10978,10 +11540,18 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KDZJ.TXT
 zone = ('gaz008', 0.0003754)
 
 [ke11]
+comment = manually researched on 2020-05-24
+description = Andrews Cnty AP, Andrews, TX, United States of America
+location = (0.5642843, -1.7894764)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KE11.TXT
+zone = ('txz050', 0.0016619)
 
 [ke16]
+comment = manually researched on 2020-05-24
+description = San Martin South County Arpt Of Santa Clara County, CA, United States of America
+location = (0.6471958, -2.1222646)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KE16.TXT
+zone = ('caz513', 0.0036832)
 
 [ke38]
 description = Alpine, Alpine-Casparis Municipal Airport, TX, United States
@@ -10990,7 +11560,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KE38.TXT
 zone = ('txz277', 0.0051824)
 
 [ke41]
+comment = manually researched on 2020-05-24
+description = Big Lake Reagan County, TX, United States of America
+location = (0.5445227, -1.7710296)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KE41.TXT
+zone = ('txz070', 0.0030163)
 
 [kean]
 description = Phifer Airfield, Wheatland, WY, US
@@ -11335,7 +11909,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KENW.TXT
 zone = ('wiz072', 0.0014519)
 
 [keod]
+comment = manually researched on 2020-05-24
+description = Fort Campbell [Sabre AAF Airport], TN, US // Fort Campbell Sabre AAF, TN, United States of America
+location = (0.6382259, -1.5268395)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KEOD.TXT
+zone = ('tnz006', 0.0018535)
 
 [keoe]
 description = Newberry County Airport, Newberry, SC, US
@@ -11545,7 +12123,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KEZZ.TXT
 zone = ('moz021', 0.0027906)
 
 [kf00]
+comment = manually researched on 2020-05-24
+description = Jones Field, Bonham, TX, United States of America
+location = (0.5866593, -1.6786455)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KF00.TXT
+zone = ('txz094', 0.0011087)
 
 [kf05]
 description = Vernon, Wilbarger County Airport, TX, United States
@@ -11554,7 +12136,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KF05.TXT
 zone = ('txz085', 0.0026020)
 
 [kf44]
+comment = manually researched on 2020-05-24
+description = Athens Municipal Airport, United States of America
+location = (0.5613650, -1.6725203)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KF44.TXT
+zone = ('txz135', 0.0009222)
 
 [kf45]
 description = North Palm Beach County General Aviation Airport, West Palm Beach, FL, US
@@ -11563,10 +12149,18 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KF45.TXT
 zone = ('flz168', 0.0032712)
 
 [kf46]
+comment = manually researched on 2020-05-24
+description = Ralph M Hall/rockwall Muni, Rockwall, TX, United States of America
+location = (0.5747753, -1.6831055)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KF46.TXT
+zone = ('txz120', 0.0007201)
 
 [kf70]
+comment = manually researched on 2020-05-24
+description = French Valley, Murrieta/temecula, CA, United States of America
+location = (0.5859800, -2.0442775)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KF70.TXT
+zone = ('caz048', 0.0050615)
 
 [kfaf]
 description = Fort Eustis / Felker, VA, United States
@@ -11935,7 +12529,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KFPR.TXT
 zone = ('flz059', 0.0026582)
 
 [kfpy]
+comment = manually researched on 2020-05-24
+description = Perry [Perry-Foley Airport], FL, US
+location = (0.5248347, -1.4587731)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KFPY.TXT
+zone = ('flz028', 0.0004353)
 
 [kfqd]
 description = Rutherfordton, Rutherford County-Marchman Field Airport, NC, United States
@@ -12082,7 +12680,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KFWS.TXT
 zone = ('txz133', 0.0034178)
 
 [kfwz]
+comment = manually researched on 2020-05-24
+description = South Pass, South Pass, WY, United States of America
+location = (0.7419986, -1.8985203)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KFWZ.TXT
+zone = ('wyz018', 0.0052591)
 
 [kfxe]
 description = Fort Lauderdale Executive, FL, United States
@@ -13462,7 +14064,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KHZY.TXT
 zone = ('ohz014', 0.0018951)
 
 [ki19]
+comment = manually researched on 2020-05-24
+description = Dayton Greene County-lewis A. Jackson Rgnl, OH, United States of America
+location = (0.6927826, -1.4658947)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KI19.TXT
+zone = ('ohz062', 0.0013405)
 
 [ki23]
 description = Fayette County Airport, Washington Court House, OH, US
@@ -13495,7 +14101,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KI67.TXT
 zone = ('ohz077', 0.0033229)
 
 [ki68]
+comment = manually researched on 2020-05-24
+description = Warren County Airport/John Lane Field, United States of America
+location = (0.6888180, -1.4704963)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KI68.TXT
+zone = ('ohz071', 0.0013463)
 
 [ki69]
 description = Clermont County Airport, Batavia, OH, US
@@ -14209,19 +14819,39 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KKNB.TXT
 zone = ('azz004', 0.0077821)
 
 [kky8]
+comment = manually researched on 2020-05-24
+description = Hancock Co-ron Lewis Field, Lewisport, KY, United States of America
+location = (0.6624054, -1.5159785)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KKY8.TXT
+zone = ('kyz023', 0.0022448)
 
 [kl08]
+comment = manually researched on 2020-05-24
+description = Borrego Springs Borrego Valley, CA, United States of America
+location = (0.5804795, -2.0301840)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KL08.TXT
+zone = ('caz062', 0.0037602)
 
 [kl18]
+comment = manually researched on 2020-05-24
+description = Fallbrook Community Airpark, Fallbrook, CA, United States of America
+location = (0.5821406, -2.0464143)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KL18.TXT
+zone = ('caz057', 0.0055914)
 
 [kl35]
+comment = manually researched on 2020-05-24
+description = Big Bear City Airport, CA, United States of America
+location = (0.5980157, -2.0395224)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KL35.TXT
+zone = ('caz055', 0.0035065)
 
 [kl52]
+comment = manually researched on 2020-05-24
+description = Oceano County, CA, United States of America
+location = (0.6126363, -2.1052574)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KL52.TXT
+zone = ('caz034', 0.0042827)
 
 [klaa]
 description = Lamar Municipal Airport, CO, United States
@@ -14926,7 +15556,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KM21.TXT
 zone = ('kyz021', 0.0002704)
 
 [km25]
+comment = manually researched on 2020-05-24
+description = Mayfield Graves County, Mayfield, KY, United States of America
+location = (0.6417513, -1.5460941)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KM25.TXT
+zone = ('kyz006', 0.0012363)
 
 [km30]
 description = Metropolis, Metropolis Municipal Airport, IL, United States
@@ -14935,7 +15569,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KM30.TXT
 zone = ('ilz094', 0.0008297)
 
 [km40]
+comment = manually researched on 2020-05-24
+description = Monroe Cnty AP, Aberdeen/Amory, MS, United States of America
+location = (0.5912085, -1.5444360)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KM40.TXT
+zone = ('msz024', 0.0003505)
 
 [km54]
 description = Lebanon Municipal Airport, Lebanon, TN, US
@@ -14944,7 +15582,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KM54.TXT
 zone = ('tnz028', 0.0006700)
 
 [km75]
+comment = manually researched on 2020-05-24
+description = Maltaairport, MT, United States Of America
+location = (0.8441967, -1.8835229)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KM75.TXT
+zone = ('mtz016', 0.0044581)
 
 [km91]
 description = Springfield Robertson County Airport, Springfield, TN, US
@@ -15835,7 +16477,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KMVE.TXT
 zone = ('mnz056', 0.0020913)
 
 [kmvh]
+comment = manually researched on 2020-05-24
+description = N Bar Ranch AP 19MT, Grassrange, MT, United States of America
+location = (0.8174791, -1.9013058)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KMVH.TXT
+zone = ('mtz051', 0.0081755)
 
 [kmvl]
 description = Morrisville Stowe State Airport, VT, United States
@@ -16231,7 +16877,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KNUW.TXT
 zone = ('waz506', 0.0038427)
 
 [knxf]
+comment = manually researched on 2020-05-24
+description = Oceanside Mcolf Camp Pendleton (red Beach), CA, United States of America
+location = (0.5809503, -2.0499939)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KNXF.TXT
+zone = ('caz057', 0.0059272)
 
 [knxp]
 description = Twentynine Palms Marine, CA, United States
@@ -16270,7 +16920,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KNZY.TXT
 zone = ('caz043', 0.0048661)
 
 [ko22]
+comment = manually researched on 2020-05-24
+description = Columbia Airport, United States of America
+location = (0.6637561, -2.1016305)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KO22.TXT
+zone = ('caz019', 0.0098506)
 
 [ko32]
 description = Reedley Municipal Airport, Reedley, CA, US
@@ -16285,7 +16939,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KO54.TXT
 zone = ('caz108', 0.0025853)
 
 [ko69]
+comment = manually researched on 2020-05-24
+description = Petaluma Muni, Petaluma, CA, United States of America
+location = (0.6677242, -2.1398667)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KO69.TXT
+zone = ('caz506', 0.0020183)
 
 [ko86]
 description = Trinity Center Airport, Trinity Center, CA, US
@@ -17254,7 +17912,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KPNT.TXT
 zone = ('ilz032', 0.0010528)
 
 [kpo1]
+comment = manually researched on 2020-05-24
+description = Poplar Muni, Poplar, MT, United States of America
+location = (0.8401045, -1.8354249)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KPO1.TXT
+zone = ('mtz020', 0.0042136)
 
 [kpob]
 description = Pope Air Force Base, NC, United States
@@ -17988,7 +18650,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KRFI.TXT
 zone = ('txz150', 0.0014553)
 
 [krga]
+comment = manually researched on 2020-05-24
+description = Richmond [Central Kentucky Regional], KY, US // Central Kentucky Rgnl, Richmond, KY, United States of America
+location = (0.6567942, -1.4718787)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KRGA.TXT
+zone = ('kyz057', 0.0017206)
 
 [krgk]
 description = Red Wing, Red Wing Municipal Airport, MN, United States
@@ -18423,7 +19089,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KS33.TXT
 zone = ('orz511', 0.0039504)
 
 [ks39]
+comment = manually researched on 2020-05-24
+description = Prineville AP, Prineville, OR, United States of America
+location = (0.7729539, -2.1101700)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KS39.TXT
+zone = ('orz511', 0.0041039)
 
 [ks52]
 description = Methow Valley State Airport, Winthrop, WA, US
@@ -19905,7 +20575,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KU42.TXT
 zone = ('utz003', 0.0037955)
 
 [ku55]
+comment = manually researched on 2020-05-24
+description = Panguitch Municipal Airport, United States of America
+location = (0.6606266, -1.9615956)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KU55.TXT
+zone = ('utz518', 0.0004459)
 
 [ku68]
 description = North Big Horn County Airport, Cowley/Lovell/Byron, WY, US
@@ -20196,7 +20870,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KVKS.TXT
 zone = ('msz047', 0.0024749)
 
 [kvky]
+comment = manually researched on 2020-05-24
+description = Main Pass 289C AWOS3 (Apache Corp), United States of America
+location = (0.5104739, -1.5435866)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KVKY.TXT
+zone = ('laz070', 0.0197924)
 
 [kvld]
 description = Valdosta Regional Airport, GA, United States
@@ -20229,7 +20907,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KVNY.TXT
 zone = ('caz547', 0.0002215)
 
 [kvoa]
+comment = manually researched on 2020-05-24
+description = Viosca Knoll 786/Petronius (Chevron), United States of America
+location = (0.5101423, -1.5320675)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KVOA.TXT
+zone = ('alz266', 0.0221424)
 
 [kvok]
 description = Volk / Camp Douglas, WI, United States
@@ -20262,7 +20944,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KVQQ.TXT
 zone = ('flz025', 0.0036228)
 
 [kvqt]
+comment = manually researched on 2020-05-24
+description = Vermilion 331 (Energy Res Tech), United States of America
+location = (0.4934046, -1.6103106)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KVQT.TXT
+zone = ('laz052', 0.0275800)
 
 [kvrb]
 description = Vero Beach Municipal Airport, FL, United States
@@ -20331,7 +21017,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KVYS.TXT
 zone = ('ilz018', 0.0031071)
 
 [kw13]
+comment = manually researched on 2020-05-24
+description = Eagle&amp;#39;s Nest AP, Waynesboro, VA, United States of America
+location = (0.6645673, -1.3778397)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KW13.TXT
+zone = ('vaz508', 0.0015363)
 
 [kw22]
 description = Buckhannon, Upshur County Regional Airport, WV, United States
@@ -20340,7 +21030,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KW22.TXT
 zone = ('wvz039', 0.0018400)
 
 [kw29]
+comment = manually researched on 2020-05-24
+description = Bay Brdg AP, Stevensville, MD, United States of America
+location = (0.6802712, -1.3322098)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KW29.TXT
+zone = ('mdz014', 0.0027933)
 
 [kw31]
 description = Lunenburg County Airport, Kenbridge, VA, US
@@ -20361,7 +21055,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KW63.TXT
 zone = ('vaz065', 0.0031825)
 
 [kw75]
+comment = manually researched on 2020-05-24
+description = Hummel Fld AP, Saluda, VA, United States of America
+location = (0.6562857, -1.3342466)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KW75.TXT
+zone = ('vaz085', 0.0006321)
 
 [kw78]
 description = William M Tuck Airport, South Boston, VA, US
@@ -20376,7 +21074,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KW81.TXT
 zone = ('vaz067', 0.0009310)
 
 [kw96]
+comment = manually researched on 2020-05-24
+description = New Kent Cnty AP, Quinton, VA, United States of America
+location = (0.6545543, -1.3460939)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KW96.TXT
+zone = ('vaz083', 0.0017768)
 
 [kw99]
 description = Petersburg, Grant County Airport, WV, United States
@@ -20544,7 +21246,11 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KXNX.TXT
 zone = ('tnz008', 0.0018003)
 
 [kxpy]
+comment = manually researched on 2020-05-24
+description = Port Fourchon Terminal, LA, United States of America
+location = (0.5082922, -1.5743219)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KXPY.TXT
+zone = ('laz067', 0.0044484)
 
 [kxsa]
 description = Tappahannock-Essex County Airport, Tappahannock, VA, US
@@ -20577,10 +21283,18 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KY23.TXT
 zone = ('wiz015', 0.0033142)
 
 [ky31]
+comment = manually researched on 2020-05-24
+description = West Branch Community, West Branch, MI, United States of America
+location = (0.7722174, -1.4692147)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KY31.TXT
+zone = ('miz035', 0.0017072)
 
 [ky49]
+comment = manually researched on 2020-05-24
+description = Walker Muni, Walker, MN, United States of America
+location = (0.8230885, -1.6518721)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/KY49.TXT
+zone = ('mnz024', 0.0033410)
 
 [ky50]
 description = Wautoma, Wautoma Municipal Airport, WI, United States
@@ -23290,6 +24004,9 @@ location = (0.2452188, -1.5222180)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/MHTG.TXT
 
 [mhtr]
+comment = manually researched on 2020-05-24
+description = Trojes [Trojes Airport], YO, HN // Trujillo, CL, Honduras
+location = (0.2688592, -1.5129008)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/MHTR.TXT
 
 [mhyr]
@@ -23706,6 +24423,9 @@ location = (0.2344559, -1.5542157)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/MSLP.TXT
 
 [mslu]
+comment = manually researched on 2020-05-24
+description = La Union, El Salvador
+location = (0.2326873, -1.5338303)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/MSLU.TXT
 
 [mssa]
@@ -23880,6 +24600,9 @@ location = (-0.3700098, -2.7893270)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/NCRG.TXT
 
 [ncrk]
+comment = manually researched on 2020-05-24
+description = Rakahanga Atoll, CK
+location = (-0.1747424, -2.8116905)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/NCRK.TXT
 
 [nffn]
@@ -24031,6 +24754,9 @@ location = (-0.7589273, 3.0115656)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/NZCH.TXT
 
 [nzfx]
+comment = manually researched on 2020-05-24
+description = McMurdo Station [Phoenix Field], Ross Island, AQ
+location = (-1.3605936, 2.9106289)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/NZFX.TXT
 
 [nzsp]
@@ -24433,6 +25159,9 @@ location = (0.6539167, 1.0006554)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/OIMN.TXT
 
 [oimq]
+comment = manually researched on 2020-05-24
+description = Kasmar, IR
+location = (0.6155865, 1.0205537)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/OIMQ.TXT
 
 [oims]
@@ -27585,6 +28314,9 @@ location = (-0.0209440, -1.3712470)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/SEAM.TXT
 
 [seca]
+comment = manually researched on 2020-05-24
+description = Loja [Ciudad de Catamayo Airport], L, EC // Catamayo/camilo Ponce Enrique, Ecuador
+location = (-0.0697404, -1.3853018)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/SECA.TXT
 
 [seco]
@@ -28861,6 +29593,9 @@ location = (1.2097068, 1.5242344)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/UOOO.TXT
 
 [urff]
+comment = manually researched on 2020-05-24
+description = Simferopol [Simferopol Airport], Crimea, RU // Simferopol&amp;#39;, RU
+location = (0.7863048, 0.5929514)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/URFF.TXT
 
 [urka]
@@ -29172,6 +29907,9 @@ location = (0.8913833, 1.0226861)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/UWOR.TXT
 
 [uwsg]
+comment = manually researched on 2020-05-24
+description = Saratov [Gagarin Intl], SAR, RU // Gagarin, Russian Federation
+location = (0.9025582, 0.8058379)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/UWSG.TXT
 
 [uwuu]
@@ -29345,6 +30083,9 @@ location = (0.3982260, 1.5041829)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/VEJS.TXT
 
 [veko]
+comment = manually researched on 2020-05-24
+description = Khajuraho [Khajuraho Airport], MP, IN
+location = (0.4331418, 1.3948427)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/VEKO.TXT
 
 [velp]
@@ -29373,6 +30114,9 @@ location = (0.4468043, 1.4852752)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/VEPT.TXT
 
 [vepy]
+comment = manually researched on 2020-05-24
+description = Gangtok [Pakyong Airport], SK, IN
+location = (0.4752968, 1.5461581)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/VEPY.TXT
 
 [verc]
@@ -29596,6 +30340,9 @@ location = (0.2134538, 1.3378967)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/VOMY.TXT
 
 [vond]
+comment = manually researched on 2020-05-24
+description = Ondal, WB, India
+location = (0.4121892, 1.5219271)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/VOND.TXT
 
 [vopb]
