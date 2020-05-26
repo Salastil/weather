@@ -20,7 +20,7 @@
 # ab78f945488371035514fc2c14e4679a 2020-05-24 airports.csv
 #
 # ...and these manually-generated or hand-compiled adjustments:
-# aadcf8801156f29dc5c622bb5e874e88 2020-05-24 overrides.conf
+# 298b10d8d6f5a4a41b2eb0c356766427 2020-05-24 overrides.conf
 # ab8545489a62124779edf7214a619325 2020-05-24 slist
 # 12c84e28cdb6da9eeba12b5a4af034b0 2020-05-24 zlist
 
@@ -30143,6 +30143,7 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/VGHS.TXT
 description = Hong Kong Inter-National Airport, Hong Kong
 location = (0.3897902, 1.9928751)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/VHHH.TXT
+zone = ('hkz000', 0.0000000)
 
 [viag]
 description = Agra, India
@@ -30243,6 +30244,7 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/VLVT.TXT
 description = Taipa, Macau
 location = (0.3868813, 1.9821123)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/VMMC.TXT
+zone = ('hkz000', 0.0103775)
 
 [vnkt]
 description = Kathmandu Airport, Nepal
@@ -31382,6 +31384,7 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/ZBYN.TXT
 description = Guangzhou, China
 location = (0.4043346, 1.9780398)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/ZGGG.TXT
+zone = ('hkz000', 0.0199677)
 
 [zgha]
 description = Changsha, China
@@ -31392,6 +31395,7 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/ZGHA.TXT
 description = Guilin, China
 location = (0.4421501, 1.9250982)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/ZGKL.TXT
+zone = ('hkz000', 0.0811393)
 
 [zgnn]
 description = Nanning, China
@@ -31402,11 +31406,13 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/ZGNN.TXT
 description = Shantou, China
 location = (0.4084070, 2.0365083)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/ZGOW.TXT
+zone = ('hkz000', 0.0443041)
 
 [zgsz]
 description = Shenzhen, China
 location = (0.3935717, 1.9914207)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/ZGSZ.TXT
+zone = ('hkz000', 0.0040134)
 
 [zhcc]
 description = Zhengzhou, China
@@ -31422,6 +31428,7 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/ZHHH.TXT
 description = Haikou Meilan International Airport, Haikou, 46, CN
 location = (0.3479296, 1.9278732)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/ZJHK.TXT
+zone = ('hkz000', 0.0736704)
 
 [zjsy]
 description = Sanya/Fenghuang, China
@@ -31452,6 +31459,7 @@ metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/ZPPP.TXT
 description = Xiamen, China
 location = (0.4273148, 2.0609430)
 metar = https://tgftp.nws.noaa.gov/data/observations/metar/decoded/ZSAM.TXT
+zone = ('hkz000', 0.0728636)
 
 [zsfz]
 description = Fuzhou, China

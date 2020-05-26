@@ -238,6 +238,9 @@ def get_uri(
                     )
                 sys.stderr.write(message)
                 sys.exit(1)
+        # Some data sources are HTML with the plain text wrapped in pre tags
+        if "<pre>" in data:
+            data = data[data.find("<pre>")+5:data.find("</pre>")]
         if cache_data:
             try:
                 import codecs
