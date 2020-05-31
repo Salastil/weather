@@ -1134,7 +1134,7 @@ def guess(
         )
         search_cache = ["\n"]
         search_cache.append( "[%s]\n" % search[0] ) 
-        search_cache.append( "description = cached %s\n" % nowstamp )
+        search_cache.append( "cached = %s\n" % nowstamp )
         for uriname in sorted(uris.keys()):
             search_cache.append( "%s = %s\n" % ( uriname, uris[uriname] ) )
         real_cachedir = os.path.expanduser(cachedir)
