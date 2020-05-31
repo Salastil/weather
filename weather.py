@@ -212,7 +212,7 @@ def get_uri(
             except (IOError, OSError): pass
         dcache_fn = os.path.join(
             dcachedir,
-            uri.split(":")[1].replace("/","_")
+            uri.split(":",1)[1].replace("/","_")
         )
     now = time.time()
     if cache_data and os.access(dcache_fn, os.R_OK) \
