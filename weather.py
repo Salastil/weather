@@ -222,8 +222,7 @@ def get_uri(
         dcache_fd.close()
     else:
         try:
-            if pyversion("3"): data = urlopen(uri).read().decode("utf-8")
-            else: data = urlopen(uri).read()
+            data = urlopen(uri).read().decode("utf-8")
         except URLError:
             if ignore_fail: return ""
             else:
