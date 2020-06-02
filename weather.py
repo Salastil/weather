@@ -1105,7 +1105,7 @@ def guess(
             print(
                 "   (proximity %s, %.3gkm, %.3gmi)" % ( score, km, mi )
             )
-        elif searchtype is "coordinates":
+        elif searchtype == "coordinates":
             print( "   (%.3gkm, %.3gmi)" % (km, mi) )
         if zone[0]:
             print(
@@ -1121,7 +1121,7 @@ def guess(
             print(
                 "   (proximity %s, %.3gkm, %.3gmi)" % ( score, km, mi )
             )
-        elif searchtype is "coordinates" and zone[0]:
+        elif searchtype == "coordinates" and zone[0]:
             print( "   (%.3gkm, %.3gmi)" % (km, mi) )
     if cache_search:
         now = time.time()
