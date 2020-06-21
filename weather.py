@@ -1739,6 +1739,12 @@ def correlate():
     if os.path.exists(overrideslog_fn):
         os.rename(overrideslog_fn, "%s_old"%overrideslog_fn)
     overrideslog_fd = codecs.open(overrideslog_fn, "w", "utf8")
+    import time
+    overrideslog_fd.write(
+        '# Copyright (c) %s Jeremy Stanley <fungi@yuggoth.org>. Permission to\n'
+        '# use, copy, modify, and distribute this software is granted under terms\n'
+        '# provided in the LICENSE file distributed with this software.\n\n'
+        % time.gmtime().tm_year)
     overrideslog_fd.writelines(overrideslog)
     overrideslog_fd.close()
     print("done (%s overridden sections: +%s/-%s/!%s)." % (
@@ -2087,6 +2093,12 @@ def correlate():
     if os.path.exists(qalog_fn):
         os.rename(qalog_fn, "%s_old"%qalog_fn)
     qalog_fd = codecs.open(qalog_fn, "w", "utf8")
+    import time
+    qalog_fd.write(
+        '# Copyright (c) %s Jeremy Stanley <fungi@yuggoth.org>. Permission to\n'
+        '# use, copy, modify, and distribute this software is granted under terms\n'
+        '# provided in the LICENSE file distributed with this software.\n\n'
+        % time.gmtime().tm_year)
     qalog_fd.writelines(qalog)
     qalog_fd.close()
     if qalog:
