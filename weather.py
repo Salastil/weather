@@ -1330,7 +1330,7 @@ def correlate():
     sys.stdout.write(message)
     sys.stdout.flush()
     count = 0
-    gcounties = zipfile.ZipFile(gcounties_an).open(gcounties_fn, "rU")
+    gcounties = zipfile.ZipFile(gcounties_an).open(gcounties_fn, "r")
     columns = gcounties.readline().decode("utf-8").strip().split("\t")
     for line in gcounties:
         fields = line.decode("utf-8").strip().split("\t")
@@ -1353,7 +1353,7 @@ def correlate():
     sys.stdout.write(message)
     sys.stdout.flush()
     count = 0
-    gcousubs = zipfile.ZipFile(gcousubs_an).open(gcousubs_fn, "rU")
+    gcousubs = zipfile.ZipFile(gcousubs_an).open(gcousubs_fn, "r")
     columns = gcousubs.readline().decode("utf-8").strip().split("\t")
     for line in gcousubs:
         fields = line.decode("utf-8").strip().split("\t")
@@ -1376,7 +1376,7 @@ def correlate():
     sys.stdout.write(message)
     sys.stdout.flush()
     count = 0
-    gplace = zipfile.ZipFile(gplace_an).open(gplace_fn, "rU")
+    gplace = zipfile.ZipFile(gplace_an).open(gplace_fn, "r")
     columns = gplace.readline().decode("utf-8").strip().split("\t")
     for line in gplace:
         fields = line.decode("utf-8").strip().split("\t")
@@ -1445,18 +1445,18 @@ def correlate():
     count = 0
     ourairports = open(ourairports_fn, "rU")
     for row in csv.reader(ourairports):
-        icao = row[12].decode('utf-8').lower()
+        icao = row[12].lower()
         if icao in stations:
-            iata = row[13].decode('utf-8').lower()
+            iata = row[13].lower()
             if len(iata) == 3: airports[iata] = { "station": icao }
             if "description" not in stations[icao]:
                 description = []
-                name = row[3].decode('utf-8')
+                name = row[3]
                 if name: description.append(name)
-                municipality = row[10].decode('utf-8')
+                municipality = row[10]
                 if municipality: description.append(municipality)
-                region = row[9].decode('utf-8')
-                country = row[8].decode('utf-8')
+                region = row[9]
+                country = row[8]
                 if region:
                     if "-" in region:
                         c,r = region.split("-", 1)
@@ -1467,9 +1467,9 @@ def correlate():
                 if description:
                     stations[icao]["description"] = ", ".join(description)
             if "location" not in stations[icao]:
-                lat = row[4].decode('utf-8')
+                lat = row[4]
                 if lat:
-                    lon = row[5].decode('utf-8')
+                    lon = row[5]
                     if lon:
                         stations[icao]["location"] = gecos(
                             "%s,%s" % (lat, lon)
@@ -1566,7 +1566,7 @@ def correlate():
     sys.stdout.write(message)
     sys.stdout.flush()
     count = 0
-    gzcta = zipfile.ZipFile(gzcta_an).open(gzcta_fn, "rU")
+    gzcta = zipfile.ZipFile(gzcta_an).open(gzcta_fn, "r")
     columns = gzcta.readline().decode("utf-8").strip().split("\t")
     for line in gzcta:
         fields = line.decode("utf-8").strip().split("\t")
@@ -1955,6 +1955,8 @@ def correlate():
                     if type(element) is float: elements.append("%.7f"%element)
                     else: elements.append( repr(element) )
                 value = "(%s)"%", ".join(elements)
+            if type(value) is bytes:
+                value = value.decode("utf-8")
             stations_fd.write( "\n%s = %s" % (key, value) )
         count += 1
     stations_fd.write("\n")
