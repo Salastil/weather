@@ -1268,56 +1268,56 @@ def correlate():
         weather_copyright,
         os.path.basename( sys.argv[0] ),
         datetime.date.isoformat(
-            datetime.datetime.fromtimestamp( time.time() )
+            datetime.datetime.utcfromtimestamp( int(os.environ.get('SOURCE_DATE_EPOCH', time.time())) )
         ),
         hashlib.md5( open(gcounties_an, "rb").read() ).hexdigest(),
         datetime.date.isoformat(
-            datetime.datetime.fromtimestamp( os.path.getmtime(gcounties_an) )
+            datetime.datetime.utcfromtimestamp( os.path.getmtime(gcounties_an) )
         ),
         gcounties_an,
         hashlib.md5( open(gcousubs_an, "rb").read() ).hexdigest(),
         datetime.date.isoformat(
-            datetime.datetime.fromtimestamp( os.path.getmtime(gcousubs_an) )
+            datetime.datetime.utcfromtimestamp( os.path.getmtime(gcousubs_an) )
         ),
         gcousubs_an,
         hashlib.md5( open(gplace_an, "rb").read() ).hexdigest(),
         datetime.date.isoformat(
-            datetime.datetime.fromtimestamp( os.path.getmtime(gplace_an) )
+            datetime.datetime.utcfromtimestamp( os.path.getmtime(gplace_an) )
         ),
         gplace_an,
         hashlib.md5( open(gzcta_an, "rb").read() ).hexdigest(),
         datetime.date.isoformat(
-            datetime.datetime.fromtimestamp( os.path.getmtime(gzcta_an) )
+            datetime.datetime.utcfromtimestamp( os.path.getmtime(gzcta_an) )
         ),
         gzcta_an,
         hashlib.md5( open(cpfzcf_fn, "rb").read() ).hexdigest(),
         datetime.date.isoformat(
-            datetime.datetime.fromtimestamp( os.path.getmtime(cpfzcf_fn) )
+            datetime.datetime.utcfromtimestamp( os.path.getmtime(cpfzcf_fn) )
         ),
         cpfzcf_fn,
         hashlib.md5( open(nsdcccc_fn, "rb").read() ).hexdigest(),
         datetime.date.isoformat(
-            datetime.datetime.fromtimestamp( os.path.getmtime(nsdcccc_fn) )
+            datetime.datetime.utcfromtimestamp( os.path.getmtime(nsdcccc_fn) )
         ),
         nsdcccc_fn,
         hashlib.md5( open(ourairports_fn, "rb").read() ).hexdigest(),
         datetime.date.isoformat(
-            datetime.datetime.fromtimestamp( os.path.getmtime(ourairports_fn) )
+            datetime.datetime.utcfromtimestamp( os.path.getmtime(ourairports_fn) )
         ),
         ourairports_fn,
         hashlib.md5( open(overrides_fn, "rb").read() ).hexdigest(),
         datetime.date.isoformat(
-            datetime.datetime.fromtimestamp( os.path.getmtime(overrides_fn) )
+            datetime.datetime.utcfromtimestamp( os.path.getmtime(overrides_fn) )
         ),
         overrides_fn,
         hashlib.md5( open(slist_fn, "rb").read() ).hexdigest(),
         datetime.date.isoformat(
-            datetime.datetime.fromtimestamp( os.path.getmtime(slist_fn) )
+            datetime.datetime.utcfromtimestamp( os.path.getmtime(slist_fn) )
         ),
         slist_fn,
         hashlib.md5( open(zlist_fn, "rb").read() ).hexdigest(),
         datetime.date.isoformat(
-            datetime.datetime.fromtimestamp( os.path.getmtime(zlist_fn) )
+            datetime.datetime.utcfromtimestamp( os.path.getmtime(zlist_fn) )
         ),
         zlist_fn
     )
