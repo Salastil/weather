@@ -89,14 +89,10 @@ class Selections:
                 return self.config.get(argument, option)
         if option in self.options.__dict__:
             return self.options.__dict__[option]
-        else:
-            import os, sys
-            message = "%s error: no URI defined for %s\n" % (
-                os.path.basename( sys.argv[0] ),
-                option
-            )
-            sys.stderr.write(message)
-            exit(1)
+        import sys
+        message = "WARNING: no URI defined for %s\n" % option
+        sys.stderr.write(message)
+        return None
     def get_bool(self, option, argument=None):
         """Get data and coerce to a boolean if necessary."""
         return bool(self.get(option, argument))
@@ -324,11 +320,7 @@ def get_alert(
 ):
     """Return alert notice for the specified URI."""
     if not uri:
-        import os, sys
-        message = "%s error: Alert URI required for alerts\n" % \
-            os.path.basename( sys.argv[0] )
-        sys.stderr.write(message)
-        sys.exit(1)
+        return ""
     alert = get_uri(
         uri,
         ignore_fail=True,
