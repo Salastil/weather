@@ -400,14 +400,9 @@ def get_options(config):
             + "flash_flood_watch," \
             + "flood_statement," \
             + "flood_warning," \
-            + "marine_weather_statement," \
-            + "river_statement," \
             + "severe_thunderstorm_warning," \
             + "severe_weather_statement," \
-            + "short_term_forecast," \
-            + "special_marine_warning," \
             + "special_weather_statement," \
-            + "tornado_warning," \
             + "urgent_weather_message"
     option_parser.add_option("--atypes",
         dest="atypes",
