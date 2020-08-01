@@ -2,14 +2,13 @@
 # use, copy, modify, and distribute this software is granted under terms
 # provided in the LICENSE file distributed with this software.
 #
-# generated on 2020-07-26 by running:
+# generated on 2020-08-01 by running:
 #
 # wget -qO- https://tgftp.nws.noaa.gov/data/observations/metar/decoded/ \
 # | grep '<a href="[^\.]*\.TXT">.*-'$( date +%b-%Y )' ' \
 # | sed 's,.*<a href="\([^\.]*\)\.TXT">.*,\1,' \
 # | tr A-Z a-z
 
-aggg
 aggh
 anyn
 avbo
@@ -18,13 +17,16 @@ aynz
 aypy
 bgbw
 bggh
+bggn
 bgjn
 bgkk
+bgns
 bgsf
 bgtl
 biar
 bibd
 bieg
+bigr
 bihn
 biis
 bikf
@@ -138,7 +140,6 @@ cwjx
 cwkd
 cwkg
 cwkh
-cwkk
 cwko
 cwkx
 cwlb
@@ -191,7 +192,6 @@ cwrm
 cwrn
 cwro
 cwrt
-cwru
 cwrx
 cwry
 cwrz
@@ -640,11 +640,11 @@ dgsi
 dgtk
 diap
 dibk
-disp
 diyo
 dnaa
 dnak
 dnbe
+dnca
 dnen
 dnib
 dnil
@@ -657,7 +657,6 @@ dnma
 dnmm
 dnmn
 dnpo
-dnso
 dnyo
 drrb
 drrm
@@ -695,7 +694,6 @@ ebfs
 eblb
 eblg
 ebos
-edac
 edah
 eddb
 eddc
@@ -1005,7 +1003,6 @@ eqyc
 eqyd
 eqye
 eqyf
-eqyg
 eqyk
 eqyl
 eqyt
@@ -1059,7 +1056,6 @@ esut
 etad
 etar
 eteb
-etek
 etgg
 etha
 ethb
@@ -1130,7 +1126,6 @@ fbmn
 fbsk
 fbsp
 fcbb
-fcod
 fcoi
 fcpp
 fdbb
@@ -1156,7 +1151,6 @@ fkys
 flhn
 flkk
 fmch
-fmcv
 fmcz
 fmee
 fmep
@@ -1220,7 +1214,6 @@ fvrg
 fvwn
 fwcl
 fwki
-fxmm
 fygb
 fygf
 fykm
@@ -1315,6 +1308,7 @@ hbba
 hcmf
 hcmm
 hdam
+hdmt
 heat
 heax
 heba
@@ -1333,27 +1327,14 @@ hesh
 hesn
 hesw
 hetr
-hkal
-hkbm
-hkbo
-hkbr
-hkch
-hkeb
 hkel
-hkgo
-hkgt
-hkij
 hkjk
 hkki
-hkkk
-hkko
 hkml
 hkmo
 hknw
-hksh
 hkwj
 hryr
-hssj
 hsss
 ht1r
 htar
@@ -1375,10 +1356,8 @@ htms
 htmt
 htmu
 htmw
-htmy
 htpe
 htri
-hts0
 hts9
 htse
 htsi
@@ -1420,8 +1399,6 @@ k1cn
 k1cw
 k1dm
 k1dn
-k1dw
-k1em
 k1en
 k1ew
 k1f0
@@ -1441,7 +1418,6 @@ k1iw
 k1j0
 k1jm
 k1jn
-k1jw
 k1k1
 k1km
 k1kw
@@ -1515,7 +1491,6 @@ k5h4
 k5m9
 k5r8
 k5sm
-k5t9
 k6a1
 k6a2
 k6b0
@@ -1727,7 +1702,6 @@ kaxh
 kaxn
 kaxs
 kaxv
-kaxx
 kays
 kazc
 kaze
@@ -2082,10 +2056,10 @@ kdlp
 kdls
 kdlz
 kdma
-kdmh
 kdmn
 kdmo
 kdmw
+kdna
 kdnl
 kdnn
 kdns
@@ -2314,7 +2288,6 @@ kfso
 kfst
 kfsw
 kftk
-kftn
 kftw
 kfty
 kful
@@ -2814,7 +2787,6 @@ km30
 km40
 km54
 km75
-km91
 kmae
 kmaf
 kmai
@@ -3034,7 +3006,6 @@ knuc
 knui
 knuq
 knuw
-knxf
 knxp
 kny0
 knyc
@@ -3269,7 +3240,6 @@ kpym
 kpyx
 kpzq
 kpzz
-kqa5
 kqa8
 kqaj
 kqal
@@ -3279,11 +3249,10 @@ kqb3
 kqb4
 kqbg
 kqbl
-kqbr
+kqbn
 kqbt
 kqc7
 kqc8
-kqcg
 kqcl
 kqcp
 kqd3
@@ -3304,19 +3273,16 @@ kqex
 kqey
 kqfb
 kqfl
-kqfs
 kqft
 kqfu
 kqfv
 kqfw
 kqfx
-kqgc
 kqge
-kqgn
 kqgr
 kqgt
-kqgv
 kqgx
+kqgz
 kqhb
 kqhc
 kqhd
@@ -3325,7 +3291,6 @@ kqhf
 kqhg
 kqhk
 kqhy
-kqjz
 kqm2
 kqmk
 kqn3
@@ -3333,6 +3298,8 @@ kqnd
 kqrd
 kqrh
 kqri
+kqrs
+kqrv
 kqs3
 kqsf
 kqsi
@@ -4270,7 +4237,6 @@ ltbs
 ltbt
 ltbu
 ltby
-ltbz
 ltca
 ltcb
 ltcc
@@ -4347,7 +4313,6 @@ mgza
 mham
 mhca
 mhch
-mhcl
 mhgr
 mhgs
 mhlc
@@ -4365,7 +4330,6 @@ mhtg
 mhth
 mhtr
 mhyr
-mjkp
 mkjp
 mkjs
 mmaa
@@ -4437,7 +4401,6 @@ mnmg
 mnpc
 mnrs
 mpbo
-mpce
 mpda
 mpmg
 mppa
@@ -4463,13 +4426,10 @@ mucu
 mugm
 muha
 muhg
-mumz
-mung
 musc
 muvr
 mwcb
 mwcr
-myfg
 mygf
 mynn
 mysm
@@ -4487,7 +4447,6 @@ ncrk
 ndbh
 nffn
 nfkd
-nflb
 nfna
 nfnl
 nfnr
@@ -4537,7 +4496,6 @@ oegn
 oegs
 oegt
 oehl
-oejb
 oejn
 oekj
 oekm
@@ -4557,6 +4515,7 @@ oewd
 oewj
 oeyn
 oiaa
+oiad
 oiag
 oiah
 oiam
@@ -4606,10 +4565,10 @@ oinr
 oinz
 oisf
 oisl
-oisp
 oisr
 oiss
 oisy
+oitk
 oitl
 oitm
 oitp
@@ -4629,7 +4588,6 @@ ojaq
 okas
 okbk
 olba
-olsk
 omaa
 omad
 omal
@@ -4642,21 +4600,18 @@ oodq
 ooms
 oosa
 oosh
-opgd
 opis
 opkc
 opla
 opmt
 opnh
 opps
-oprn
 opsk
 opst
 orbi
 orer
 ormm
 orni
-orsc
 orsu
 osdi
 oskl
@@ -4712,7 +4667,6 @@ pahn
 paho
 pahp
 pahx
-pahy
 paig
 paii
 paik
@@ -4768,7 +4722,6 @@ paqh
 paqt
 parc
 pars
-pary
 pasa
 pasc
 pasd
@@ -4838,10 +4791,6 @@ plch
 pmdy
 ppit
 ppiz
-prlb
-prll
-prmd
-prvm
 ptkk
 ptpn
 ptro
@@ -4956,7 +4905,6 @@ rkny
 rkpc
 rkpk
 rkpm
-rkpn
 rkps
 rkpu
 rksd
@@ -5003,7 +4951,6 @@ rpmz
 rpvd
 rpvm
 rpvp
-saac
 saag
 saap
 saar
@@ -5019,7 +4966,6 @@ same
 samm
 samr
 sanc
-sane
 sanj
 sant
 sanu
@@ -5108,7 +5054,6 @@ sbht
 sbic
 sbih
 sbil
-sbip
 sbiz
 sbje
 sbjp
@@ -5290,7 +5235,6 @@ slcp
 slet
 slgm
 sljo
-sljv
 sllp
 slmg
 slor
@@ -5303,8 +5247,6 @@ slrq
 slsa
 slsb
 slsi
-slsm
-slsr
 sltj
 sltr
 sluy
@@ -5312,7 +5254,6 @@ slvm
 slvr
 slya
 smjp
-smz0
 smzo
 soca
 spay
@@ -5343,7 +5284,6 @@ sptu
 spyl
 spzo
 suaa
-suag
 suca
 sudu
 suls
@@ -5391,9 +5331,7 @@ tncb
 tncc
 tnce
 tncm
-tncn
 tqpf
-trpg
 ttcp
 ttpp
 tupj
@@ -5517,7 +5455,6 @@ utdd
 utdk
 utdl
 utdt
-utfa
 utff
 utfn
 utnn
@@ -5581,6 +5518,7 @@ vebi
 vebn
 vebs
 vecc
+vedg
 vegk
 vegt
 vegy
@@ -5639,7 +5577,6 @@ vohb
 vohs
 vohy
 vokn
-vomb
 vomd
 voml
 vomm
@@ -5653,9 +5590,9 @@ votk
 votp
 votr
 votv
+vovo
 vovz
 vqpr
-vrmg
 vrmm
 vtbd
 vtbo
@@ -5881,7 +5818,6 @@ zspd
 zsqd
 zsss
 zuck
-zudu
 zugy
 zuuu
 zwsh

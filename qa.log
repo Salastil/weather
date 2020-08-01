@@ -2,8 +2,6 @@
 # use, copy, modify, and distribute this software is granted under terms
 # provided in the LICENSE file distributed with this software.
 
-aggg: no description
-aggg: no location
 avbo: no description
 avbo: no location
 corr: no description
@@ -70,24 +68,8 @@ fajb: no description
 fajb: no location
 gbft: no description
 gbft: no location
-hkal: no description
-hkal: no location
-hkbo: no description
-hkbo: no location
-hkch: no description
-hkch: no location
-hkeb: no description
-hkeb: no location
-hkgo: no description
-hkgo: no location
-hkij: no description
-hkij: no location
-hkkk: no description
-hkkk: no location
-hkko: no description
-hkko: no location
-hksh: no description
-hksh: no location
+hdmt: no description
+hdmt: no location
 ht1r: no description
 ht1r: no location
 htd0: no description
@@ -96,12 +78,8 @@ htha: no description
 htha: no location
 htmh: no description
 htmh: no location
-htmy: no description
-htmy: no location
 htri: no description
 htri: no location
-hts0: no description
-hts0: no location
 hts9: no description
 hts9: no location
 htsi: no description
@@ -130,8 +108,6 @@ k1dm: no description
 k1dm: no location
 k1dn: no description
 k1dn: no location
-k1dw: no description
-k1dw: no location
 k1en: no description
 k1en: no location
 k1ew: no description
@@ -160,8 +136,6 @@ k1iw: no description
 k1iw: no location
 k1jn: no description
 k1jn: no location
-k1jw: no description
-k1jw: no location
 k1km: no description
 k1km: no location
 k1kw: no description
@@ -214,8 +188,6 @@ knoz: no description
 knoz: no location
 kpzz: no description
 kpzz: no location
-kqa5: no description
-kqa5: no location
 kqa8: no description
 kqa8: no location
 kqaj: no description
@@ -234,16 +206,14 @@ kqbg: no description
 kqbg: no location
 kqbl: no description
 kqbl: no location
-kqbr: no description
-kqbr: no location
+kqbn: no description
+kqbn: no location
 kqbt: no description
 kqbt: no location
 kqc7: no description
 kqc7: no location
 kqc8: no description
 kqc8: no location
-kqcg: no description
-kqcg: no location
 kqcl: no description
 kqcl: no location
 kqcp: no description
@@ -284,8 +254,6 @@ kqfb: no description
 kqfb: no location
 kqfl: no description
 kqfl: no location
-kqfs: no description
-kqfs: no location
 kqft: no description
 kqft: no location
 kqfu: no description
@@ -296,20 +264,16 @@ kqfw: no description
 kqfw: no location
 kqfx: no description
 kqfx: no location
-kqgc: no description
-kqgc: no location
 kqge: no description
 kqge: no location
-kqgn: no description
-kqgn: no location
 kqgr: no description
 kqgr: no location
 kqgt: no description
 kqgt: no location
-kqgv: no description
-kqgv: no location
 kqgx: no description
 kqgx: no location
+kqgz: no description
+kqgz: no location
 kqhb: no description
 kqhb: no location
 kqhc: no description
@@ -326,8 +290,6 @@ kqhk: no description
 kqhk: no location
 kqhy: no description
 kqhy: no location
-kqjz: no description
-kqjz: no location
 kqm2: no description
 kqm2: no location
 kqmk: no description
@@ -342,6 +304,10 @@ kqrh: no description
 kqrh: no location
 kqri: no description
 kqri: no location
+kqrs: no description
+kqrs: no location
+kqrv: no description
+kqrv: no location
 kqs3: no description
 kqs3: no location
 kqsf: no description
@@ -394,14 +360,8 @@ mhon: no description
 mhon: no location
 mhth: no description
 mhth: no location
-mjkp: no description
-mjkp: no location
-myfg: no description
-myfg: no location
 ndbh: no description
 ndbh: no location
-nflb: no description
-nflb: no location
 odkl: no description
 odkl: no location
 oear: no description
@@ -410,22 +370,6 @@ oekj: no description
 oekj: no location
 oicm: no description
 oicm: no location
-oisp: no description
-oisp: no location
-olsk: no description
-olsk: no location
-orsc: no description
-orsc: no location
-prlb: no description
-prlb: no location
-prll: no description
-prll: no location
-prmd: no description
-prmd: no location
-prvm: no description
-prvm: no location
-rkpn: no description
-rkpn: no location
 sanj: no description
 sanj: no location
 sbsy: no description
@@ -436,29 +380,21 @@ sgvr: no description
 sgvr: no location
 slgm: no description
 slgm: no location
-smz0: no description
-smz0: no location
 spec: no description
 spec: no location
 szmo: no description
 szmo: no location
-tncn: no description
-tncn: no location
 ugam: no description
 ugam: no location
 vaor: no description
 vaor: no location
-vomb: no description
-vomb: no location
-wahq: no description
-wahq: no location
-zudu: no description
-zudu: no location
+vovo: no description
+vovo: no location
 alz262: within one km of alz266
 alz263: within one km of alz265
 alz265: within one km of alz263
 alz266: within one km of alz262
-caz101: within one km of caz102
+caz101: within one km of caz103
 caz102: within one km of caz101
 caz103: within one km of caz101
 caz104: within one km of caz101
@@ -497,9 +433,9 @@ vaz518: within one km of vaz517
 vaz519: within one km of vaz520
 vaz520: within one km of vaz519
 waz503: within one km of waz567
-waz507: within one km of waz555
+waz507: within one km of waz568
 waz511: within one km of waz559
-waz555: within one km of waz507
+waz555: within one km of waz568
 waz556: within one km of waz569
 waz559: within one km of waz511
 waz567: within one km of waz503
