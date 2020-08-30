@@ -2,7 +2,7 @@
 # use, copy, modify, and distribute this software is granted under terms
 # provided in the LICENSE file distributed with this software.
 #
-# generated on 2020-08-01 by running:
+# generated on 2020-08-29 by running:
 #
 # wget -qO- https://tgftp.nws.noaa.gov/data/observations/metar/decoded/ \
 # | grep '<a href="[^\.]*\.TXT">.*-'$( date +%b-%Y )' ' \
@@ -15,6 +15,7 @@ avbo
 aymh
 aynz
 aypy
+azuh
 bgbw
 bggh
 bggn
@@ -26,8 +27,10 @@ bgtl
 biar
 bibd
 bieg
+bigj
 bigr
 bihn
+bihu
 biis
 bikf
 birk
@@ -60,6 +63,7 @@ cwba
 cwbe
 cwbk
 cwbo
+cwbs
 cwbt
 cwbu
 cwbv
@@ -140,6 +144,7 @@ cwjx
 cwkd
 cwkg
 cwkh
+cwkk
 cwko
 cwkx
 cwlb
@@ -178,6 +183,7 @@ cwpf
 cwpk
 cwpo
 cwpr
+cwps
 cwpx
 cwpz
 cwqh
@@ -212,6 +218,7 @@ cwtn
 cwtt
 cwty
 cwus
+cwuw
 cwux
 cwvf
 cwvi
@@ -241,6 +248,7 @@ cwza
 cwzg
 cwzl
 cwzn
+cwzo
 cwzq
 cwzv
 cwzw
@@ -587,6 +595,7 @@ czmu
 czol
 czpc
 czps
+czrp
 czsj
 czsm
 czsp
@@ -640,6 +649,7 @@ dgsi
 dgtk
 diap
 dibk
+disp
 diyo
 dnaa
 dnak
@@ -1056,6 +1066,7 @@ esut
 etad
 etar
 eteb
+etek
 etgg
 etha
 ethb
@@ -1150,6 +1161,8 @@ fkkr
 fkys
 flhn
 flkk
+flmf
+flnd
 fmch
 fmcz
 fmee
@@ -1240,6 +1253,7 @@ gank
 ganr
 gask
 gasn
+gaye
 gbft
 gbyd
 gcfv
@@ -1299,9 +1313,11 @@ gqpz
 gucy
 gulb
 gunz
+guxn
 gvac
 gvba
 gvnp
+gvnq
 gvsv
 haab
 hbba
@@ -1309,6 +1325,7 @@ hcmf
 hcmm
 hdam
 hdmt
+hear
 heat
 heax
 heba
@@ -1335,6 +1352,8 @@ hkmo
 hknw
 hkwj
 hryr
+hsnn
+hspn
 hsss
 ht1r
 htar
@@ -1399,6 +1418,7 @@ k1cn
 k1cw
 k1dm
 k1dn
+k1em
 k1en
 k1ew
 k1f0
@@ -1418,10 +1438,12 @@ k1iw
 k1j0
 k1jm
 k1jn
+k1jw
 k1k1
 k1km
 k1kw
 k1lm
+k1lw
 k1m4
 k1m5
 k1mm
@@ -1435,6 +1457,7 @@ k1on
 k1ow
 k1p1
 k1r7
+k1s3
 k1s5
 k1u7
 k1v4
@@ -1491,6 +1514,7 @@ k5h4
 k5m9
 k5r8
 k5sm
+k5t9
 k6a1
 k6a2
 k6b0
@@ -1702,6 +1726,7 @@ kaxh
 kaxn
 kaxs
 kaxv
+kaxx
 kays
 kazc
 kaze
@@ -2046,6 +2071,7 @@ kdij
 kdik
 kdkb
 kdkk
+kdkr
 kdkx
 kdlf
 kdlh
@@ -2086,6 +2112,7 @@ kdtw
 kdua
 kdub
 kduc
+kdug
 kduh
 kduj
 kdux
@@ -2355,6 +2382,7 @@ kglh
 kglr
 kgls
 kglw
+kgly
 kgmj
 kgmu
 kgna
@@ -2449,6 +2477,7 @@ khhf
 khhg
 khhr
 khhv
+khhw
 khib
 khie
 khif
@@ -2465,6 +2494,7 @@ khlg
 khln
 khlr
 khlx
+khme
 khmn
 khmp
 khmt
@@ -2640,6 +2670,7 @@ kjsl
 kjso
 kjst
 kjsv
+kjsy
 kjtc
 kjvl
 kjvw
@@ -2656,6 +2687,7 @@ kjyo
 kjyr
 kjzi
 kjzp
+kk82
 kk88
 kkls
 kknb
@@ -2787,6 +2819,7 @@ km30
 km40
 km54
 km75
+km91
 kmae
 kmaf
 kmai
@@ -3243,6 +3276,7 @@ kpzz
 kqa8
 kqaj
 kqal
+kqau
 kqay
 kqaz
 kqb3
@@ -3290,7 +3324,23 @@ kqhe
 kqhf
 kqhg
 kqhk
+kqhp
+kqhq
+kqhr
+kqhv
+kqhw
+kqhx
 kqhy
+kqhz
+kqia
+kqic
+kqif
+kqig
+kqih
+kqii
+kqil
+kqjq
+kqjz
 kqm2
 kqmk
 kqn3
@@ -3710,6 +3760,7 @@ kver
 kves
 kvgc
 kvgt
+kvhn
 kvih
 kvis
 kvji
@@ -4396,6 +4447,7 @@ mmzo
 mnbl
 mnch
 mnjg
+mnjj
 mnju
 mnmg
 mnpc
@@ -4404,7 +4456,9 @@ mpbo
 mpda
 mpmg
 mppa
+mppn
 mpsm
+mpt0
 mpto
 mrlb
 mrlm
@@ -4457,6 +4511,7 @@ nftl
 nftv
 ngfu
 ngta
+ngtt
 niue
 nlww
 nsfa
@@ -4464,6 +4519,7 @@ nstu
 ntaa
 nvsc
 nvsg
+nvsl
 nvss
 nvva
 nvvv
@@ -4502,6 +4558,7 @@ oekm
 oema
 oeng
 oepa
+oere
 oerf
 oerk
 oerr
@@ -4518,6 +4575,7 @@ oiaa
 oiad
 oiag
 oiah
+oiai
 oiam
 oiaw
 oiba
@@ -4532,21 +4590,27 @@ oibs
 oibv
 oicc
 oici
+oicj
 oick
 oicm
 oics
+oifk
 oifm
 oifs
 oigg
+oigk
 oihh
+oihm
 oihr
 oiie
 oiii
 oiik
 oiip
+oiis
 oikb
 oikk
 oikm
+oiko
 oikq
 oikr
 oimb
@@ -4558,11 +4622,14 @@ oimn
 oimq
 oims
 oimt
+oinb
 oine
 oing
+oink
 oinn
 oinr
 oinz
+oisa
 oisf
 oisl
 oisr
@@ -4606,14 +4673,18 @@ opla
 opmt
 opnh
 opps
+oprn
 opsk
 opst
+oqkl
 orbi
 orer
 ormm
 orni
+ornn
 orsu
 osdi
+osdo
 oskl
 oslk
 otbd
@@ -4646,6 +4717,7 @@ paeg
 paeh
 paei
 pael
+paem
 paen
 pafa
 pafb
@@ -4667,6 +4739,7 @@ pahn
 paho
 pahp
 pahx
+pahy
 paig
 paii
 paik
@@ -4761,6 +4834,7 @@ pfel
 pfkt
 pfkw
 pfno
+pfnu
 pfsh
 pfws
 pfyu
@@ -4951,7 +5025,9 @@ rpmz
 rpvd
 rpvm
 rpvp
+saac
 saag
+saaj
 saap
 saar
 saav
@@ -4967,6 +5043,7 @@ samm
 samr
 sanc
 sanj
+sanr
 sant
 sanu
 saoc
@@ -5175,6 +5252,7 @@ seqm
 serb
 sero
 sesa
+sesg
 sesm
 sest
 setn
@@ -5198,10 +5276,17 @@ skas
 skbg
 skbo
 skbq
+skbs
 skcc
 skcg
 skcl
+skco
+skcz
 skej
+skfl
+skgi
+skgo
+skgp
 skgy
 skib
 skip
@@ -5215,13 +5300,17 @@ sknv
 skpc
 skpd
 skpe
+skpp
 skps
 skpv
+skqu
 skrg
 skrh
+sksa
 sksj
 sksm
 sksp
+sktm
 skuc
 skui
 skvp
@@ -5229,12 +5318,14 @@ skvv
 skyp
 slag
 slal
+slas
 slcb
 slco
 slcp
 slet
 slgm
 sljo
+sljv
 sllp
 slmg
 slor
@@ -5244,6 +5335,7 @@ slra
 slrb
 slri
 slrq
+slry
 slsa
 slsb
 slsi
@@ -5254,6 +5346,7 @@ slvm
 slvr
 slya
 smjp
+smz0
 smzo
 soca
 spay
@@ -5264,9 +5357,12 @@ spgm
 sphi
 spho
 sphy
+sphz
+spja
 spjc
 spje
 spji
+spjj
 spjl
 spjr
 splo
@@ -5281,6 +5377,7 @@ spso
 spst
 sptn
 sptu
+spur
 spyl
 spzo
 suaa
@@ -5299,6 +5396,7 @@ svgd
 svgu
 svjm
 svlo
+svmc
 svmg
 svmi
 svpa
@@ -5331,7 +5429,9 @@ tncb
 tncc
 tnce
 tncm
+tncn
 tqpf
+trpg
 ttcp
 ttpp
 tupj
@@ -5392,6 +5492,7 @@ ukdd
 ukde
 ukdr
 ukhh
+ukke
 ukkk
 ukkm
 ukli
@@ -5455,6 +5556,7 @@ utdd
 utdk
 utdl
 utdt
+utfa
 utff
 utfn
 utnn
@@ -5532,10 +5634,12 @@ vemn
 vemr
 vept
 vepy
+verb
 verc
 verp
 vgeg
 vghs
+vgsy
 vhhh
 viag
 viar
@@ -5691,6 +5795,7 @@ yaba
 yamb
 yarg
 yaye
+yayt
 ybas
 ybbn
 ybcg
