@@ -221,18 +221,10 @@ def get_uri(
             data = urlopen(uri).read().decode("utf-8")
         except URLError:
             if ignore_fail: return ""
-            else:
-                import os, sys, traceback
-                message = "%s error: failed to retrieve\n   %s\n   %s" % (
-                        os.path.basename( sys.argv[0] ),
-                        uri,
-                        traceback.format_exception_only(
-                            sys.exc_type,
-                            sys.exc_value
-                        )[0]
-                    )
-                sys.stderr.write(message)
-                sys.exit(1)
+            import os, sys
+            sys.stderr.write("%s error: failed to retrieve\n   %s\n\n" % (
+                os.path.basename( sys.argv[0] ), uri))
+            raise
         # Some data sources are HTML with the plain text wrapped in pre tags
         if "<pre>" in data:
             data = data[data.find("<pre>")+5:data.find("</pre>")]
