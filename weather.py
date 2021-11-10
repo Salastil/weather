@@ -95,7 +95,19 @@ class Selections:
         return None
     def get_bool(self, option, argument=None):
         """Get data and coerce to a boolean if necessary."""
-        return bool(self.get(option, argument))
+        # Mimic configparser's getboolean() method by treating
+        # false/no/off/0 as False and true/yes/on/1 as True values,
+        # case-insensitively
+        value = self.get(option, argument)
+        if isinstance(value, bool):
+            return value
+        if isinstance(value, str):
+            vlower = value.lower()
+            if vlower in ('false', 'no', 'off', '0'):
+                return False
+            elif vlower in ('true', 'yes', 'on', '1'):
+                return True
+        raise ValueError("Not a boolean: %s" % value)
     def getint(self, option, argument=None):
         """Get data and coerce to an integer if necessary."""
         value = self.get(option, argument)
@@ -365,7 +377,7 @@ def get_options(config):
 
     # the -a/--alert option
     if config.has_option("default", "alert"):
-        default_alert = bool(config.get("default", "alert"))
+        default_alert = config.getboolean("default", "alert")
     else: default_alert = False
     option_parser.add_option("-a", "--alert",
         dest="alert",
@@ -420,7 +432,7 @@ def get_options(config):
 
     # the -f/--forecast option
     if config.has_option("default", "forecast"):
-        default_forecast = bool(config.get("default", "forecast"))
+        default_forecast = config.getboolean("default", "forecast")
     else: default_forecast = False
     option_parser.add_option("-f", "--forecast",
         dest="forecast",
@@ -448,7 +460,7 @@ def get_options(config):
 
     # the --imperial option
     if config.has_option("default", "imperial"):
-        default_imperial = bool(config.get("default", "imperial"))
+        default_imperial = config.getboolean("default", "imperial")
     else: default_imperial = False
     option_parser.add_option("--imperial",
         dest="imperial",
@@ -479,7 +491,7 @@ def get_options(config):
 
     # the -m/--metric option
     if config.has_option("default", "metric"):
-        default_metric = bool(config.get("default", "metric"))
+        default_metric = config.getboolean("default", "metric")
     else: default_metric = False
     option_parser.add_option("-m", "--metric",
         dest="metric",
@@ -489,7 +501,7 @@ def get_options(config):
 
     # the -n/--no-conditions option
     if config.has_option("default", "conditions"):
-        default_conditions = bool(config.get("default", "conditions"))
+        default_conditions = config.getboolean("default", "conditions")
     else: default_conditions = True
     option_parser.add_option("-n", "--no-conditions",
         dest="conditions",
@@ -499,7 +511,7 @@ def get_options(config):
 
     # the --no-cache option
     if config.has_option("default", "cache"):
-        default_cache = bool(config.get("default", "cache"))
+        default_cache = config.getboolean("default", "cache")
     else: default_cache = True
     option_parser.add_option("--no-cache",
         dest="cache",
@@ -509,7 +521,7 @@ def get_options(config):
 
     # the --no-cache-data option
     if config.has_option("default", "cache_data"):
-        default_cache_data = bool(config.get("default", "cache_data"))
+        default_cache_data = config.getboolean("default", "cache_data")
     else: default_cache_data = True
     option_parser.add_option("--no-cache-data",
         dest="cache_data",
@@ -519,7 +531,7 @@ def get_options(config):
 
     # the --no-cache-search option
     if config.has_option("default", "cache_search"):
-        default_cache_search = bool(config.get("default", "cache_search"))
+        default_cache_search = config.getboolean("default", "cache_search")
     else: default_cache_search = True
     option_parser.add_option("--no-cache-search",
         dest="cache_search",
@@ -529,7 +541,7 @@ def get_options(config):
 
     # the -q/--quiet option
     if config.has_option("default", "quiet"):
-        default_quiet = bool(config.get("default", "quiet"))
+        default_quiet = config.getboolean("default", "quiet")
     else: default_quiet = False
     option_parser.add_option("-q", "--quiet",
         dest="quiet",
@@ -548,7 +560,7 @@ def get_options(config):
 
     # the -v/--verbose option
     if config.has_option("default", "verbose"):
-        default_verbose = bool(config.get("default", "verbose"))
+        default_verbose = config.getboolean("default", "verbose")
     else: default_verbose = False
     option_parser.add_option("-v", "--verbose",
         dest="verbose",
