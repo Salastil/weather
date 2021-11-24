@@ -1,7 +1,7 @@
 """Contains various object definitions needed by the weather utility."""
 
 weather_copyright = """\
-# Copyright (c) 2006-2020 Jeremy Stanley <fungi@yuggoth.org>. Permission to
+# Copyright (c) 2006-2021 Jeremy Stanley <fungi@yuggoth.org>. Permission to
 # use, copy, modify, and distribute this software is granted under terms
 # provided in the LICENSE file distributed with this software.
 #"""

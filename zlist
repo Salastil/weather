@@ -2,7 +2,7 @@
 # use, copy, modify, and distribute this software is granted under terms
 # provided in the LICENSE file distributed with this software.
 #
-# generated on 2021-08-29 by running:
+# generated on 2021-11-23 by running:
 #
 # for area in $(
 #  wget -qO- https://tgftp.nws.noaa.gov/data/forecasts/zone/ \
@@ -360,27 +360,46 @@ caz112
 caz113
 caz114
 caz115
-caz179
-caz180
-caz181
-caz182
-caz183
-caz184
-caz185
-caz186
-caz187
-caz188
-caz189
-caz190
-caz191
-caz192
-caz193
-caz194
-caz195
-caz196
-caz197
-caz198
-caz199
+caz300
+caz301
+caz302
+caz303
+caz304
+caz305
+caz306
+caz307
+caz308
+caz309
+caz310
+caz311
+caz312
+caz313
+caz314
+caz315
+caz316
+caz317
+caz318
+caz319
+caz320
+caz321
+caz322
+caz323
+caz324
+caz325
+caz326
+caz327
+caz328
+caz329
+caz330
+caz331
+caz332
+caz333
+caz334
+caz335
+caz336
+caz337
+caz338
+caz339
 caz505
 caz506
 caz507
@@ -3553,11 +3572,13 @@ waz038
 waz039
 waz040
 waz041
-waz042
 waz043
 waz044
 waz045
 waz046
+waz047
+waz048
+waz049
 waz503
 waz504
 waz506

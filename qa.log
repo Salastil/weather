@@ -14,69 +14,6 @@ caz105: within one km of caz101
 caz106: within one km of caz101
 caz107: within one km of caz108
 caz108: within one km of caz107
-caz179: no centroid
-caz179: no description
-caz179: no forecast
-caz180: no centroid
-caz180: no description
-caz180: no forecast
-caz181: no centroid
-caz181: no description
-caz181: no forecast
-caz182: no centroid
-caz182: no description
-caz182: no forecast
-caz183: no centroid
-caz183: no description
-caz183: no forecast
-caz184: no centroid
-caz184: no description
-caz184: no forecast
-caz185: no centroid
-caz185: no description
-caz185: no forecast
-caz186: no centroid
-caz186: no description
-caz186: no forecast
-caz187: no centroid
-caz187: no description
-caz187: no forecast
-caz188: no centroid
-caz188: no description
-caz188: no forecast
-caz189: no centroid
-caz189: no description
-caz189: no forecast
-caz190: no centroid
-caz190: no description
-caz190: no forecast
-caz191: no centroid
-caz191: no description
-caz191: no forecast
-caz192: no centroid
-caz192: no description
-caz192: no forecast
-caz193: no centroid
-caz193: no description
-caz193: no forecast
-caz194: no centroid
-caz194: no description
-caz194: no forecast
-caz195: no centroid
-caz195: no description
-caz195: no forecast
-caz196: no centroid
-caz196: no description
-caz196: no forecast
-caz197: no centroid
-caz197: no description
-caz197: no forecast
-caz198: no centroid
-caz198: no description
-caz198: no forecast
-caz199: no centroid
-caz199: no description
-caz199: no forecast
 flz024: within one km of flz124
 flz124: within one km of flz024
 flz139: within one km of flz239
@@ -107,9 +44,6 @@ vaz517: within one km of vaz518
 vaz518: within one km of vaz517
 vaz519: within one km of vaz520
 vaz520: within one km of vaz519
-waz042: no centroid
-waz042: no description
-waz042: no forecast
 waz503: within one km of waz567
 waz507: within one km of waz555
 waz511: within one km of waz559
