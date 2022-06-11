@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Jeremy Stanley <fungi@yuggoth.org>. Permission to
+# Copyright (c) 2022 Jeremy Stanley <fungi@yuggoth.org>. Permission to
 # use, copy, modify, and distribute this software is granted under terms
 # provided in the LICENSE file distributed with this software.
 
@@ -38,8 +38,6 @@ paz105: within one km of paz106
 paz106: within one km of paz105
 vaz513: within one km of vaz514
 vaz514: within one km of vaz513
-vaz515: within one km of vaz516
-vaz516: within one km of vaz515
 vaz517: within one km of vaz518
 vaz518: within one km of vaz517
 vaz519: within one km of vaz520
