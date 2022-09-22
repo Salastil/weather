@@ -1227,7 +1227,7 @@ def gecos(formatted):
     return tuple(coordinates)
 
 def correlate():
-    import codecs, csv, datetime, hashlib, os, re, sys, tarfile, time, zipfile
+    import codecs, csv, datetime, hashlib, os, re, sys, time, zipfile
     if pyversion("3"): import configparser
     else: import ConfigParser as configparser
     for filename in os.listdir("."):
