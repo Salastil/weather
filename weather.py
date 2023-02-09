@@ -1,12 +1,12 @@
 """Contains various object definitions needed by the weather utility."""
 
 weather_copyright = """\
-# Copyright (c) 2006-2021 Jeremy Stanley <fungi@yuggoth.org>. Permission to
+# Copyright (c) 2006-2023 Jeremy Stanley <fungi@yuggoth.org>. Permission to
 # use, copy, modify, and distribute this software is granted under terms
 # provided in the LICENSE file distributed with this software.
 #"""
 
-weather_version = "2.4.1"
+weather_version = "2.4.3"
 
 radian_to_km = 6372.795484
 radian_to_mi = 3959.871528
