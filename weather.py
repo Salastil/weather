@@ -1415,7 +1415,7 @@ def correlate():
     sys.stdout.write(message)
     sys.stdout.flush()
     count = 0
-    slist = codecs.open(slist_fn, "rU", "utf-8")
+    slist = codecs.open(slist_fn, "r", "utf-8")
     for line in slist:
         icao = line.split("#")[0].strip()
         if icao:
@@ -1430,7 +1430,7 @@ def correlate():
     sys.stdout.write(message)
     sys.stdout.flush()
     count = 0
-    nsdcccc = codecs.open(nsdcccc_fn, "rU", "utf-8")
+    nsdcccc = codecs.open(nsdcccc_fn, "r", "utf-8")
     for line in nsdcccc:
         line = str(line)
         fields = line.split(";")
@@ -1459,7 +1459,7 @@ def correlate():
     sys.stdout.write(message)
     sys.stdout.flush()
     count = 0
-    ourairports = open(ourairports_fn, "rU")
+    ourairports = open(ourairports_fn, "r")
     for row in csv.reader(ourairports):
         icao = row[12].lower()
         if icao in stations:
@@ -1497,7 +1497,7 @@ def correlate():
     sys.stdout.write(message)
     sys.stdout.flush()
     count = 0
-    zlist = codecs.open(zlist_fn, "rU", "utf-8")
+    zlist = codecs.open(zlist_fn, "r", "utf-8")
     for line in zlist:
         line = line.split("#")[0].strip()
         if line:
@@ -1510,7 +1510,7 @@ def correlate():
     sys.stdout.flush()
     count = 0
     cpfz = {}
-    cpfzcf = codecs.open(cpfzcf_fn, "rU", "utf-8")
+    cpfzcf = codecs.open(cpfzcf_fn, "r", "utf-8")
     for line in cpfzcf:
         fields = line.strip().split("|")
         if len(fields) == 11 \
