@@ -2,25 +2,82 @@
 # use, copy, modify, and distribute this software is granted under terms
 # provided in the LICENSE file distributed with this software.
 
+alz262: within one km of alz266
+alz263: within one km of alz265
+alz265: within one km of alz263
+alz266: within one km of alz262
 caz053: no centroid
 caz054: no centroid
 caz059: no centroid
+caz101: within one km of caz102
+caz102: within one km of caz101
+caz103: within one km of caz101
+caz104: within one km of caz101
+caz105: within one km of caz101
+caz106: within one km of caz101
+caz107: within one km of caz108
+caz108: within one km of caz107
 caz359: no centroid
 caz363: no centroid
 caz364: no centroid
 caz365: no centroid
 caz547: no centroid
+flz024: within one km of flz124
+flz124: within one km of flz024
+flz139: within one km of flz239
+flz142: within one km of flz242
+flz148: within one km of flz248
+flz149: within one km of flz249
+flz155: within one km of flz255
+flz160: within one km of flz260
+flz239: within one km of flz139
+flz242: within one km of flz142
+flz248: within one km of flz148
+flz249: within one km of flz149
+flz255: within one km of flz155
+flz260: within one km of flz160
 laz041: no centroid
 laz042: no centroid
 laz043: no centroid
 laz052: no centroid
 laz053: no centroid
 laz054: no centroid
+laz073: within one km of laz074
+laz074: within one km of laz073
 msz080: no centroid
 msz081: no centroid
 msz082: no centroid
 paz023: no centroid
+paz101: within one km of paz102
+paz102: within one km of paz101
+paz103: within one km of paz104
+paz104: within one km of paz103
+paz105: within one km of paz106
+paz106: within one km of paz105
 txz215: no centroid
 txz216: no centroid
 vaz052: no centroid
+vaz513: within one km of vaz514
+vaz514: within one km of vaz513
+vaz517: within one km of vaz518
+vaz518: within one km of vaz517
+vaz519: within one km of vaz520
+vaz520: within one km of vaz519
+waz503: within one km of waz567
+waz507: within one km of waz555
+waz511: within one km of waz559
 waz520: no centroid
+waz555: within one km of waz507
+waz556: within one km of waz569
+waz559: within one km of waz511
+waz567: within one km of waz503
+waz568: within one km of waz507
+waz569: within one km of waz556
+wvz506: within one km of wvz507
+wvz507: within one km of wvz506
+wvz509: within one km of wvz510
+wvz510: within one km of wvz509
+wvz511: within one km of wvz512
+wvz512: within one km of wvz511
+wvz513: within one km of wvz514
+wvz514: within one km of wvz513

@@ -22,7 +22,7 @@
 # ...and these manually-generated or hand-compiled adjustments:
 # 5ea9acf0247c5d9109c9c43fcf30796d 2023-02-09 overrides.conf
 # acd59d8c9da429dd512b42cf980aa23d 2023-02-09 slist
-# 6909e16855a1a3c5f9523cea9ca60eee 2023-02-09 zlist
+# 31a742c5924dfddd1975d1d44abfe2d4 2023-02-09 zlist
 
 [aaa]
 station = ntga
