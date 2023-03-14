@@ -21,6 +21,8 @@ caz359: no centroid
 caz363: no centroid
 caz364: no centroid
 caz365: no centroid
+caz375: within one km of caz376
+caz376: within one km of caz375
 caz547: no centroid
 flz024: within one km of flz124
 flz124: within one km of flz024
@@ -44,9 +46,13 @@ laz053: no centroid
 laz054: no centroid
 laz073: within one km of laz074
 laz074: within one km of laz073
+laz152: no centroid
 msz080: no centroid
 msz081: no centroid
 msz082: no centroid
+nyz211: no centroid
+nyz212: no centroid
+nyz213: no centroid
 paz023: no centroid
 paz101: within one km of paz102
 paz102: within one km of paz101

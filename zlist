@@ -2,7 +2,7 @@
 # use, copy, modify, and distribute this software is granted under terms
 # provided in the LICENSE file distributed with this software.
 #
-# generated on 2023-02-09 by running:
+# generated on 2023-03-14 by running:
 #
 # for area in $(
 #  wget -qO- https://tgftp.nws.noaa.gov/data/forecasts/zone/ \
@@ -238,6 +238,7 @@ arz341
 asz001
 asz002
 asz003
+asz004
 azz001
 azz002
 azz003
@@ -429,6 +430,24 @@ caz362
 caz363
 caz364
 caz365
+caz366
+caz367
+caz368
+caz369
+caz370
+caz371
+caz372
+caz373
+caz374
+caz375
+caz376
+caz377
+caz378
+caz379
+caz380
+caz381
+caz382
+caz383
 caz502
 caz503
 caz504
@@ -1560,6 +1579,18 @@ laz087
 laz088
 laz089
 laz090
+laz141
+laz142
+laz143
+laz152
+laz153
+laz154
+laz241
+laz242
+laz243
+laz252
+laz253
+laz254
 maz001
 maz002
 maz003
@@ -2034,6 +2065,12 @@ msz079
 msz080
 msz081
 msz082
+msz083
+msz084
+msz085
+msz086
+msz087
+msz088
 mtz001
 mtz002
 mtz003
@@ -2603,6 +2640,9 @@ nyz176
 nyz177
 nyz178
 nyz179
+nyz211
+nyz212
+nyz213
 ohz001
 ohz002
 ohz003
@@ -2883,6 +2923,8 @@ paz073
 paz074
 paz075
 paz076
+paz077
+paz078
 paz101
 paz102
 paz103
@@ -3442,6 +3484,10 @@ txz447
 txz451
 txz454
 txz455
+txz515
+txz516
+txz615
+txz616
 utz022
 utz023
 utz024
@@ -3593,6 +3639,8 @@ vaz522
 vaz523
 vaz524
 vaz525
+vaz526
+vaz527
 viz001
 viz002
 vtz001
@@ -3659,6 +3707,8 @@ waz516
 waz517
 waz520
 waz521
+waz522
+waz523
 waz555
 waz556
 waz558
