@@ -130,7 +130,7 @@ def filter_units(line, units="imperial"):
     # filter lines with both pressures in the form of "X inches (Y hPa)" or
     # "X in. Hg (Y hPa)"
     dual_p = re.match(
-        "(.* )(\d*(\.\d+)? (inches|in\. Hg)) \((\d*(\.\d+)? hPa)\)(.*)",
+        r"(.* )(\d*(\.\d+)? (inches|in\. Hg)) \((\d*(\.\d+)? hPa)\)(.*)",
         line
     )
     if dual_p:
@@ -139,7 +139,7 @@ def filter_units(line, units="imperial"):
         elif units == "metric": line = preamble + hpa + trailer
     # filter lines with both temperatures in the form of "X F (Y C)"
     dual_t = re.match(
-        "(.* )(-?\d*(\.\d+)? F) \((-?\d*(\.\d+)? C)\)(.*)",
+        r"(.* )(-?\d*(\.\d+)? F) \((-?\d*(\.\d+)? C)\)(.*)",
         line
     )
     if dual_t:
@@ -150,7 +150,7 @@ def filter_units(line, units="imperial"):
     # "Y kilometer(s)"
     if units == "metric":
         imperial_d = re.match(
-            "(.* )(\d+)( mile\(s\))(.*)",
+            r"(.* )(\d+)( mile\(s\))(.*)",
             line
         )
         if imperial_d:
@@ -160,7 +160,7 @@ def filter_units(line, units="imperial"):
     # filter speeds in the form of "X MPH (Y KT)" to just "X MPH"; if metric is
     # desired, convert to "Z KPH"
     imperial_s = re.match(
-        "(.* )(\d+)( MPH)( \(\d+ KT\))(.*)",
+        r"(.* )(\d+)( MPH)( \(\d+ KT\))(.*)",
         line
     )
     if imperial_s:
@@ -170,7 +170,7 @@ def filter_units(line, units="imperial"):
             line = preamble + str(int(round(int(mph)*1.609344))) + " KPH" + \
                 trailer
     imperial_s = re.match(
-        "(.* )(\d+)( MPH)( \(\d+ KT\))(.*)",
+        r"(.* )(\d+)( MPH)( \(\d+ KT\))(.*)",
         line
     )
     if imperial_s:
@@ -182,7 +182,7 @@ def filter_units(line, units="imperial"):
     # if imperial is desired, qualify given forcast temperatures like "X F"; if
     # metric is desired, convert to "Y C"
     imperial_t = re.match(
-        "(.* )(High |high |Low |low )(\d+)(\.|,)(.*)",
+        r"(.* )(High |high |Low |low )(\d+)(\.|,)(.*)",
         line
     )
     if imperial_t:
