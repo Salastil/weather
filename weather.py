@@ -1,7 +1,7 @@
 """Contains various object definitions needed by the weather utility."""
 
 weather_copyright = """\
-# Copyright (c) 2006-2023 Jeremy Stanley <fungi@yuggoth.org>. Permission to
+# Copyright (c) 2006-2024 Jeremy Stanley <fungi@yuggoth.org>. Permission to
 # use, copy, modify, and distribute this software is granted under terms
 # provided in the LICENSE file distributed with this software.
 #"""
@@ -747,7 +747,7 @@ def guess(
             if pyversion("3"):
                 stations.read_string(
                     gzip.open(datafile).read().decode("utf-8") )
-            else: stations.readfp( gzip.open(datafile) )
+            else: stations.read_file( gzip.open(datafile) )
         else:
             if pyversion("3"):
                 stations.read(datafile, encoding="utf-8")
@@ -768,7 +768,7 @@ def guess(
             import gzip
             if pyversion("3"):
                 zones.read_string( gzip.open(datafile).read().decode("utf-8") )
-            else: zones.readfp( gzip.open(datafile) )
+            else: zones.read_file( gzip.open(datafile) )
         else:
             if pyversion("3"):
                 zones.read(datafile, encoding="utf-8")
@@ -798,7 +798,7 @@ def guess(
                 if pyversion("3"):
                     airports.read_string(
                         gzip.open(datafile).read().decode("utf-8") )
-                else: airports.readfp( gzip.open(datafile) )
+                else: airports.read_file( gzip.open(datafile) )
             else:
                 if pyversion("3"):
                     airports.read(datafile, encoding="utf-8")
@@ -890,7 +890,7 @@ def guess(
                 if pyversion("3"):
                     zctas.read_string(
                         gzip.open(datafile).read().decode("utf-8") )
-                else: zctas.readfp( gzip.open(datafile) )
+                else: zctas.read_file( gzip.open(datafile) )
             else:
                 if pyversion("3"):
                     zctas.read(datafile, encoding="utf-8")
@@ -951,7 +951,7 @@ def guess(
                 if pyversion("3"):
                     places.read_string(
                         gzip.open(datafile).read().decode("utf-8") )
-                else: places.readfp( gzip.open(datafile) )
+                else: places.read_file( gzip.open(datafile) )
             else:
                 if pyversion("3"):
                     places.read(datafile, encoding="utf-8")
@@ -1605,7 +1605,7 @@ def correlate():
     removed = 0
     changed = 0
     overrides = configparser.ConfigParser()
-    overrides.readfp( codecs.open(overrides_fn, "r", "utf8") )
+    overrides.read_file( codecs.open(overrides_fn, "r", "utf8") )
     overrideslog = []
     for section in overrides.sections():
         addopt = 0
