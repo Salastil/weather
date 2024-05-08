@@ -2,7 +2,7 @@
  Frequently Asked Questions About the Weather Utility
 ======================================================
 
-:Copyright: (c) 2006-2017 Jeremy Stanley <fungi@yuggoth.org>. Permission
+:Copyright: (c) 2006-2024 Jeremy Stanley <fungi@yuggoth.org>. Permission
             to use, copy, modify, and distribute this software is
             granted under terms provided in the LICENSE file distributed
             with this software.
@@ -70,9 +70,9 @@ line or in configuration is as follows::
   windchill
 
 These are a case-insensitive match against the start of lines in a
-decoded METAR up to the first colon (:) with underscores (_) replaced by
-spaces. You can see the full METAR for a given condition report by
-passing --verbose or by observing one directly (perhaps by looking in
-your *datacache* directory). Unfortunately I haven't found any proper
-specification for the decoded METAR format used by the NWS so know of no
-comprehensive list of what lines might appear.
+decoded METAR up to the first colon (:) with spaces optionally replaced
+by underscores (_). You can see the full METAR for a given condition
+report by passing --verbose or by observing one directly (perhaps by
+looking in your *datacache* directory). Unfortunately I haven't found
+any proper specification for the decoded METAR format used by the NWS so
+know of no comprehensive list of what lines might appear.
