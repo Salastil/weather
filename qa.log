@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Jeremy Stanley <fungi@yuggoth.org>. Permission to
+# Copyright (c) 2024 Jeremy Stanley <fungi@yuggoth.org>. Permission to
 # use, copy, modify, and distribute this software is granted under terms
 # provided in the LICENSE file distributed with this software.
 
@@ -6,9 +6,6 @@ alz262: within one km of alz266
 alz263: within one km of alz265
 alz265: within one km of alz263
 alz266: within one km of alz262
-caz053: no centroid
-caz054: no centroid
-caz059: no centroid
 caz101: within one km of caz102
 caz102: within one km of caz101
 caz103: within one km of caz101
@@ -17,13 +14,8 @@ caz105: within one km of caz101
 caz106: within one km of caz101
 caz107: within one km of caz108
 caz108: within one km of caz107
-caz359: no centroid
-caz363: no centroid
-caz364: no centroid
-caz365: no centroid
 caz375: within one km of caz376
 caz376: within one km of caz375
-caz547: no centroid
 flz024: within one km of flz124
 flz124: within one km of flz024
 flz139: within one km of flz239
@@ -38,31 +30,14 @@ flz248: within one km of flz148
 flz249: within one km of flz149
 flz255: within one km of flz155
 flz260: within one km of flz160
-laz041: no centroid
-laz042: no centroid
-laz043: no centroid
-laz052: no centroid
-laz053: no centroid
-laz054: no centroid
 laz073: within one km of laz074
 laz074: within one km of laz073
-laz152: no centroid
-msz080: no centroid
-msz081: no centroid
-msz082: no centroid
-nyz211: no centroid
-nyz212: no centroid
-nyz213: no centroid
-paz023: no centroid
 paz101: within one km of paz102
 paz102: within one km of paz101
 paz103: within one km of paz104
 paz104: within one km of paz103
 paz105: within one km of paz106
 paz106: within one km of paz105
-txz215: no centroid
-txz216: no centroid
-vaz052: no centroid
 vaz513: within one km of vaz514
 vaz514: within one km of vaz513
 vaz517: within one km of vaz518
@@ -72,7 +47,6 @@ vaz520: within one km of vaz519
 waz503: within one km of waz567
 waz507: within one km of waz555
 waz511: within one km of waz559
-waz520: no centroid
 waz555: within one km of waz507
 waz556: within one km of waz569
 waz559: within one km of waz511
