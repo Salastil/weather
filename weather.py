@@ -406,11 +406,11 @@ def get_options(config):
             + "flash_flood_statement," \
             + "flash_flood_warning," \
             + "flash_flood_watch," \
-            + "flood_statement," \
             + "flood_warning," \
             + "severe_thunderstorm_warning," \
             + "severe_weather_statement," \
             + "special_weather_statement," \
+            + "tornado," \
             + "urgent_weather_message"
     option_parser.add_option("--atypes",
         dest="atypes",
@@ -1530,6 +1530,9 @@ def correlate():
             zone = "z".join( fields[:2] ).lower()
             if zone in zones:
                 state = fields[0]
+                description = fields[3].strip()
+                fips = "fips%s"%fields[6]
+                countycode = "%sc%s" % (state.lower(), fips[-3:])
                 if state:
                     zones[zone]["coastal_flood_statement"] = (
                         "https://tgftp.nws.noaa.gov/data/watches_warnings/"
@@ -1537,27 +1540,25 @@ def correlate():
                     zones[zone]["flash_flood_statement"] = (
                         "https://tgftp.nws.noaa.gov/data/watches_warnings/"
                         "flash_flood/statement/%s/%s.txt"
-                        % (state.lower(), zone))
+                        % (state.lower(), countycode))
                     zones[zone]["flash_flood_warning"] = (
                         "https://tgftp.nws.noaa.gov/data/watches_warnings/"
                         "flash_flood/warning/%s/%s.txt"
-                        % (state.lower(), zone))
+                        % (state.lower(), countycode))
                     zones[zone]["flash_flood_watch"] = (
                         "https://tgftp.nws.noaa.gov/data/watches_warnings/"
                         "flash_flood/watch/%s/%s.txt" % (state.lower(), zone))
-                    zones[zone]["flood_statement"] = (
-                        "https://tgftp.nws.noaa.gov/data/watches_warnings/"
-                        "flood/statement/%s/%s.txt" % (state.lower(), zone))
                     zones[zone]["flood_warning"] = (
                         "https://tgftp.nws.noaa.gov/data/watches_warnings/"
-                        "flood/warning/%s/%s.txt" % (state.lower(), zone))
+                        "flood/warning/%s/%s.txt"
+                        % (state.lower(), countycode))
                     zones[zone]["severe_thunderstorm_warning"] = (
                         "https://tgftp.nws.noaa.gov/data/watches_warnings/"
-                        "thunderstorm/%s/%s.txt" % (state.lower(), zone))
+                        "thunderstorm/%s/%s.txt" % (state.lower(), countycode))
                     zones[zone]["severe_weather_statement"] = (
                         "https://tgftp.nws.noaa.gov/data/watches_warnings/"
                         "severe_weather_stmt/%s/%s.txt"
-                        % (state.lower(), zone))
+                        % (state.lower(), countycode))
                     zones[zone]["short_term_forecast"] = (
                         "https://tgftp.nws.noaa.gov/data/forecasts/nowcast/"
                         "%s/%s.txt" % (state.lower(), zone))
@@ -1568,14 +1569,15 @@ def correlate():
                     zones[zone]["state_forecast"] = (
                         "https://tgftp.nws.noaa.gov/data/forecasts/state/"
                         "%s/%s.txt" % (state.lower(), zone))
+                    zones[zone]["tornado"] = (
+                        "https://tgftp.nws.noaa.gov/data/watches_warnings/"
+                        "tornado/%s/%s.txt" % (state.lower(), countycode))
                     zones[zone]["urgent_weather_message"] = (
                         "https://tgftp.nws.noaa.gov/data/watches_warnings/"
                         "non_precip/%s/%s.txt" % (state.lower(), zone))
                     zones[zone]["zone_forecast"] = (
                         "https://tgftp.nws.noaa.gov/data/forecasts/zone/"
                         "%s/%s.txt" % (state.lower(), zone))
-                description = fields[3].strip()
-                fips = "fips%s"%fields[6]
                 county = fields[5]
                 if county:
                     if description.endswith(county):
