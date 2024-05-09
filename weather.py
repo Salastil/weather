@@ -1239,7 +1239,7 @@ def gecos(formatted):
     return tuple(coordinates)
 
 def correlate():
-    import codecs, csv, datetime, hashlib, os, re, sys, time, zipfile
+    import codecs, csv, datetime, hashlib, os, re, sys, time, zipfile, zoneinfo
     if pyversion("3"): import configparser
     else: import ConfigParser as configparser
     for filename in os.listdir("."):
@@ -2138,6 +2138,7 @@ def correlate():
             zctas_nocentroid += 1
     zones_nocentroid = 0
     zones_nodescription = 0
+    zones_notz = 0
     zones_noforecast = 0
     zones_overlapping = 0
     zonetable = {}
@@ -2165,6 +2166,10 @@ def correlate():
         if not zones.has_option(zone, "description"):
             qalog.append("%s: no description\n" % zone)
             zones_nodescription += 1
+        if not zones.has_option(zone, "tz") or not zones.get(
+                zone, "tz") in zoneinfo.available_timezones():
+            qalog.append("%s: no time zone\n" % zone)
+            zones_notz += 1
         if not zones.has_option(zone, "zone_forecast"):
             qalog.append("%s: no forecast\n" % zone)
             zones_noforecast += 1
@@ -2201,6 +2206,8 @@ def correlate():
             print("   %s zones with no centroid"%zones_nocentroid)
         if zones_nodescription:
             print("   %s zones with no description"%zones_nodescription)
+        if zones_notz:
+            print("   %s zones with no time zone"%zones_notz)
         if zones_noforecast:
             print("   %s zones with no forecast"%zones_noforecast)
         if zones_overlapping:
