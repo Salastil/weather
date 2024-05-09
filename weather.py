@@ -350,7 +350,7 @@ def get_alert(
 
             # report alerts and forecasts that expired less than offset ago;
             # this is a cheap hack since expiration times seem to be relative
-            # to the zone's local timezone, and converting from the user's
+            # to the zone's local time zone, and converting from the user's
             # would get complicated, but also there can sometimes be a lag
             # between expiration and the next update
             valid_time = time.strftime(
@@ -1578,6 +1578,37 @@ def correlate():
                     zones[zone]["zone_forecast"] = (
                         "https://tgftp.nws.noaa.gov/data/forecasts/zone/"
                         "%s/%s.txt" % (state.lower(), zone))
+                tzcode = fields[7]
+                if tzcode == "A":
+                    zones[zone]["tz"] = "US/Alaska"
+                elif tzcode == "AH":
+                    zones[zone]["tz"] = "US/Aleutian"
+                elif tzcode in ("C", "CE", "CM"):
+                    zones[zone]["tz"] = "US/Central"
+                elif tzcode in ("E", "e"):
+                    zones[zone]["tz"] = "US/Eastern"
+                elif tzcode == "F":
+                    zones[zone]["tz"] = "Pacific/Guadalcanal"
+                elif tzcode == "G":
+                    zones[zone]["tz"] = "Pacific/Guam"
+                elif tzcode == "H":
+                    zones[zone]["tz"] = "US/Hawaii"
+                elif tzcode == "J":
+                    zones[zone]["tz"] = "Japan"
+                elif tzcode == "K":
+                    zones[zone]["tz"] = "Pacific/Kwajalein"
+                elif tzcode in ("M", "MC", "MP"):
+                    zones[zone]["tz"] = "US/Mountain"
+                elif tzcode == "m":
+                    zones[zone]["tz"] = "US/Arizona"
+                elif tzcode == "P":
+                    zones[zone]["tz"] = "US/Pacific"
+                elif tzcode == "S":
+                    zones[zone]["tz"] = "US/Samoa"
+                elif tzcode == "V":
+                    zones[zone]["tz"] = "America/Virgin"
+                else:
+                    zones[zone]["tz"] = ""
                 county = fields[5]
                 if county:
                     if description.endswith(county):
