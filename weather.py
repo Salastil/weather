@@ -336,10 +336,11 @@ def get_alert(
     if alert:
         if verbose: return alert
         else:
-            if alert.find("\nNational Weather Service") == -1:
-                muted = False
-            else:
+            import re
+            if re.search(r"\nNational Weather Service", alert):
                 muted = True
+            else:
+                muted = False
             lines = alert.split("\n")
             import time
             # TODO: make this offset configurable
