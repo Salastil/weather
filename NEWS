@@ -9,6 +9,20 @@
 
 .. contents::
 
+2.5 Release
+-----------
+This release no longer works with Python versions prior to 3.9 since it
+relies on the new zoneinfo module from the 3.9 standard library, and may
+need the pytz library from PyPI if your system lacks time zone data.
+
+Added support for tornado watches and warnings, as well as fixing some
+bugs which caused certain alerts to fail to be found or to get filtered
+out prior to their intended expiration times. A new command line and
+configuration option for document expiration delay is included,
+defaulting to 1 hour. Data sources have also been updated, including
+2023 census locations. WX weather zone definitions now include time
+zones as well, in case they should become necessary in the future.
+
 2.4 Release
 -----------
 This is planned to be the last release supporting Python 2; starting
