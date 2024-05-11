@@ -320,7 +320,8 @@ def get_alert(
     quiet=False,
     cache_data=False,
     cacheage=900,
-    cachedir="."
+    cachedir=".",
+    delay=1
 ):
     """Return alert notice for the specified URI."""
     if not uri:
@@ -343,14 +344,13 @@ def get_alert(
                 muted = False
             expirycheck = re.search(r"Expires:([0-9]{12})", alert)
             if expirycheck:
-                # only report alerts and forecasts that expired less than
-                # offset ago
+                # only report alerts and forecasts that expired less than delay
+                # hours ago
                 import datetime, zoneinfo
                 expiration = datetime.datetime.fromisoformat(
                     "%sT%sZ" % (expirycheck[1][:8], expirycheck[1][-4:]))
                 now = datetime.datetime.now(tz=zoneinfo.ZoneInfo("UTC"))
-                # TODO: make this offset configurable
-                if now - expiration > datetime.timedelta(hours=1):
+                if now - expiration > datetime.timedelta(hours=delay):
                     return ""
             lines = alert.split("\n")
             output = []
@@ -436,6 +436,15 @@ def get_options(config):
         dest="cachedir",
         default=default_cachedir,
         help="directory for storing cached searches and data")
+
+    # the --delay option
+    if config.has_option("default", "delay"):
+        default_delay = config.getint("default", "delay")
+    else: default_delay = 1
+    option_parser.add_option("--delay",
+        dest="delay",
+        default=default_delay,
+        help="hours to delay alert and forecast expiration")
 
     # the -f/--forecast option
     if config.has_option("default", "forecast"):

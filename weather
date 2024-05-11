@@ -2,7 +2,7 @@
 # distributions may wish to edit the above to refer to a specific interpreter
 # path, such as #!/usr/bin/python
 
-# Copyright (c) 2006-2012 Jeremy Stanley <fungi@yuggoth.org>. Permission to
+# Copyright (c) 2006-2024 Jeremy Stanley <fungi@yuggoth.org>. Permission to
 # use, copy, modify, and distribute this software is granted under terms
 # provided in the LICENSE file distributed with this software.
 
@@ -101,7 +101,8 @@ else:
                             and selections.get_bool("cache_data")
                     ),
                     cacheage=selections.getint("cacheage"),
-                    cachedir=selections.get("cachedir")
+                    cachedir=selections.get("cachedir"),
+                    delay=selections.getint("delay")
                 )
                 if partial:
                     alert_text += "***** %s *****\n%s\n" % (
