@@ -336,7 +336,7 @@ def get_alert(
     if alert:
         if verbose: return alert
         else:
-            if alert.find("\nNATIONAL WEATHER SERVICE") == -1:
+            if alert.find("\nNational Weather Service") == -1:
                 muted = False
             else:
                 muted = True
@@ -360,7 +360,7 @@ def get_alert(
                 if line.startswith("Expires:") \
                     and "Expires:" + valid_time > line:
                     return ""
-                if muted and line.startswith("NATIONAL WEATHER SERVICE"):
+                if muted and line.startswith("National Weather Service"):
                     muted = False
                     line = ""
                 elif line == "&&":
