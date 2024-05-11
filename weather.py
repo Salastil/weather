@@ -11,18 +11,6 @@ weather_version = "2.4.4"
 radian_to_km = 6372.795484
 radian_to_mi = 3959.871528
 
-def pyversion(ref=None):
-    """Determine the Python version and optionally compare to a reference."""
-    import platform
-    ver = platform.python_version()
-    if ref:
-        return [
-            int(x) for x in ver.split(".")[:2]
-        ] >= [
-            int(x) for x in ref.split(".")[:2]
-        ]
-    else: return ver
-
 class Selections:
     """An object to contain selection data."""
     def __init__(self):
@@ -204,15 +192,7 @@ def get_uri(
     cachedir="."
 ):
     """Return a string containing the results of a URI GET."""
-    if pyversion("3"):
-        import urllib, urllib.error, urllib.request
-        URLError = urllib.error.URLError
-        urlopen = urllib.request.urlopen
-    else:
-        import urllib2 as urllib
-        URLError = urllib.URLError
-        urlopen = urllib.urlopen
-    import os, time
+    import os, time, urllib, urllib.error, urllib.request
     if cache_data:
         dcachedir = os.path.join( os.path.expanduser(cachedir), "datacache" )
         if not os.path.exists(dcachedir):
@@ -230,8 +210,8 @@ def get_uri(
         dcache_fd.close()
     else:
         try:
-            data = urlopen(uri).read().decode("utf-8")
-        except URLError:
+            data = urllib.request.urlopen(uri).read().decode("utf-8")
+        except urllib.error.URLError:
             if ignore_fail: return ""
             import os, sys
             sys.stderr.write("%s error: failed to retrieve\n   %s\n\n" % (
@@ -273,7 +253,7 @@ def get_metar(
         cacheage=cacheage,
         cachedir=cachedir
     )
-    if pyversion("3") and type(metar) is bytes: metar = metar.decode("utf-8")
+    if type(metar) is bytes: metar = metar.decode("utf-8")
     if verbose: return metar
     else:
         import re
@@ -333,7 +313,7 @@ def get_alert(
         cacheage=cacheage,
         cachedir=cachedir
     ).strip()
-    if pyversion("3") and type(alert) is bytes: alert = alert.decode("utf-8")
+    if type(alert) is bytes: alert = alert.decode("utf-8")
     if alert:
         if verbose: return alert
         else:
@@ -612,10 +592,8 @@ def get_options(config):
 
 def get_config():
     """Parse the aliases and configuration."""
-    if pyversion("3"): import configparser
-    else: import ConfigParser as configparser
+    import configparser, os
     config = configparser.ConfigParser()
-    import os
     rcfiles = [
         "/etc/weatherrc",
         "/etc/weather/weatherrc",
@@ -625,10 +603,7 @@ def get_config():
         ]
     for rcfile in rcfiles:
         if os.access(rcfile, os.R_OK):
-            if pyversion("3"):
-                config.read(rcfile, encoding="utf-8")
-            else:
-                config.read(rcfile)
+            config.read(rcfile, encoding="utf-8")
     for section in config.sections():
         if section != section.lower():
             if config.has_section(section.lower()):
@@ -640,9 +615,7 @@ def get_config():
 
 def integrate_search_cache(config, cachedir, setpath):
     """Add cached search results into the configuration."""
-    if pyversion("3"): import configparser
-    else: import ConfigParser as configparser
-    import os, time
+    import configparser, os, time
     scache_fn = os.path.join( os.path.expanduser(cachedir), "searches" )
     if not os.access(scache_fn, os.R_OK): return config
     scache_fd = open(scache_fn)
@@ -664,10 +637,7 @@ def integrate_search_cache(config, cachedir, setpath):
             pass
         return config
     scache = configparser.ConfigParser()
-    if pyversion("3"):
-        scache.read(scache_fn, encoding="utf-8")
-    else:
-        scache.read(scache_fn)
+    scache.read(scache_fn, encoding="utf-8")
     for section in scache.sections():
         if not config.has_section(section):
             config.add_section(section)
@@ -723,9 +693,7 @@ def guess(
     quiet=False
 ):
     """Find URIs using airport, gecos, placename, station, ZCTA/ZIP, zone."""
-    import codecs, datetime, time, os, re, sys
-    if pyversion("3"): import configparser
-    else: import ConfigParser as configparser
+    import codecs, configparser, datetime, time, os, re, sys
     datafiles = data_index(path)
     if re.match("[A-Za-z]{3}$", expression): searchtype = "airport"
     elif re.match("[A-Za-z0-9]{4}$", expression): searchtype = "station"
@@ -760,15 +728,9 @@ def guess(
         datafile = datafiles[dataname][0]
         if datafile.endswith(".gz"):
             import gzip
-            if pyversion("3"):
-                stations.read_string(
-                    gzip.open(datafile).read().decode("utf-8") )
-            else: stations.read_file( gzip.open(datafile) )
+            stations.read_string( gzip.open(datafile).read().decode("utf-8") )
         else:
-            if pyversion("3"):
-                stations.read(datafile, encoding="utf-8")
-            else:
-                stations.read(datafile)
+            stations.read(datafile, encoding="utf-8")
     else:
         message = "%s error: can't find \"%s\" data file\n" % (
             os.path.basename( sys.argv[0] ),
@@ -782,14 +744,9 @@ def guess(
         datafile = datafiles[dataname][0]
         if datafile.endswith(".gz"):
             import gzip
-            if pyversion("3"):
-                zones.read_string( gzip.open(datafile).read().decode("utf-8") )
-            else: zones.read_file( gzip.open(datafile) )
+            zones.read_string( gzip.open(datafile).read().decode("utf-8") )
         else:
-            if pyversion("3"):
-                zones.read(datafile, encoding="utf-8")
-            else:
-                zones.read(datafile)
+            zones.read(datafile, encoding="utf-8")
     else:
         message = "%s error: can't find \"%s\" data file\n" % (
             os.path.basename( sys.argv[0] ),
@@ -811,15 +768,10 @@ def guess(
             datafile = datafiles[dataname][0]
             if datafile.endswith(".gz"):
                 import gzip
-                if pyversion("3"):
-                    airports.read_string(
-                        gzip.open(datafile).read().decode("utf-8") )
-                else: airports.read_file( gzip.open(datafile) )
+                airports.read_string(
+                    gzip.open(datafile).read().decode("utf-8") )
             else:
-                if pyversion("3"):
-                    airports.read(datafile, encoding="utf-8")
-                else:
-                    airports.read(datafile)
+                airports.read(datafile, encoding="utf-8")
         else:
             message = "%s error: can't find \"%s\" data file\n" % (
                 os.path.basename( sys.argv[0] ),
@@ -903,15 +855,9 @@ def guess(
             datafile = datafiles[dataname][0]
             if datafile.endswith(".gz"):
                 import gzip
-                if pyversion("3"):
-                    zctas.read_string(
-                        gzip.open(datafile).read().decode("utf-8") )
-                else: zctas.read_file( gzip.open(datafile) )
+                zctas.read_string( gzip.open(datafile).read().decode("utf-8") )
             else:
-                if pyversion("3"):
-                    zctas.read(datafile, encoding="utf-8")
-                else:
-                    zctas.read(datafile)
+                zctas.read(datafile, encoding="utf-8")
         else:
             message = "%s error: can't find \"%s\" data file\n" % (
                 os.path.basename( sys.argv[0] ),
@@ -964,15 +910,9 @@ def guess(
             datafile = datafiles[dataname][0]
             if datafile.endswith(".gz"):
                 import gzip
-                if pyversion("3"):
-                    places.read_string(
-                        gzip.open(datafile).read().decode("utf-8") )
-                else: places.read_file( gzip.open(datafile) )
+                places.read_string( gzip.open(datafile).read().decode("utf-8") )
             else:
-                if pyversion("3"):
-                    places.read(datafile, encoding="utf-8")
-                else:
-                    places.read(datafile)
+                places.read(datafile, encoding="utf-8")
         else:
             message = "%s error: can't find \"%s\" data file\n" % (
                 os.path.basename( sys.argv[0] ),
@@ -1189,10 +1129,7 @@ def guess(
             )
         try:
             scache_existing = configparser.ConfigParser()
-            if pyversion("3"):
-                scache_existing.read(scache_fn, encoding="utf-8")
-            else:
-                scache_existing.read(scache_fn)
+            scache_existing.read(scache_fn, encoding="utf-8")
             if not scache_existing.has_section(search[0]):
                 scache_fd = codecs.open(scache_fn, "a", "utf-8")
                 scache_fd.writelines(search_cache)
@@ -1243,9 +1180,8 @@ def gecos(formatted):
     return tuple(coordinates)
 
 def correlate():
-    import codecs, csv, datetime, hashlib, os, re, sys, time, zipfile, zoneinfo
-    if pyversion("3"): import configparser
-    else: import ConfigParser as configparser
+    import codecs, configparser, csv, datetime, hashlib, os, re, sys, time
+    import zipfile, zoneinfo
     for filename in os.listdir("."):
         if re.match("[0-9]{4}_Gaz_counties_national.zip$", filename):
             gcounties_an = filename
@@ -2077,30 +2013,15 @@ def correlate():
     sys.stdout.write(message)
     sys.stdout.flush()
     airports = configparser.ConfigParser()
-    if pyversion("3"):
-        airports.read(airports_fn, encoding="utf-8")
-    else:
-        airports.read(airports_fn)
+    airports.read(airports_fn, encoding="utf-8")
     places = configparser.ConfigParser()
-    if pyversion("3"):
-        places.read(places_fn, encoding="utf-8")
-    else:
-        places.read(places_fn)
+    places.read(places_fn, encoding="utf-8")
     stations = configparser.ConfigParser()
-    if pyversion("3"):
-        stations.read(stations_fn, encoding="utf-8")
-    else:
-        stations.read(stations_fn)
+    stations.read(stations_fn, encoding="utf-8")
     zctas = configparser.ConfigParser()
-    if pyversion("3"):
-        zctas.read(zctas_fn, encoding="utf-8")
-    else:
-        zctas.read(zctas_fn)
+    zctas.read(zctas_fn, encoding="utf-8")
     zones = configparser.ConfigParser()
-    if pyversion("3"):
-        zones.read(zones_fn, encoding="utf-8")
-    else:
-        zones.read(zones_fn)
+    zones.read(zones_fn, encoding="utf-8")
     qalog = []
     places_nocentroid = 0
     places_nodescription = 0

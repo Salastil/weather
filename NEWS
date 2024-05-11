@@ -2,7 +2,7 @@
  New Version Information for the Weather Utility
 =================================================
 
-:Copyright: (c) 2006-2020 Jeremy Stanley <fungi@yuggoth.org>. Permission
+:Copyright: (c) 2006-2024 Jeremy Stanley <fungi@yuggoth.org>. Permission
             to use, copy, modify, and distribute this software is
             granted under terms provided in the LICENSE file distributed
             with this software.
@@ -12,8 +12,8 @@
 2.4 Release
 -----------
 This is planned to be the last release supporting Python 2; starting
-with the 3.0.0 release, this software will only be usable with Python
-3.5 and later.
+with the 2.5.0 release, this software will only be usable with Python
+3.x.
 
 Refreshed correlation sets and data sources including updating to 2019
 US Census locations and incorporating public domain airport information

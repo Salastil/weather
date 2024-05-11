@@ -2,7 +2,7 @@
  Basic Unix Installation Instructions for the Weather Utility
 ==============================================================
 
-:Copyright: (c) 2006-2014 Jeremy Stanley <fungi@yuggoth.org>. Permission
+:Copyright: (c) 2006-2024 Jeremy Stanley <fungi@yuggoth.org>. Permission
             to use, copy, modify, and distribute this software is
             granted under terms provided in the LICENSE file distributed
             with this software.
@@ -16,7 +16,7 @@ modern UNIX derivatives come with one already). If you need to get
 Python, it can be obtained from http://www.python.org/ but chances are
 your operating system at least provides some sort of native package for
 it, which you should probably install in whatever means is recommended
-by your OS vendor/distributor. The script is tested with recent 2.x and
+by your OS vendor/distributor. The script is tested with recent
 3.x Python versions, attempting to maintain forward/backward
 compatability with the interpreter, so bug reports or patches to ensure
 this continues to be the case are most welcome.
