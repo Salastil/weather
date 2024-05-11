@@ -341,26 +341,20 @@ def get_alert(
                 muted = True
             else:
                 muted = False
+            expirycheck = re.search(r"Expires:([0-9]{12})", alert)
+            if expirycheck:
+                # only report alerts and forecasts that expired less than
+                # offset ago
+                import datetime, zoneinfo
+                expiration = datetime.datetime.fromisoformat(
+                    "%sT%sZ" % (expirycheck[1][:8], expirycheck[1][-4:]))
+                now = datetime.datetime.now(tz=zoneinfo.ZoneInfo("UTC"))
+                # TODO: make this offset configurable
+                if now - expiration > datetime.timedelta(hours=1):
+                    return ""
             lines = alert.split("\n")
-            import time
-            # TODO: make this offset configurable
-            # TODO: adjust offset relative to the difference between the user's
-            #       local time and the zone's local time (will need to extend
-            #       the schema in the zones file to store each tz
-            offset = 86400  # one day
-
-            # report alerts and forecasts that expired less than offset ago;
-            # this is a cheap hack since expiration times seem to be relative
-            # to the zone's local time zone, and converting from the user's
-            # would get complicated, but also there can sometimes be a lag
-            # between expiration and the next update
-            valid_time = time.strftime(
-                "%Y%m%d%H%M", time.localtime(time.time() - offset))
             output = []
             for line in lines:
-                if line.startswith("Expires:") \
-                    and "Expires:" + valid_time > line:
-                    return ""
                 if muted and line.startswith("National Weather Service"):
                     muted = False
                     line = ""
