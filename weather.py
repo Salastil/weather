@@ -328,7 +328,13 @@ def get_alert(
                 # hours ago
                 import datetime, zoneinfo
                 expiration = datetime.datetime.fromisoformat(
-                    "%sT%sZ" % (expirycheck[1][:8], expirycheck[1][-4:]))
+                    "%s-%s-%sT%s:%s" % (
+                        expirycheck[1][:4],
+                        expirycheck[1][4:6],
+                        expirycheck[1][6:8],
+                        expirycheck[1][8:10],
+                        expirycheck[1][-2:],
+                    )).replace(tzinfo=zoneinfo.ZoneInfo("UTC"))
                 now = datetime.datetime.now(tz=zoneinfo.ZoneInfo("UTC"))
                 if now - expiration > datetime.timedelta(hours=delay):
                     return ""
