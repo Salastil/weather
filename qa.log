@@ -2,6 +2,42 @@
 # use, copy, modify, and distribute this software is granted under terms
 # provided in the LICENSE file distributed with this software.
 
+akz102: no centroid
+akz102: no time zone
+akz103: no centroid
+akz103: no time zone
+akz112: no centroid
+akz112: no time zone
+akz121: no centroid
+akz121: no time zone
+akz126: no centroid
+akz126: no time zone
+akz132: no centroid
+akz132: no time zone
+akz135: no centroid
+akz135: no time zone
+akz142: no centroid
+akz142: no time zone
+akz145: no centroid
+akz145: no time zone
+akz152: no centroid
+akz152: no time zone
+akz155: no centroid
+akz155: no time zone
+akz161: no centroid
+akz161: no time zone
+akz171: no centroid
+akz171: no time zone
+akz181: no centroid
+akz181: no time zone
+akz185: no centroid
+akz185: no time zone
+akz187: no centroid
+akz187: no time zone
+akz191: no centroid
+akz191: no time zone
+akz195: no centroid
+akz195: no time zone
 alz262: within one km of alz266
 alz263: within one km of alz265
 alz265: within one km of alz263
@@ -44,15 +80,46 @@ vaz517: within one km of vaz518
 vaz518: within one km of vaz517
 vaz519: within one km of vaz520
 vaz520: within one km of vaz519
-waz503: within one km of waz567
-waz507: within one km of waz555
-waz511: within one km of waz559
-waz555: within one km of waz507
-waz556: within one km of waz569
-waz559: within one km of waz511
-waz567: within one km of waz503
-waz568: within one km of waz507
-waz569: within one km of waz556
+waz503: no centroid
+waz503: no time zone
+waz504: no centroid
+waz504: no time zone
+waz506: no centroid
+waz506: no time zone
+waz507: no centroid
+waz507: no time zone
+waz509: no centroid
+waz509: no time zone
+waz510: no centroid
+waz510: no time zone
+waz511: no centroid
+waz511: no time zone
+waz512: no centroid
+waz512: no time zone
+waz513: no centroid
+waz513: no time zone
+waz514: no centroid
+waz514: no time zone
+waz515: no centroid
+waz515: no time zone
+waz516: no centroid
+waz516: no time zone
+waz517: no centroid
+waz517: no time zone
+waz555: no centroid
+waz555: no time zone
+waz556: no centroid
+waz556: no time zone
+waz558: no centroid
+waz558: no time zone
+waz559: no centroid
+waz559: no time zone
+waz567: no centroid
+waz567: no time zone
+waz568: no centroid
+waz568: no time zone
+waz569: no centroid
+waz569: no time zone
 wvz506: within one km of wvz507
 wvz507: within one km of wvz506
 wvz509: within one km of wvz510

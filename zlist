@@ -2,7 +2,7 @@
 # use, copy, modify, and distribute this software is granted under terms
 # provided in the LICENSE file distributed with this software.
 #
-# generated on 2024-05-08 by running:
+# generated on 2024-08-01 by running:
 #
 # for area in $(
 #  wget -qO- https://tgftp.nws.noaa.gov/data/forecasts/zone/ \
